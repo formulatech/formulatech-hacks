@@ -12,7 +12,7 @@ pre-push:
         piped: true
         jobs:
           - name: Checks
-            run: task check:be
+            run: mise check:be
             glob:
               - backends/**
               - pyproject.toml
@@ -26,14 +26,8 @@ pre-push:
       group:
         piped: true
         jobs:
-          - name: Generators
-            run: task gen:fe
-            glob:
-              - apps/**
-              - package.json
-              - pnpm-lock.yaml
           - name: Checks
-            run: task check:fe
+            run: mise check:fe
             glob:
               - apps/**
               - packages/**
