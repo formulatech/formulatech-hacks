@@ -42,7 +42,12 @@ $ mise trust
 $ mise install
 
 # Install development dependencies
-$ task setup
+$ mise setup
+```
+
+### Run Development Server
+```bash
+$ mise dev
 ```
 
 Copyright © 2025 FormulaTech Team. All rights reserved.
