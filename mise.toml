@@ -1,0 +1,43 @@
+[tools]
+python = "3.13"
+uv = "0.6.12"
+"aqua:evilmartians/lefthook" = "1.11.6"
+
+[env]
+_.python.venv = { path = ".venv", create = true, uv_create_args = ['--seed'] }
+
+[tasks.setup]
+description = "Install dependencies and setup environment"
+run = [
+  "uv pip install -r <(uv pip compile --extra dev pyproject.toml)",
+  "uv pip compile --extra dev pyproject.toml > requirements.txt",
+  "pnpm i",
+  "lefthook install"
+]
+
+[tasks.check]
+description = "Run all code checks"
+depends = ['check:be']
+
+[tasks.'check:be']
+description = "Run backend code checks"
+run = [
+  "mypy backend/"
+]
+
+[tasks.dev]
+description = "Start development services"
+depends = ['dev:be']
+
+[tasks.'dev:be']
+description = "Start backend development services"
+dir = "{{config_root}}/backend"
+run = [
+  "flask --debug run"
+]
+
+[tasks.format]
+description = "Format files"
+run = [
+  "ruff format backend/"
+]

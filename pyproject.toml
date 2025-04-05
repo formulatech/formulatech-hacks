@@ -1,0 +1,32 @@
+[project]
+name = "formulatech-hacks"
+version = "0.0.1"
+dependencies = [
+    "flask",
+]
+
+[project.optional-dependencies]
+dev = ["mypy", "basedpyright"]
+
+[tool.uv]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F"]
+ignore = []
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "tab"
+docstring-code-format = true
+
+[dependency-groups]
+dev = [
+    "basedpyright>=1.28.4",
+    "mypy>=1.15.0",
+    "ruff>=0.11.4",
+]
+
+

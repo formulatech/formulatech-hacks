@@ -1,0 +1,48 @@
+commit-msg:
+  commands:
+    "lint commit message":
+      run: pnpm commitlint --edit {1}
+
+pre-push:
+  parallel: true
+
+  jobs:
+    - name: BE
+      group:
+        piped: true
+        jobs:
+          - name: Checks
+            run: task check:be
+            glob:
+              - backends/**
+              - pyproject.toml
+              - requirements.txt
+              - uv.lock
+
+          - name: Check for Uncommitted Changes (BE)
+            run: git diff --exit-code
+
+    # - name: FE
+    #   group:
+    #     piped: true
+    #     jobs:
+    #       - name: Generators
+    #         run: task gen:fe
+    #         glob:
+    #           - apps/**
+    #           - packages/**
+    #           - package.json
+    #           - pnpm-lock.yaml
+    #       - name: Biome Checks
+    #         run: task check:biome
+
+    #       - name: Checks
+    #         run: task check:fe
+    #         glob:
+    #           - apps/**
+    #           - packages/**
+    #           - package.json
+    #           - pnpm-lock.yaml
+
+    #       - name: Check for Uncommitted Changes (FE)
+    #         run: git diff --exit-code

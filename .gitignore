@@ -1,0 +1,29 @@
+# Secrets
+.env
+.env.local
+.env.*.local
+
+# Build tools specific
+npm-debug.log
+yarn-error.log
+pnpm-debug.log*
+__pycache__
+.venv
+.mypy_cache
+node_modules
+
+# Misc.
+.DS_Store
+.react-router
+.task
+build
+dist
+tmp
+.mise.local.toml
+.astro
+
+# IntelliJ
+*.iml
+*.ipr
+*.iws
+.idea/
