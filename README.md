@@ -33,6 +33,8 @@ $ echo 'eval "$(mise activate bash)"' >> ~/.bashrc
 $ echo 'eval "$(mise activate zsh)"' >> "${ZDOTDIR-$HOME}/.zshrc"
 $ echo 'mise activate fish | source' >> ~/.config/fish/config.fish
 
+# Restart your terminal to refresh your environment
+
 # Open and validate `mise.toml` before trusting (inside repository root)
 $ mise trust
 
