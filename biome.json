@@ -9,7 +9,8 @@
 			"tmp/*",
 			".vscode/*",
 			".venv/*",
-			".mypy_cache/*"
+			".mypy_cache/*",
+			".astro/*"
 		],
 		"ignoreUnknown": true
 	},

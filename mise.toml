@@ -33,7 +33,7 @@ run = [
 ]
 
 [tasks.dev]
-description = "Start development services"
+description = "Start all development services"
 depends = ["dev:be", "dev:fe --name=www"]
 
 [tasks."dev:be"]
@@ -52,5 +52,6 @@ run = [
 [tasks.format]
 description = "Format files"
 run = [
-  "ruff format backend/"
+  "ruff format backend/",
+  "pnpm biome format . --write"
 ]
