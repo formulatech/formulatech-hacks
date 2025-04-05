@@ -45,9 +45,23 @@ $ mise install
 $ mise setup
 ```
 
-### Run Development Server
+## mise Commands
+
+| **Name** | **Description**                            |
+|----------|--------------------------------------------|
+| setup    | Install dependencies and setup environment |
+| check    | Run all code checks                        |
+| check:be | Run backend code checks                    |
+| check:fe | frontend                                   |
+| dev      | Start all development services             |
+| dev:be   | Start backend development services         |
+| dev:fe   | Start frontend development services        |
+| format   | Format files                               |
+
+To run a task:
+
 ```bash
-$ mise dev
+$ mise r [task]
 ```
 
 Copyright © 2025 FormulaTech Team. All rights reserved.
