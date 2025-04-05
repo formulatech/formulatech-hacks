@@ -4,7 +4,7 @@ uv = "0.6.12"
 "aqua:evilmartians/lefthook" = "1.11.6"
 
 [env]
-_.python.venv = { path = ".venv", create = true, uv_create_args = ['--seed'] }
+_.python.venv = { path = ".venv", create = true, uv_create_args = ["--seed"] }
 
 [tasks.setup]
 description = "Install dependencies and setup environment"
@@ -17,23 +17,36 @@ run = [
 
 [tasks.check]
 description = "Run all code checks"
-depends = ['check:be']
+depends = ["check:be", "check:fe"]
 
-[tasks.'check:be']
+[tasks."check:be"]
 description = "Run backend code checks"
 run = [
   "mypy backend/"
 ]
 
+[tasks."check:fe"]
+description = "Run frontend code checks"
+run = [
+  "pnpm --silent --filter=./apps/www typecheck",
+  "pnpm biome check --diagnostic-level=warn --write --unsafe ."
+]
+
 [tasks.dev]
 description = "Start development services"
-depends = ['dev:be']
+depends = ["dev:be", "dev:fe --name=www"]
 
-[tasks.'dev:be']
+[tasks."dev:be"]
 description = "Start backend development services"
 dir = "{{config_root}}/backend"
 run = [
   "flask --debug run"
+]
+
+[tasks."dev:fe"]
+description = "Start frontend development services"
+run = [
+  'pnpm --silent --filter=./apps/{{option(name="name", default="www")}} dev'
 ]
 
 [tasks.format]

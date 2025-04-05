@@ -7,4 +7,4 @@ mode: str = "Debug" if app.debug else "Production"
 
 @app.route("/")
 def root() -> Response:
-	return jsonify({"mode": mode, "name": name})
+    return jsonify({"mode": mode, "name": name})

@@ -22,27 +22,23 @@ pre-push:
           - name: Check for Uncommitted Changes (BE)
             run: git diff --exit-code
 
-    # - name: FE
-    #   group:
-    #     piped: true
-    #     jobs:
-    #       - name: Generators
-    #         run: task gen:fe
-    #         glob:
-    #           - apps/**
-    #           - packages/**
-    #           - package.json
-    #           - pnpm-lock.yaml
-    #       - name: Biome Checks
-    #         run: task check:biome
+    - name: FE
+      group:
+        piped: true
+        jobs:
+          - name: Generators
+            run: task gen:fe
+            glob:
+              - apps/**
+              - package.json
+              - pnpm-lock.yaml
+          - name: Checks
+            run: task check:fe
+            glob:
+              - apps/**
+              - packages/**
+              - package.json
+              - pnpm-lock.yaml
 
-    #       - name: Checks
-    #         run: task check:fe
-    #         glob:
-    #           - apps/**
-    #           - packages/**
-    #           - package.json
-    #           - pnpm-lock.yaml
-
-    #       - name: Check for Uncommitted Changes (FE)
-    #         run: git diff --exit-code
+          - name: Check for Uncommitted Changes (FE)
+            run: git diff --exit-code
