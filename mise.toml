@@ -9,8 +9,8 @@ _.python.venv = { path = ".venv", create = true, uv_create_args = ["--seed"] }
 [tasks.setup]
 description = "Install dependencies and setup environment"
 run = [
-  "uv pip install -r <(uv pip compile --extra dev pyproject.toml)",
   "uv pip compile --extra dev pyproject.toml > requirements.txt",
+  "uv pip install -r requirements.txt",
   "pnpm i",
   "lefthook install"
 ]
