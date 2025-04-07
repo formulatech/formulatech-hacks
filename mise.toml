@@ -14,7 +14,7 @@ run = [
   "uv pip compile --extra dev pyproject.toml > requirements.txt",
   "uv pip install -r requirements.txt",
   "pnpm i",
-  "lefthook install"
+  "lefthook uninstall"
 ]
 
 [tasks.check]
