@@ -21,6 +21,7 @@ cd formulatech-hacks
 # Install `mise`
 # Installation options: https://mise.jdx.dev/installing-mise.html
 $ curl https://mise.run | sh
+$ winget install jdx.mise
 
 # Add this to your shell profile if `mise` is not in your PATH
 $ export PATH="$HOME/.local/bin:$PATH"
