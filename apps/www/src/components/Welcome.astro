@@ -1,21 +1,61 @@
 ---
 import astroLogo from "../assets/astro.svg";
 import background from "../assets/background.svg";
+import "bootstrap-icons/font/bootstrap-icons.css";
 ---
 
 <div class="grid place-items-center h-screen">
-	<img id="background" src={background.src} alt="" fetchpriority="high" />
-	<main class="flex flex-col min-w-2xl gap-4">
-		<h1 class="text-2xl flex items-center gap-4">
+
+	<!-- Background -->
+	<!--<img id="background" src={background.src} alt="" fetchpriority="high" />-->
+	<div class="checkered-banner"></div>
+
+	<!-- Main Content -->
+	<main class="flex flex-col min-w-2xl gap-4 car-drift">
+		<div class="text-container car-drift-animation">
+
+			<h1 class="text-7xl font-bold drop-shadow-lg mb-8">
+				Coming Soon!
+			</h1>
+
+			<h1 class="text-lg flex items-center gap-4 mb-6">
+				<span class="gradient-text text-3xl">FormulaTech Hacks</span>
+				is almost ready to drop the green flag!
+			</h1>
+
+						
+			<!-- Social Icons -->
+			<div>
+				<a href="https://www.instagram.com/formulatech.hacks/" target="_blank" class="transition pr-10" onmouseover="this.style.color='#D2273D'" onmouseout="this.style.color='#000017'">
+					<i class="bi bi-instagram text-2xl"></i>
+				</a>
+				<a href="https://www.linkedin.com/company/formulatech-hacks/posts/?feedView=all" target="_blank" class="transition" onmouseover="this.style.color='#D2273D'" onmouseout="this.style.color='#000017'">
+					<i class="bi bi-linkedin text-2xl"></i>
+				</a>
+			</div>
+		</div>
+		
+		<!--
+		<h1 class="text-l flex items-center gap-4 flex justify-end">
 			To get started, open the <code><pre>src/pages</pre></code> directory in your project.
 		</h1>
-		<div>
-			<a class="text-xl bg-indigo-500 text-white px-3 py-2 rounded-full" href="https://docs.astro.build">Astro Docs</a>
+
+		<div class="flex justify-end">
+			<a class="text-xl bg-[#00AEB9] text-white px-3 py-2 rounded-full transition text-center" onmouseover="this.style.backgroundColor='#D2273D'" onmouseout="this.style.backgroundColor='#00AEB9'" href="https://docs.astro.build">Astro Docs</a>
 		</div>
+		-->
 	</main>
 </div>
 
 <style>
+	body {
+		background-color: #FFFCF3;
+		overflow: hidden;
+		font-family: 'Roboto', sans-serif;
+		color: #000017;
+	}
+
+	/*
 	#background {
 		position: fixed;
 		top: 0;
@@ -24,5 +64,147 @@ import background from "../assets/background.svg";
 		height: 100%;
 		z-index: -1;
 		filter: blur(100px);
+	}
+	*/
+
+	.gradient-text {
+		background: linear-gradient(to right, #D2273D, #00AEB9);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		color: transparent;
+		font-weight: bold;
+	}
+
+	.checkered-banner {
+		position: absolute;
+		top: -100px;
+		left: -10%;
+		width: 50%;
+		height: 200%;
+		background-image:
+			linear-gradient(135deg, #00AEB9 25%, transparent 25%),
+			linear-gradient(-135deg, #00AEB9 25%, transparent 25%),
+			linear-gradient(135deg, transparent 75%, #00AEB9 75%),
+			linear-gradient(-135deg, transparent 75%, #00AEB9 75%);
+		background-size: 70px 70px;
+		background-position: 0 0;
+		animation: animate-checkers 1s linear infinite, slide-down 1s ease-out forwards;
+		z-index: -1;
+		transform: rotate(-15deg);
+	}
+
+	@keyframes animate-checkers {
+		0% {
+			background-position: 0 0;
+		}
+		100% {
+			background-position: 0 70px;
+		}
+	}
+
+	@keyframes slide-down {
+		0% {
+			top: -500px;
+			opacity: 0;
+		}
+		100% {
+			top: -100px;
+			opacity: 0.2;
+		}
+	}
+
+	.text-container {
+		position: relative;
+		padding: 60px 80px 60px 40px; /* Top, Right, Bottom, Left padding */
+		background-color: rgba(255, 252, 243, 0.8);
+		border-radius: 15px;
+		border: 5px solid #383838;
+		z-index: 1;
+		margin-left: -150px;
+	}
+
+	.car-drift-animation {
+		display: inline-block;
+		animation: car-drift 1.8s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+		font-weight: bold;
+		text-shadow: 0 0 5px #383838;
+		transform-origin: right;
+	}
+
+	@keyframes car-drift {
+		0% {
+			transform: translateX(-200vw) scaleX(1);
+			filter: blur(10px);
+			opacity: 0.6;
+		}
+		30% {
+			transform: translateX(0) scaleX(0.4);
+			filter: blur(1.5px);
+			opacity: 0.9;
+			text-shadow: -4px 4px 8px rgba(0, 0, 0, 0.5);
+		}
+		60% {
+			transform: translateX(0) scaleX(0.375);
+			filter: blur(0.5px);
+			opacity: 1;
+		}
+		65% {
+			transform: translateX(0) scaleX(1);
+			filter: blur(0.25px);
+			opacity: 1;
+		}
+		70% {
+			transform: translateX(0) scaleX(1.05);
+			filter: blur(0);
+			opacity: 1;
+		}
+		100% {
+			transform: translateX(0) scaleX(1);
+			filter: blur(0);
+			text-shadow: -2px 2px 4px rgba(0, 0, 0, 0.3);
+		}
+	}
+	.skid-marks {
+		position: absolute;
+		top: 45%;
+		left: 30%;
+		width: 200px;
+		height: 6px;
+		background: repeating-linear-gradient(
+			90deg,
+			#222 0 20px,
+			transparent 20px 40px
+		);
+		transform-origin: left;
+		opacity: 1;
+		transform: scaleX(0);
+		animation: skid-grow 1.8s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+		z-index: -1;
+		border-radius: 2px;
+		filter: blur(1.5px);
+	}
+
+	@keyframes skid-grow {
+		0% {
+			transform: scaleX(0);
+			opacity: 0;
+		}
+		10% {
+			transform: scaleX(0);
+			opacity: 0;
+		}
+		40% {
+			transform: scaleX(1);
+			opacity: 1;
+		}
+		50% {
+			transform: scaleX(1);
+			opacity: 1;
+		}
+		100% {
+			transform: scaleX(1);
+			opacity: 0;
+		}
 	}
 </style>
