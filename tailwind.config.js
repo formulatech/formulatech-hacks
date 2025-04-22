@@ -7,6 +7,11 @@ export default {
                 background: '#FFFCF3',
                 focus: '#D2273D',
 
+                primary: {
+                    1: '#FFFCF3',
+                    2: '#D2273D'
+                },
+
                 accent: {
                     1: '#00AEB9',
                     2: '#383838',
