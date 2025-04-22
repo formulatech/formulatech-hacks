@@ -1,28 +1,93 @@
 ---
 import astroLogo from "../assets/astro.svg";
 import background from "../assets/background.svg";
+import "bootstrap-icons/font/bootstrap-icons.css";
 ---
 
-<div class="grid place-items-center h-screen">
-	<img id="background" src={background.src} alt="" fetchpriority="high" />
-	<main class="flex flex-col min-w-2xl gap-4">
-		<h1 class="text-2xl flex items-center gap-4">
-			To get started, open the <code><pre>src/pages</pre></code> directory in your project.
-		</h1>
-		<div>
-			<a class="text-xl bg-indigo-500 text-white px-3 py-2 rounded-full" href="https://docs.astro.build">Astro Docs</a>
+<div class="grid place-items-center h-screen bg-[#FFFCF3] overflow-hidden font-['Roboto'] text-[#000017]">
+
+	<!-- Background -->
+	<div class="absolute -top-[100px] -left-[10%] w-[50%] h-[200%] bg-[linear-gradient(135deg,#00AEB9_25%,transparent_25%),linear-gradient(-135deg,#00AEB9_25%,transparent_25%),linear-gradient(135deg,transparent_75%,#00AEB9_75%),linear-gradient(-135deg,transparent_75%,#00AEB9_75%)] bg-[length:70px_70px] bg-[0_0] rotate-[-15deg] opacity-20 animate-[animate-checkers_1s_linear_infinite]"></div>
+
+	<!-- Main Content -->
+	<main class="flex flex-col min-w-[32rem] gap-4 font-bold [transform-origin:right] [animation:car-drift_1.8s_cubic-bezier(0.33,1,0.68,1)_forwards]">
+		<div class="relative px-10 py-[60px] bg-[rgba(255,252,243,0.8)] border-[5px] border-[#383838] rounded-[15px] z-[1] ml-[-150px] inline-block">
+
+			<h1 class="text-7xl font-bold drop-shadow-lg mb-8">
+				Coming Soon!
+			</h1>
+
+			<h1 class="text-lg flex items-center gap-4 mb-6">
+				<span class="bg-gradient-to-r from-[#D2273D] to-[#00AEB9] bg-clip-text text-transparent font-bold text-3xl">FormulaTech Hacks</span>
+				is almost ready to drop the green flag!
+			</h1>
+
+						
+			<!-- Social Icons -->
+			<div class="flex gap-6">
+				<a href="https://www.instagram.com/formulatech.hacks/" target="_blank" class="transition-colors text-2xl text-[#000017] hover:text-[#D2273D] cursor-pointer">
+					<i class="bi bi-instagram"></i>
+				</a>
+				<a href="https://www.linkedin.com/company/formulatech-hacks/posts/?feedView=all" target="_blank" class="transition-colors text-2xl text-[#000017] hover:text-[#D2273D] cursor-pointer">
+					<i class="bi bi-linkedin"></i>
+				</a>
+			</div>
 		</div>
 	</main>
 </div>
 
 <style>
-	#background {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		z-index: -1;
-		filter: blur(100px);
+	@keyframes animate-checkers {
+		0% {
+			background-position: 0 0;
+		}
+		100% {
+			background-position: 0 70px;
+		}
+	}
+
+	@keyframes slide-down {
+		0% {
+			top: -500px;
+			opacity: 0;
+		}
+		100% {
+			top: -100px;
+			opacity: 0.2;
+		}
+	}
+
+	@keyframes car-drift {
+		0% {
+			transform: translateX(-200vw) scaleX(1);
+			filter: blur(10px);
+			opacity: 0.6;
+		}
+		30% {
+			transform: translateX(0) scaleX(0.4);
+			filter: blur(1.5px);
+			opacity: 0.9;
+			text-shadow: -4px 4px 8px rgba(0, 0, 0, 0.5);
+		}
+		60% {
+			transform: translateX(0) scaleX(0.375);
+			filter: blur(0.5px);
+			opacity: 1;
+		}
+		65% {
+			transform: translateX(0) scaleX(1);
+			filter: blur(0.25px);
+			opacity: 1;
+		}
+		70% {
+			transform: translateX(0) scaleX(1.05);
+			filter: blur(0);
+			opacity: 1;
+		}
+		100% {
+			transform: translateX(0) scaleX(1);
+			filter: blur(0);
+			text-shadow: -2px 2px 4px rgba(0, 0, 0, 0.3);
+		}
 	}
 </style>
