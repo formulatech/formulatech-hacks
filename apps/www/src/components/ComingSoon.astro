@@ -1,0 +1,88 @@
+---
+import "bootstrap-icons/font/bootstrap-icons.css";
+---
+
+<div class="grid place-items-center h-screen overflow-hidden text-foreground">
+
+	<div class="absolute -left-1/10 w-1/2 h-[200%] bg-[linear-gradient(135deg,#00AEB9_25%,transparent_25%),linear-gradient(-135deg,#00AEB9_25%,transparent_25%),linear-gradient(135deg,transparent_75%,#00AEB9_75%),linear-gradient(-135deg,transparent_75%,#00AEB9_75%)] bg-[length:70px_70px] bg-center -rotate-15 opacity-20 animate-[animate-checkers_1s_linear_infinite]"></div>
+
+	<main class="flex flex-col min-w-lg gap-4 font-bold origin-right [animation:car-drift_1.8s_cubic-bezier(0.33,1,0.68,1)_forwards]">
+		<div class="px-10 py-14 bg-secondary border-4 border-foreground rounded-xl z-1 inline-block">
+
+			<h1 class="text-7xl font-bold drop-shadow-lg mb-8">
+				Coming Soon!
+			</h1>
+
+			<div class="text-lg flex items-center gap-4 mb-6">
+				<h1 class="bg-gradient-to-r from-primary to-road bg-clip-text text-transparent font-bold text-3xl">FormulaTech Hacks</h1>
+				<h2 class="pt-1">is almost ready to drop the green flag!</h2>
+			</div>
+
+						
+			<div class="flex gap-6">
+				<a href="https://www.instagram.com/formulatech.hacks/" target="_blank" class="transition-colors text-2xl hover:text-primary cursor-pointer">
+					<i class="bi bi-instagram"></i>
+				</a>
+				<a href="https://www.linkedin.com/company/formulatech-hacks" target="_blank" class="transition-colors text-2xl hover:text-primary cursor-pointer">
+					<i class="bi bi-linkedin"></i>
+				</a>
+			</div>
+		</div>
+	</main>
+</div>
+
+<style>
+	@keyframes animate-checkers {
+		0% {
+			background-position: 0 0;
+		}
+		100% {
+			background-position: 0 70px;
+		}
+	}
+
+	@keyframes slide-down {
+		0% {
+			top: -500px;
+			opacity: 0;
+		}
+		100% {
+			top: -100px;
+			opacity: 0.2;
+		}
+	}
+
+	@keyframes car-drift {
+		0% {
+			transform: translateX(-200vw) scaleX(1);
+			filter: blur(10px);
+			opacity: 0.6;
+		}
+		30% {
+			transform: translateX(0) scaleX(0.4);
+			filter: blur(1.5px);
+			opacity: 0.9;
+			text-shadow: -4px 4px 8px rgba(0, 0, 0, 0.5);
+		}
+		60% {
+			transform: translateX(0) scaleX(0.375);
+			filter: blur(0.5px);
+			opacity: 1;
+		}
+		65% {
+			transform: translateX(0) scaleX(1);
+			filter: blur(0.25px);
+			opacity: 1;
+		}
+		70% {
+			transform: translateX(0) scaleX(1.05);
+			filter: blur(0);
+			opacity: 1;
+		}
+		100% {
+			transform: translateX(0) scaleX(1);
+			filter: blur(0);
+			text-shadow: -2px 2px 4px rgba(0, 0, 0, 0.3);
+		}
+	}
+</style>
