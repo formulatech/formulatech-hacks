@@ -1,9 +1,18 @@
-export default function Component() {
+
+import "../styles/Hero.css";
+
+
+export default function Hero() {
     return (
-        <main className="grid place-items-center bg-blue-300 h-screen">
-            <h1 className="text-3xl">
-                FormulaTech Hacks wooo
-            </h1>
-        </main>
-    )
+        <div className="background-container">
+            <div className="main-wrapper">
+                <h1 className="title-text">
+                    FormulaTech Hacks
+                </h1>
+                <button className="apply-button"> Register now!</button>
+            </div>
+        </div>
+    );
 }
+
+
