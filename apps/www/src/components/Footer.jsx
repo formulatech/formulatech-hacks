@@ -70,6 +70,7 @@ export default function Footer() {
         </div>
         
         {/* Title and sections */}
+        
         <div className="flex flex-col items-center lg:items-start w-full">
           <div
             className="text-4xl sm:text-4.5xl md:text-5.5xl font-normal tracking-wide text-black leading-tight text-center lg:text-left mb-12"
