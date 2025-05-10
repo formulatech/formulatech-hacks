@@ -65,7 +65,10 @@ export default function Footer() {
       {/* Main content */}
       <div className="flex flex-col lg:flex-row items-center lg:items-start w-full max-w-7xl mx-auto px-4 py-20 gap-8 lg:gap-0">
         {/* Logo placeholder */}
-        <div className="flex-shrink-0 w-48 h-48 bg-white rounded-md border border-gray-200 flex items-center justify-center mb-8 lg:mb-0 lg:mr-12" />
+        <div className="flex-shrink-0 w-48 h-48 rounded-m flex items-center justify-center mb-8 lg:mb-0 lg:mr-12">
+          <img src="/ft_submark_logo.png" alt="FormulaTech FT Submark Logo" className="w-40 h-40 object-contain" />
+        </div>
+        
         {/* Title and sections */}
         <div className="flex flex-col items-center lg:items-start w-full">
           <div
