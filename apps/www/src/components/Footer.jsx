@@ -65,19 +65,7 @@ export default function Footer() {
       {/* Main content */}
       <div className="flex flex-col lg:flex-row items-center lg:items-start w-full max-w-7xl mx-auto px-4 py-20 gap-8 lg:gap-0">
         {/* Logo placeholder */}
-        <div className="flex-shrink-0 w-48 h-48 bg-white rounded-md border border-gray-200 flex items-center justify-center mb-8 lg:mb-0 lg:mr-12">
-          {/* FT Submark Logo SVG */}
-          <svg width="90%" height="90%" viewBox="0 0 900 900" xmlns="http://www.w3.org/2000/svg" aria-labelledby="ftLogoTitle">
-            <title id="ftLogoTitle">FormulaTech FT Submark Logo</title>
-            <g>
-              <g>
-                <g>
-                  <path fill="#fb2c46" d="M219.81,545.83c-4.86,0-9.92-.64-15.02-1.91l-17.01-4.22,1.96-17.42c1.24-11.02,2.39-22.52,3.51-33.65,2.4-23.91,4.88-48.63,8.51-72.24,4.39-28.55,15.5-52.14,33.01-70.09,16.7-17.12,39.41-29.25,67.51-36.04l.51-.12,278.74-52.21-1.58,25.61c-3.02,49.1-32.67,92.51-77.36,113.31l-25.39,11.82-2.93-27.85c-2.35-22.29-20.76-26.96-35.79-26.96-1.53,0-3.11.05-4.69.16-37.65,2.55-94.35,19.59-118.74,40.91-30.28,26.47-33.2,44.59-39,80.68-1.07,6.63-2.17,13.48-3.54,21.03-5.53,30.34-25.71,49.19-52.68,49.19Z"/>
-                </g>
-              </g>
-            </g>
-          </svg>
-        </div>
+        <div className="flex-shrink-0 w-48 h-48 bg-white rounded-md border border-gray-200 flex items-center justify-center mb-8 lg:mb-0 lg:mr-12" />
         {/* Title and sections */}
         <div className="flex flex-col items-center lg:items-start w-full">
           <div
