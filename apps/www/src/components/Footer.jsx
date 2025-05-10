@@ -40,8 +40,8 @@ export default function Footer() {
   return (
     <footer className="bg-[#fdf6e3] text-gray-600">
       {/* Main footer content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-8">
           {/* Logo and description */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-3">
@@ -74,7 +74,7 @@ export default function Footer() {
           </div>
 
           {/* Links columns */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 lg:col-span-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 lg:col-span-3">
             <div>
               <h3 className="text-sm font-semibold text-gray-900 tracking-wider uppercase mb-4">
                 About
@@ -82,7 +82,7 @@ export default function Footer() {
               <ul className="space-y-3">
                 {footerLinks.about.map((link) => (
                   <li key={link.name}>
-                    <a href={link.href} className="hover:text-gray-900 transition-colors">
+                    <a href={link.href} className="text-sm hover:text-gray-900 transition-colors">
                       {link.name}
                     </a>
                   </li>
@@ -97,7 +97,7 @@ export default function Footer() {
               <ul className="space-y-3">
                 {footerLinks.events.map((link) => (
                   <li key={link.name}>
-                    <a href={link.href} className="hover:text-gray-900 transition-colors">
+                    <a href={link.href} className="text-sm hover:text-gray-900 transition-colors">
                       {link.name}
                     </a>
                   </li>
@@ -112,7 +112,7 @@ export default function Footer() {
               <ul className="space-y-3">
                 {footerLinks.resources.map((link) => (
                   <li key={link.name}>
-                    <a href={link.href} className="hover:text-gray-900 transition-colors">
+                    <a href={link.href} className="text-sm hover:text-gray-900 transition-colors">
                       {link.name}
                     </a>
                   </li>
@@ -125,11 +125,11 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="border-t border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row justify-between items-center">
-          <p className="text-sm text-gray-600">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+          <p className="text-sm text-gray-600 text-center sm:text-left">
             &copy; {currentYear} Formulatech. All rights reserved.
           </p>
-          <div className="mt-4 sm:mt-0 flex space-x-6 text-sm">
+          <div className="flex flex-wrap justify-center sm:justify-end gap-4 sm:gap-6 text-sm">
             <a href="/privacy" className="hover:text-gray-900 transition-colors">Privacy</a>
             <a href="/terms" className="hover:text-gray-900 transition-colors">Terms</a>
             <a href="/cookies" className="hover:text-gray-900 transition-colors">Cookies</a>
