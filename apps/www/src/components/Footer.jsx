@@ -73,7 +73,7 @@ export default function Footer() {
         
         <div className="flex flex-col items-center lg:items-start w-full">
           <div
-            className="text-4xl sm:text-4.5xl md:text-5.5xl font-normal tracking-wide text-black leading-tight text-center lg:text-left mb-12"
+            className="text-4xl sm:text-4.5xl md:text-5.5xl font-bold tracking-wide text-black leading-tight text-center lg:text-left mb-12"
             style={{ fontFamily: "'Orbitron', 'Exo', 'monospace', 'sans-serif'" }}
           >
             FormulaTech<br />Hacks
@@ -103,7 +103,7 @@ export default function Footer() {
           {bottomSections[0].name}
         </a>
         {/* Social icons centered */}
-        <div className="flex space-x-4 bg-[#e6f3f3] px-2 py-1 rounded-md">
+        <div className="flex space-x-4 px-2 py-1 rounded-md">
           {socialLinks.map((social) => (
             <a
               key={social.name}
@@ -112,7 +112,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <div className="w-8 h-8 rounded-full border-2 border-black flex items-center justify-center text-lg text-black bg-[#b2d8df] hover:bg-[#a0cfd6] transition-colors">
+              <div className="w-8 h-8 rounded-full border-2 border-black flex items-center justify-center text-lg text-black hover:bg-[#a0cfd6] transition-colors">
                 {social.icon}
               </div>
             </a>
