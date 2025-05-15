@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import Footer from "../components/Footer.jsx";
 ---
 
 <!doctype html>
@@ -8,10 +9,16 @@ import "../styles/global.css";
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<!-- Import main title font "Orbitron" and main body font "Roboto Mono" -->
+		<!-- Import alternative title font "Audiowide" and alternative body font "Open Sans" -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Orbitron:wght@400..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
 		<meta name="generator" content={Astro.generator} />
 		<title>FormulaTech: Hacks</title>
 	</head>
 	<body>
 		<slot />
+		<!-- <Footer /> -->
 	</body>
 </html>

@@ -1,17 +1,30 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #FFFCF3;
-  --color-foreground: #000017;
+	--color-background: #fffcf3;
+	--color-foreground: #000017;
 
-  --color-primary: #D2273D;
-  --color-secondary: #00AEB9;
-  --color-road: #383838;
+	--color-primary: #d2273d;
+	--color-secondary: #00aeb9;
+	--color-road: #383838;
 
-  --font-primary: sans-serif;
-  --font-secondary: serif;
+	--font-primary: sans-serif;
+	--font-secondary: serif;
 
-  --font-weight-regular: 400;
-  --font-weight-medium: 500;
-  --font-weight-bold: 700;
+	/* Selected fonts (labelled by a star in the Figma Wireframes) */
+	--font-title: "Orbitron", sans-serif;
+	--font-body: "Roboto Mono", monospace;
+
+	/* Alternative fonts (present in the wireframe but not starred) */
+	--font-title-alternative: "Audiowide", sans-serif;
+	--font-body-alternative: "Open Sans", sans-serif;
+
+	--font-weight-regular: 400;
+	--font-weight-medium: 500;
+	--font-weight-bold: 700;
+}
+
+.stroke-xl {
+    -webkit-text-stroke: 24px transparent;
+    background-size: 100% 100%;
 }
