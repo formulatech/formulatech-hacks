@@ -7,36 +7,40 @@ body, html {
 }
 
 .background-container {
-    background-image: url("../assets/Background-8.png");
-    background-position: top;
-    min-height: 100vh;
+    margin-top: -10px;
+    background: #fffff1 url("../assets/Background-8.png") no-repeat top center / 100% auto;
+    height:800vh;
     width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: start;
-}
+
+}   
+
+
 
 .main-wrapper {
     text-align: center;
-    margin-top: 500px;
+    margin-top: 300px;
 }
 
 .title-text {
-    font-size: 3rem;
-    color: #ffffff;
+    font-size: 100px;
+    font-weight: 900;
+    color: #D2273D;
+    font-family: Orbitron;
 }
 
-.apply-button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    background-color: #007BFF;
+.information-text{
     color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    font-weight:400;
+    font-size: 24px;
+    font-family: Roboto Mono;
+
+
 }
+
 
 .apply-button:hover {
     background-color: #0056b3;
