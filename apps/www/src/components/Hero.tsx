@@ -7,9 +7,17 @@ export default function Hero() {
         <div className="background-container">
             <div className="main-wrapper">
                 <h1 className="title-text">
-                    FormulaTech Hacks
+                    FORMULATECH 
                 </h1>
-                <button className="apply-button"> Register now!</button>
+                <h1 className="title-text">
+                    HACKS
+                </h1>
+
+                <h1 className="information-text">--/--/2026</h1>
+                <h1 className="information-text">Waterloo’s first ever Formula One hackathon.</h1>
+
+                <h1 className="information-text font-style: underline">Interested in becoming a sponsor?</h1>
+    
             </div>
         </div>
     );
