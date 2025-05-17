@@ -12,9 +12,9 @@ export default function Navigate() {
 
     return (
         <>
-        <nav className="bg-background text-black w-[90%] mx-auto mt-10 py-4 px-8 rounded-full flex items-center justify-between flex-nowrap overflow-hidden font-primary text-xl relative z-[100]">
+        <nav className="bg-background text-black w-[90%] mx-auto mt-10 py-4 px-8 rounded-full flex items-center justify-between overflow-hidden font-primary text-xl relative z-[100]">
             {/* Left: Logo */}
-            <div className="flex items-center gap-[clamp(1rem,2vw,4rem)] min-w-0 flex-nowrap overflow-hidden">
+            <div className="flex items-center gap-16 min-w-0 flex-nowrap overflow-hidden">
                 <a href="/">
                 <img src={logo.src} alt="Logo" className="h-10 w-auto" />
                 </a>
@@ -46,7 +46,7 @@ export default function Navigate() {
                         <a href="/register" className="bg-primary text-white font-bold px-4 py-2 rounded-2xl hover:opacity-90 transition">
                         REGISTER
                         </a>
-                        <a href="/login" className="border-2 border-primary text-primary font-bold px-4 py-2 rounded-2xl hover:bg-[#fff] transition">
+                        <a href="/login" className="border-2 border-primary text-primary font-bold px-4 py-2 rounded-2xl hover:bg-white transition">
                         LOGIN
                         </a>
                     </div>
@@ -57,19 +57,15 @@ export default function Navigate() {
                 <button
                     type="button"
                     onClick={() => {
-                        console.log("CLICKED")
                         setMenuOpen(!menuOpen)}
                     }
-                    className="md:hidden text-2xl z-[999] relative pointer-events-auto"
+                    className="md:hidden text-2xl z-[10] relative pointer-events-auto"
                 >
                     {menuOpen ? "✖" : "☰"}
                 </button>
                 </div>
             </div>
         </nav>
-
-        {/* Mobile Dropdown */}
-        {menuOpen && (
         <div className="fixed inset-0 z-40 bg-foreground text-white md:hidden flex flex-col items-center justify-center space-y-6 pt-30 gap-10">
             <a href="/about" onClick={() => setMenuOpen(false)} className="hover:text-red-500 text-xl">About</a>
             <a href="/sponsors" onClick={() => setMenuOpen(false)} className="hover:text-red-500 text-xl">Sponsors</a>
@@ -95,7 +91,7 @@ export default function Navigate() {
                 </a>
             </div>
         </div>
-        )}
+        )
      </>
     );
   }
