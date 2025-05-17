@@ -429,7 +429,7 @@ export default function Sponsors() {
                         <p style={{ maxWidth: isDesktop ? `${headingWidth}px` : '100%' }} className="font-body font-regular text-base md:text-3xl">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
                     </div>
 
-                    <a href="/" className="flex items-center justify-center">
+                    <a href="/become-a-sponsor" className="flex items-center justify-center">
                         <img src="/become_a_sponsor_CTA.svg" alt="Become a Sponsor" className="w-[77.27px] md:w-[194px] object-contain" />
                     </a>
                 </div>
