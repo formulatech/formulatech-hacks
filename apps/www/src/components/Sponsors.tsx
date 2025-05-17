@@ -20,11 +20,23 @@ interface Sponsor {
     };
 }
 
+// Create a slug from a string (replace spaces with hyphens, lowercase)
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, '-')     // Replace whitespace with hyphens
+    .replace(/[^\w-]+/g, '')  // Remove non-word chars (except hyphens)
+    .replace(/--+/g, '-');    // Replace multiple hyphens with single hyphen
+}
 // Create a function that generates sponsors with defaults
 function createSponsor(sponsor: Partial<Sponsor>): Sponsor {
+    const name = sponsor.name || "Default Sponsor";
+    const key = slugify(name);
+
     return {
-        key: sponsor.key || crypto.randomUUID(),
-        name: sponsor.name || "Default Sponsor",
+        key: sponsor.key || key,
+        name: name,
         logoPath: sponsor.logoPath || "/sponsors/default_sponsor.svg",
         website: sponsor.website || "https://example.com",
         description: sponsor.description || "Default sponsor description",
@@ -334,15 +346,17 @@ export default function Sponsors() {
 
     return (
         <div className="overflow-x-clip">
-            <div className="flex flex-col items-center justify-center px-8 py-6 gap-10 bg-background">
-                <div className="flex flex-col items-center justify-center">
-                    <h1 className="font-black p-5 text-xl capitalize text-white bg-clip-text bg-gradient-to-r from-primary to-secondary stroke-xl font-title">OUR SPONSORS</h1>
-                    <p className="font-body font-regular text-base">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-                </div>
+            <div className="flex flex-col items-center justify-center px-8 md:px-[92px] py-6 md:py-[77px] gap-[40px] md:gap-[160px] bg-background">
+                <div className="flex flex-col md:flex-row items-center justify-center md:justify-between w-full gap-10">
+                    <div className="flex flex-col items-center justify-center md:items-start">
+                        <h1 className="font-black p-5 text-xl md:text-5xl capitalize text-white bg-clip-text bg-gradient-to-r from-primary to-secondary stroke-xl font-title">OUR SPONSORS</h1>
+                        <p className="font-body font-regular text-base">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                    </div>
 
-                <a href="/" className="flex items-center justify-center">
-                    <img src="/become_a_sponsor_CTA.svg" alt="Become a Sponsor" className="w-[77.27px] object-contain" />
-                </a>
+                    <a href="/" className="flex items-center justify-center">
+                        <img src="/become_a_sponsor_CTA.svg" alt="Become a Sponsor" className="w-[77.27px] md:w-[194px] object-contain" />
+                    </a>
+                </div>
 
                 <div className="relative flex flex-col items-center justify-center">
                     {/* Helmet and rendered sponsor stickers */}
