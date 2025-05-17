@@ -2,6 +2,18 @@ import { motion } from "motion/react";
 import type React from "react";
 import { useEffect, useRef, useState } from "react";
 
+function useViewport(minWidth: number) {
+    // Custom hook to get the viewport width and check if it's > minWidth
+    const [width, setWidth] = useState(window.innerWidth);
+    
+    useEffect(() => {
+        const handleResize = () => setWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+    
+    return { width, meetsMinWidth: width >= minWidth }; // 768px is Tailwind's md breakpoint
+}
 
 interface Position {
     x: number;
@@ -238,6 +250,8 @@ function Helmet(props: HelmetProps & { className?: string }) {
 export default function Sponsors() {
     // State to keep track of the selected sponsor
     const [selectedSponsor, setSelectedSponsor] = useState<Sponsor | null>(null);
+    const { meetsMinWidth: isDesktop } = useViewport(768); // Check if the viewport is desktop
+    const [desktopGap , setDesktopGap] = useState<number>(160);
 
     // Refs to the helmet images to get their widths
     // Used to ensure that the positions of the stickers relative to the helmet stay the same
@@ -285,8 +299,8 @@ export default function Sponsors() {
     const expandedSponsorRefMobile = useRef<HTMLDivElement>(null);
     const expandedSponsorRefDesktop = useRef<HTMLDivElement>(null);
 
-    // Add click listener to close sponsor details when clicking outside
     useEffect(() => {
+        // Add click listener to close sponsor details when clicking outside
         function handleClickOutside(event: MouseEvent) {
             // If we have a selected sponsor and clicked outside the expanded element
             if (selectedSponsor && 
@@ -298,9 +312,15 @@ export default function Sponsors() {
                 setSelectedSponsor(null);
             }
         }
-        
         // Add event listener
         document.addEventListener('mousedown', handleClickOutside);
+
+        // Resize the desktop vertical gap between the helmet and the cta/header based on if a sponsor is selected
+        if (selectedSponsor) {
+            setDesktopGap(45);
+        } else {
+            setDesktopGap(160);
+        }
         
         // Cleanup
         return () => {
@@ -385,8 +405,12 @@ export default function Sponsors() {
 
     return (
         <div className="overflow-x-clip">
-            <div
-                className="flex flex-col items-center justify-center px-8 md:px-[92px] py-6 md:py-[77px] gap-[40px] md:gap-[160px] bg-background">
+            <motion.div
+                className={`flex flex-col items-center justify-center px-8 md:px-[92px] py-6 md:py-[77px] gap-[40px] md:gap-[${desktopGap}px] bg-background`}
+                initial={{ gap: isDesktop ? "160px" : "40px" }}
+                animate={{ gap: isDesktop ? `${desktopGap}px` : "40px" }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
                 <div className="flex flex-col md:flex-row items-center justify-center md:justify-between w-full gap-10">
                     <div className="md:max-w-[50vw] flex flex-col md:gap-5 items-center justify-center md:items-start text-center md:text-left">
                         <h1 className="font-black p-5 -ml-2.5 text-xl md:text-5xl capitalize text-white bg-clip-text bg-gradient-to-r from-primary to-secondary stroke-xl font-title">OUR SPONSORS</h1>
@@ -421,7 +445,7 @@ export default function Sponsors() {
                     <ExpandedContent className="md:hidden" selectedSponsor={selectedSponsor} {...expandedContentMobileProps} />
                     <ExpandedContent className="hidden md:block" selectedSponsor={selectedSponsor} {...expandedContentDesktopProps} />
                 </div>
-            </div>
+            </motion.div>
         </div>
     );
 }
