@@ -4,15 +4,18 @@ import { useEffect, useRef, useState } from "react";
 
 function useViewport(minWidth: number) {
     // Custom hook to get the viewport width and check if it's > minWidth
-    const [width, setWidth] = useState(window.innerWidth);
+    const [meetsMinWidth, setMeetsMinWidth] = useState(false);
     
     useEffect(() => {
-        const handleResize = () => setWidth(window.innerWidth);
+        const handleResize = () => {
+            setMeetsMinWidth(window.innerWidth >= minWidth);
+        };
+        handleResize(); // Check on initial load
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
-    }, []);
-    
-    return { width, meetsMinWidth: width >= minWidth }; // 768px is Tailwind's md breakpoint
+    }, [minWidth]);
+
+    return { meetsMinWidth }; // 768px is Tailwind's md breakpoint
 }
 
 interface Position {
