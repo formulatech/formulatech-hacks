@@ -43,6 +43,7 @@ function createSponsor(sponsor: Partial<Sponsor>): Sponsor {
     };
 }
 
+// ADD AND EDIT SPONSORS HERE
 const sponsors: Sponsor[] = [
     createSponsor({
         name: "Sponsor 1",
@@ -192,9 +193,10 @@ export default function Sponsors() {
     const [selectedSponsor, setSelectedSponsor] = useState<Sponsor | null>(null);
 
     // Refs to the helmet images to get their widths
+    // Used to ensure that the positions of the stickers relative to the helmet stay the same
+    // when the helmet shrinks after a user clicks on a sponsor sticker
     const mobileHelmet = useRef<HTMLImageElement>(null);
     const [mobileHelmetWidth, setMobileHelmetWidth] = useState<number>(287);
-    
     const desktopHelmet = useRef<HTMLImageElement>(null);
     const [desktopHelmetWidth, setDesktopHelmetWidth] = useState<number>(578);
 
@@ -231,9 +233,41 @@ export default function Sponsors() {
         };
     }, []);
 
+    // Refs to the expanded content divs
+    // Used to close the expanded content when clicking outside of it
     const expandedSponsorRefMobile = useRef<HTMLDivElement>(null);
     const expandedSponsorRefDesktop = useRef<HTMLDivElement>(null);
 
+    // Add click listener to close sponsor details when clicking outside
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            // If we have a selected sponsor and clicked outside the expanded element
+            if (selectedSponsor && 
+                expandedSponsorRefMobile.current && 
+                !expandedSponsorRefMobile.current.contains(event.target as Node)
+                && expandedSponsorRefDesktop.current &&
+                !expandedSponsorRefDesktop.current.contains(event.target as Node)) {
+                // Close the expanded sponsor
+                setSelectedSponsor(null);
+            }
+        }
+        
+        // Add event listener
+        document.addEventListener('mousedown', handleClickOutside);
+        
+        // Cleanup
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [selectedSponsor]); // Re-run effect when selectedSponsor changes
+
+    // Function to toggle the selected sponsor
+    // If the same sponsor is clicked again, it will close the expanded content
+    function toggleSponsor(sponsor: Sponsor) {
+        setSelectedSponsor(prev => prev?.key === sponsor.key ? null : sponsor);
+    }
+
+    // Props for the expanded content for mobile and desktop
     const expandedContentMobileProps : ExpandedContentProps = {
         marginTop: 16,
         ref: expandedSponsorRefMobile,
@@ -259,34 +293,7 @@ export default function Sponsors() {
         sponsorNameTextSize: 20,
     };
 
-    // Add click listener to close sponsor details when clicking outside
-    useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-        // If we have a selected sponsor and clicked outside the expanded element
-        if (selectedSponsor && 
-            expandedSponsorRefMobile.current && 
-            !expandedSponsorRefMobile.current.contains(event.target as Node)
-            && expandedSponsorRefDesktop.current &&
-            !expandedSponsorRefDesktop.current.contains(event.target as Node)) {
-            // Close the expanded sponsor
-        setSelectedSponsor(null);
-        }
-    }
-    
-    // Add event listener
-    document.addEventListener('mousedown', handleClickOutside);
-    
-    // Cleanup
-    return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
-    };
-    }, [selectedSponsor]); // Re-run effect when selectedSponsor changes
-
-    function toggleSponsor(sponsor: Sponsor) {
-        setSelectedSponsor(prev => prev?.key === sponsor.key ? null : sponsor);
-    }
-
-    // Use helmet width for scaling
+    // Use helmet width for scaling to help with the positioning of the stickers when the helmet shrinks
     function getScaleFactor(viewport: "mobile" | "desktop") {
         const baseWidth = viewport === "mobile" ? 287 : 578;
         return viewport === "mobile" ? 
@@ -308,7 +315,7 @@ export default function Sponsors() {
                 key={sponsor.key}
                 className={`absolute z-1 cursor-pointer transition-transform ${selectedSponsor?.key === sponsor.key ? 'scale-125' : 'hover:scale-110'}`}
                 style={{
-                    left: `${sponsor.positions[viewport].x * getScaleFactor(viewport)[viewport]}px`,
+                    left: `${sponsor.positions[viewport].x * getScaleFactor(viewport)[viewport]}px`, // Apply scaling factor to maintain position relative to helmet
                     top: `${sponsor.positions[viewport].y * getScaleFactor(viewport)[viewport]}px`,
                     width: `${sponsor.positions[viewport].size}px`,
                     height: `${sponsor.positions[viewport].size}px`,
@@ -338,6 +345,7 @@ export default function Sponsors() {
                 </a>
 
                 <div className="relative flex flex-col items-center justify-center">
+                    {/* Helmet and rendered sponsor stickers */}
                     <motion.div 
                         animate={{ 
                             width: selectedSponsor ? `${287 * (151/329)}px` : "287px" 
