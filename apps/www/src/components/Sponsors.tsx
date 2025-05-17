@@ -178,19 +178,19 @@ function ExpandedContent(props: ExpandedContentProps & { selectedSponsor: Sponso
                 >
                     <div
                         style={{
-                            width: `${props.helmetWidthState * 1.5}px`
+                            width: `${props.helmetWidthState * 2}px`
                         }}
                     >
-                        <div className="flex flex-row justify-between gap-[18px]">
+                        <div className="flex flex-row items-center justify-around gap-[18px]">
                             <img
                                 src={selectedSponsor.logoPath}
                                 alt={selectedSponsor.name}
                                 className={"object-contain"}
-                                style={{ maxWidth: `${props.expandedSponsorLogoWidth}px` }}
+                                style={{ width: "100%", maxWidth: `${props.expandedSponsorLogoWidth}px` }}
                             />
-                            <h3 className={"font-body"} style={{ fontSize: `${props.sponsorNameTextSize}px` }}>{selectedSponsor.name}</h3>
+                            <h3 className="font-body" style={{ fontSize: `${props.sponsorNameTextSize}px` }}>{selectedSponsor.name}</h3>
                         </div>
-                        <p className="mt-2">{selectedSponsor.description}</p>
+                        <p className="mt-2 text-center font-body">{selectedSponsor.description}</p>
                     </div>
                 </div>
             )}
@@ -300,9 +300,9 @@ export default function Sponsors() {
         roadMaxWidth: "1200px",
         roadOffsetMargin: "-72px",
         helmetWidthState: desktopHelmetWidth,
-        expandedSponsorLogoWidth: 47,
+        expandedSponsorLogoWidth: 144,
         expandedSponsorTopMargin: "mt-48",
-        sponsorNameTextSize: 20,
+        sponsorNameTextSize: 48,
     };
 
     // Use helmet width for scaling to help with the positioning of the stickers when the helmet shrinks
@@ -333,7 +333,11 @@ export default function Sponsors() {
                     height: `${sponsor.positions[viewport].size}px`,
                 }}
                 onClick={() => toggleSponsor(sponsor)}
-                onKeyDown={() => toggleSponsor(sponsor)}
+                onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                        toggleSponsor(sponsor);
+                    }
+                }}
                 tabIndex={0} // Make it focusable
                 aria-expanded={selectedSponsor?.key === sponsor.key}
                 aria-controls={`sponsor-details-${sponsor.key}`}
