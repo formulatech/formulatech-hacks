@@ -191,7 +191,7 @@ function ExpandedContent(props: ExpandedContentProps & { selectedSponsor: Sponso
                             />
                             <h3 className="font-body" style={{ fontSize: `${props.sponsorNameTextSize}px` }}>{selectedSponsor.name}</h3>
                         </div>
-                        <p className="mt-2 text-center font-body">{selectedSponsor.description}</p>
+                        <p className="mt-2 text-center font-body md:text-3xl">{selectedSponsor.description}</p>
                     </div>
                 </div>
             )}
@@ -324,7 +324,7 @@ export default function Sponsors() {
         roadOffsetMargin: "-36px",
         helmetWidthState: mobileHelmetWidth,
         expandedSponsorLogoWidth: 33,
-        expandedSponsorTopMargin: "mt-24",
+        expandedSponsorTopMargin: "mt-18",
         sponsorNameTextSize: 17
     };
     const expandedContentDesktopProps : ExpandedContentProps = {
@@ -385,11 +385,12 @@ export default function Sponsors() {
 
     return (
         <div className="overflow-x-clip">
-            <div className="flex flex-col items-center justify-center px-8 md:px-[92px] py-6 md:py-[77px] gap-[40px] md:gap-[160px] bg-background">
+            <div
+                className="flex flex-col items-center justify-center px-8 md:px-[92px] py-6 md:py-[77px] gap-[40px] md:gap-[160px] bg-background">
                 <div className="flex flex-col md:flex-row items-center justify-center md:justify-between w-full gap-10">
-                    <div className="flex flex-col items-center justify-center md:items-start">
-                        <h1 className="font-black p-5 text-xl md:text-5xl capitalize text-white bg-clip-text bg-gradient-to-r from-primary to-secondary stroke-xl font-title">OUR SPONSORS</h1>
-                        <p className="font-body font-regular text-base">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                    <div className="md:max-w-[50vw] flex flex-col md:gap-5 items-center justify-center md:items-start text-center md:text-left">
+                        <h1 className="font-black p-5 -ml-2.5 text-xl md:text-5xl capitalize text-white bg-clip-text bg-gradient-to-r from-primary to-secondary stroke-xl font-title">OUR SPONSORS</h1>
+                        <p className="font-body font-regular text-base md:text-3xl">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
                     </div>
 
                     <a href="/" className="flex items-center justify-center">
