@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import type React from "react";
 import { useEffect, useRef, useState } from "react";
 
 
@@ -199,6 +200,40 @@ function ExpandedContent(props: ExpandedContentProps & { selectedSponsor: Sponso
     );
 }
 
+interface HelmetProps {
+    selectedSponsor: Sponsor | null;
+    viewport: "mobile" | "desktop";
+    baseHelmetWidth: number;
+    helmetRef: React.RefObject<HTMLImageElement | null>;
+    HelmetStickers: (viewport: "mobile" | "desktop") => React.JSX.Element[];
+}
+function Helmet(props: HelmetProps & { className?: string }) {
+    const { selectedSponsor, viewport, baseHelmetWidth, helmetRef, HelmetStickers } = props;
+    return (
+        <motion.div
+            animate={{
+                width: selectedSponsor ? `${baseHelmetWidth * (151 / 329)}px` : `${baseHelmetWidth}px`
+            }}
+            transition={{ 
+                duration: 0.3,
+                ease: "easeInOut" 
+            }}
+            className={`${props.className}`}
+            style={{
+                zIndex: 1
+            }}
+        >
+            <img 
+                ref={helmetRef} 
+                src="/helmet.svg" 
+                alt="Sponsors section decoration" 
+                className="block w-full object-contain pointer-events-none" 
+            />
+            {HelmetStickers(viewport)}
+        </motion.div>
+    );
+}
+
 // Exported component
 export default function Sponsors() {
     // State to keep track of the selected sponsor
@@ -334,7 +369,7 @@ export default function Sponsors() {
                 }}
                 onClick={() => toggleSponsor(sponsor)}
                 onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") {
+                    if ((e.key === "Enter" || e.key === " ") && !e.repeat) {
                         toggleSponsor(sponsor);
                     }
                 }}
@@ -364,49 +399,22 @@ export default function Sponsors() {
 
                 <div className="relative flex flex-col items-center justify-center">
                     {/* Helmet and rendered sponsor stickers */}
-                    <motion.div 
-                        animate={{ 
-                            width: selectedSponsor ? `${287 * (151/329)}px` : "287px" 
-                        }}
-                        transition={{ 
-                            duration: 0.3,
-                            ease: "easeInOut" 
-                        }}
+                    <Helmet 
+                        selectedSponsor={selectedSponsor} 
+                        viewport="mobile" 
+                        baseHelmetWidth={287} 
+                        helmetRef={mobileHelmet} 
+                        HelmetStickers={HelmetStickers}
                         className="relative md:hidden"
-                        style={{
-                            zIndex: 1
-                        }}
-                    >
-                        <img 
-                            ref={mobileHelmet} 
-                            src="/smaller_svg_helmet.svg" 
-                            alt="Sponsors section mobile decoration" 
-                            className="block w-full object-contain pointer-events-none" 
-                        />
-                        {HelmetStickers("mobile")}
-                    </motion.div>
-
-                    <motion.div 
-                        animate={{ 
-                            width: selectedSponsor ? `${578 * (151/329)}px` : "578px" 
-                        }}
-                        transition={{ 
-                            duration: 0.3,
-                            ease: "easeInOut" 
-                        }}
+                    />
+                    <Helmet 
+                        selectedSponsor={selectedSponsor} 
+                        viewport="desktop" 
+                        baseHelmetWidth={578} 
+                        helmetRef={desktopHelmet} 
+                        HelmetStickers={HelmetStickers}
                         className="hidden md:block md:relative"
-                        style={{
-                            zIndex: 1
-                        }}
-                    >
-                        <img
-                            ref={desktopHelmet}
-                            src="/helmet.svg"
-                            alt="Sponsors section desktop decoration"
-                            className="w-full object-contain pointer-events-none"
-                        />
-                        {HelmetStickers("desktop")}
-                    </motion.div>
+                    />
 
                     {/* Expanding content below */}
                     <ExpandedContent className="md:hidden" selectedSponsor={selectedSponsor} {...expandedContentMobileProps} />
