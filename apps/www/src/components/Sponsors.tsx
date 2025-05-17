@@ -297,6 +297,15 @@ export default function Sponsors() {
         };
     }, []);
 
+    const headingRef = useRef<HTMLHeadingElement>(null);
+    const [headingWidth, setHeadingWidth] = useState(0);
+
+    useEffect(() => {
+        if (headingRef.current) {
+            setHeadingWidth(headingRef.current.offsetWidth);
+        }
+    }, []);
+
     // Refs to the expanded content divs
     // Used to close the expanded content when clicking outside of it
     const expandedSponsorRefMobile = useRef<HTMLDivElement>(null);
@@ -416,8 +425,8 @@ export default function Sponsors() {
             >
                 <div className="flex flex-col md:flex-row items-center justify-center md:justify-between w-full gap-10">
                     <div className="md:max-w-[50vw] flex flex-col md:gap-5 items-center justify-center md:items-start text-center md:text-left">
-                        <h1 className="font-black p-5 -ml-2.5 text-xl md:text-5xl capitalize text-white bg-clip-text bg-gradient-to-r from-primary to-secondary stroke-xl font-title">OUR SPONSORS</h1>
-                        <p className="font-body font-regular text-base md:text-3xl">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                        <h1 ref={headingRef} className="font-black p-5 -ml-2.5 text-xl md:text-5xl capitalize text-white bg-clip-text bg-gradient-to-r from-primary to-secondary stroke-xl font-title">OUR SPONSORS</h1>
+                        <p style={{ maxWidth: isDesktop ? `${headingWidth}px` : '100%' }} className="font-body font-regular text-base md:text-3xl">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
                     </div>
 
                     <a href="/" className="flex items-center justify-center">
