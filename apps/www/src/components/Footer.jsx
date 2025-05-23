@@ -5,27 +5,27 @@ const mainSections = [
   {
     heading: "About",
     items: [
-      { name: "Our Mission", href: "/mission" },
-      { name: "Team", href: "/team" },
-      { name: "Partners", href: "/partners" },
+      { name: "Our Mission", href: "#" },
+      { name: "Team", href: "#" },
+      { name: "Partners", href: "#" },
     ],
   },
   {
     heading: "Events",
     items: [
-      { name: "Upcoming", href: "/events" },
-      { name: "Past Events", href: "/past-events" },
-      { name: "Schedule", href: "/schedule" },
+      { name: "Upcoming", href: "#" },
+      { name: "Past Events", href: "#" },
+      { name: "Schedule", href: "#" },
     ],
   },
-  {
-    heading: "Resources",
-    items: [
-      { name: "Getting Started", href: "/start" },
-      { name: "Documentation", href: "/docs" },
-      { name: "Community", href: "/community" },
-    ],
-  },
+  // {
+  //   heading: "Resources",
+  //   items: [
+  //     { name: "Getting Started", href: "#" },
+  //     { name: "Documentation", href: "#" },
+  //     { name: "Community", href: "#" },
+  //   ],
+  // },
   {
     heading: "Contact",
     items: [
@@ -37,8 +37,8 @@ const mainSections = [
 ];
 
 const bottomSections = [
-  { name: "Privacy", href: "/privacy" },
-  { name: "Terms", href: "/terms" },
+  { name: "Privacy", href: "#" },
+  { name: "Terms", href: "#" },
 ];
 
 const socialLinks = [
