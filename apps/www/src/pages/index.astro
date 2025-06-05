@@ -5,6 +5,7 @@ import Footer from "../components/Footer.jsx";
 import Hero from "../components/Hero.tsx";
 import Navigate from "../components/navigate.tsx";
 import Sponsors from "../components/Sponsors.jsx";
+import Navigate from "../components/navigate.tsx";
 import Layout from "../layouts/Layout.astro";
 ---
 
@@ -13,5 +14,5 @@ import Layout from "../layouts/Layout.astro";
 	<Hero />
 	<About/>
 	<Countdown client:load />
-	<Sponsors />
+	<Sponsors client:load />
 </Layout>
