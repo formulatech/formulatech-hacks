@@ -1,15 +1,15 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Navigate from "../components/navigate.tsx";
-import Hero from "../components/Hero.jsx";
 import About from "../components/About.jsx";
-import Sponsors from "../components/Sponsors.jsx";
 import Footer from "../components/Footer.jsx";
+import Hero from "../components/Hero.jsx";
+import Sponsors from "../components/Sponsors.jsx";
+import Navigate from "../components/navigate.tsx";
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
 	<Navigate />
 	<Hero />
 	<About/>
-	<Sponsors />
+	<Sponsors client:visible />
 </Layout>

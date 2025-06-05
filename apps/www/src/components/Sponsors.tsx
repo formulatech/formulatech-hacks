@@ -484,9 +484,32 @@ export default function Sponsors() {
 					</a>
 				</div>
 
-				<div className="relative flex flex-col items-center justify-center w-128">
+				{/* <div className="relative flex flex-col items-center justify-center w-128">
 					<img src="/helmet.svg" />
-				</div>
+				</div> */}
+				<div className="relative flex flex-col items-center justify-center">
+                    {/* Helmet and rendered sponsor stickers */}
+                    <Helmet 
+                        selectedSponsor={selectedSponsor} 
+                        viewport="mobile" 
+                        baseHelmetWidth={287} 
+                        helmetRef={mobileHelmet} 
+                        HelmetStickers={HelmetStickers}
+                        className="relative md:hidden"
+                    />
+                    <Helmet 
+                        selectedSponsor={selectedSponsor} 
+                        viewport="desktop" 
+                        baseHelmetWidth={578} 
+                        helmetRef={desktopHelmet} 
+                        HelmetStickers={HelmetStickers}
+                        className="hidden md:block md:relative"
+                    />
+
+                    {/* Expanding content below */}
+                    <ExpandedContent className="md:hidden" selectedSponsor={selectedSponsor} {...expandedContentMobileProps} />
+                    <ExpandedContent className="hidden md:block" selectedSponsor={selectedSponsor} {...expandedContentDesktopProps} />
+                </div>
 			</motion.div>
 		</div>
 	);
