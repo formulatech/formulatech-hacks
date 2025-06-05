@@ -29,6 +29,16 @@ export default {
                 medium: '500',
                 bold: '700',
             },
+
+            keyframes: {
+                flip: {
+                    '0%': { transform: 'rotateX(0deg)' },
+                    '100%': { transform: 'rotateX(360deg)' }
+                }
+            },
+            animation: {
+                'flip': 'flip 0.5s ease-in-out'
+            }
         },
     },        
     plugins: [],
