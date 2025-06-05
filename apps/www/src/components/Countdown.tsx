@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import countdownSvg from "../assets/countdown.svg";
 
-//TimeLeft interface to store all info in one object
 interface TimeLeft {
     days : number;
     hours : number;
@@ -10,23 +9,16 @@ interface TimeLeft {
 }
 
 export default function Countdown () {
-    console.log("Component rendering"); // Debug log
 
     const hackathonDay = new Date(2026, 0, 1, 0, 0, 0); // January 1st, 2026 at midnight
     const initTimeLeft = {days : 0, hours : 0, minutes : 0, seconds : 0};
     const [curTime, setCurTime] = useState<TimeLeft>(initTimeLeft);
 
-    //Timer, run once on component load
     useEffect(() => {
-        console.log("useEffect running"); // Debug log
 
         const calculateTimeLeft = () => {
             const now = new Date();
             const difference = hackathonDay.getTime() - now.getTime();
-            
-            console.log("Current time:", now);
-            console.log("Target time:", hackathonDay);
-            console.log("Difference:", difference);
 
             if (difference <= 0) {
                 return { days: 0, hours: 0, minutes: 0, seconds: 0 };
@@ -37,22 +29,18 @@ export default function Countdown () {
             const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-            console.log("Time left:", { days, hours, minutes, seconds });
             return { days, hours, minutes, seconds };
         };
 
-        // Initial calculation
         setCurTime(calculateTimeLeft());
 
-        // Update every second
         const intervalId = setInterval(() => {
-            console.log("Interval running"); // Debug log
+            console.log("Interval running");
             setCurTime(calculateTimeLeft());
         }, 1000);
 
-        //Remove interval on component dismount
         return () => {
-            console.log("Cleanup running"); // Debug log
+            console.log("Cleanup running");
             clearInterval(intervalId);
         };
 
