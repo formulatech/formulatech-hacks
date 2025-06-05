@@ -11,5 +11,6 @@
 	},
 	"dependencies": {
 		"bootstrap-icons": "^1.11.3"
-	}
+	},
+	"packageManager": "pnpm@10.10.0"
 }

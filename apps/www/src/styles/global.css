@@ -24,7 +24,22 @@
 	--font-weight-bold: 700;
 }
 
-.stroke-xl {
-    -webkit-text-stroke: 24px transparent;
+.stroke-lg {
+    -webkit-text-stroke: 20px transparent;
     background-size: 100% 100%;
 }
+
+.stroke-xl {
+    -webkit-text-stroke: 36px transparent;
+    background-size: 100% 100%;
+}
+
+.bg {
+    background: #fffff1 url("../assets/bg-full.png") no-repeat top center / 100% auto;
+    width: 100vw;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}   
