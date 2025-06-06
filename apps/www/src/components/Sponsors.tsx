@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import type React from "react";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 function useViewport(minWidth: number) {
 	// Custom hook to get the viewport width and check if it's > minWidth
@@ -152,8 +152,8 @@ interface ExpandedContentProps {
 	roadMaxWidth: string;
 	roadOffsetMargin: string;
 	helmetWidthState: number;
-	expandedSponsorLogoWidth: number;
-	sponsorNameTextSize: number;
+	expandedSponsorLogoWidth: string;
+	sponsorNameTextSize: string;
 	expandedSponsorTopMargin: string;
 	className?: string;
     isDesktop: boolean;
@@ -165,6 +165,28 @@ function ExpandedContent(
 	props: ExpandedContentProps & { selectedSponsor: Sponsor | null },
 ) {
 	const { selectedSponsor } = props;
+	const [containerWidth, setContainerWidth] = useState(0);
+	
+	// Separate ref for ResizeObserver - doesn't interfere with click-outside functionality
+	const resizeObserverRef = useCallback((node: HTMLDivElement | null) => {
+		if (node) {
+			// Set initial width
+			setContainerWidth(node.offsetWidth);
+			
+			// Set up ResizeObserver for real-time updates
+			const observer = new ResizeObserver((entries) => {
+				for (const entry of entries) {
+					setContainerWidth(entry.contentRect.width);
+				}
+			});
+			
+			observer.observe(node);
+			
+			// Cleanup function
+			return () => observer.disconnect();
+		}
+	}, []);
+
 	return (
 		<motion.div
 			initial={false} // Prevents animation on first render
@@ -183,7 +205,7 @@ function ExpandedContent(
                 maxWidth: props.isDesktop ? props.roadMaxWidth : "100%",
 				margin: "0 auto", // Center the container itself
 			}}
-			ref={props.ref} // Reference to the expanding div
+			ref={props.ref} // Keep original ref for click-outside functionality
 		>
 			{/* Content to reveal */}
 			<div
@@ -196,6 +218,7 @@ function ExpandedContent(
 					width: "100%",
 					marginTop: props.roadOffsetMargin,
 				}}
+				ref={resizeObserverRef} // Separate ref for ResizeObserver
 			>
 				{selectedSponsor && (
 					<div
@@ -203,27 +226,22 @@ function ExpandedContent(
 					>
 						<div
 							style={{
-								width: `${props.helmetWidthState * 2}px`,
+								width: `${containerWidth * 0.8}px`, // Use the state value
 							}}
 						>
 							<div className="flex flex-row items-center justify-around gap-[18px]">
 								<img
 									src={selectedSponsor.logoPath}
 									alt={selectedSponsor.name}
-									className={"object-contain"}
-									style={{
-										width: "100%",
-										maxWidth: `${props.expandedSponsorLogoWidth}px`,
-									}}
+									className={`object-contain w-full ${props.expandedSponsorLogoWidth}`}
 								/>
 								<h3
-									className="font-body"
-									style={{ fontSize: `${props.sponsorNameTextSize}px` }}
+									className={`font-body ${props.sponsorNameTextSize}`}
 								>
 									{selectedSponsor.name}
 								</h3>
 							</div>
-							<p className="mt-2 text-center font-body md:text-3xl">
+							<p className="mt-2 text-center font-body sm:text-xl md:text-3xl">
 								{selectedSponsor.description}
 							</p>
 						</div>
@@ -384,9 +402,9 @@ export default function Sponsors() {
 		roadMaxWidth: "400px",
 		roadOffsetMargin: "-36px",
 		helmetWidthState: mobileHelmetWidth,
-		expandedSponsorLogoWidth: 33,
-		expandedSponsorTopMargin: "mt-18 sm:mt-36",
-		sponsorNameTextSize: 17,
+		expandedSponsorLogoWidth: "max-w-[33px] sm:max-w-[96px]",
+		expandedSponsorTopMargin: "mt-18 sm:mt-42",
+		sponsorNameTextSize: "text-[17px] sm:text-[36px]",
         isDesktop: false,
 	};
 	const expandedContentDesktopProps: ExpandedContentProps = {
@@ -397,9 +415,9 @@ export default function Sponsors() {
 		roadMaxWidth: "1200px",
 		roadOffsetMargin: "-72px",
 		helmetWidthState: desktopHelmetWidth,
-		expandedSponsorLogoWidth: 144,
+		expandedSponsorLogoWidth: "max-w-[144px]",
 		expandedSponsorTopMargin: "mt-48",
-		sponsorNameTextSize: 48,
+		sponsorNameTextSize: "text-[48px]",
         isDesktop: true,
 	};
 
