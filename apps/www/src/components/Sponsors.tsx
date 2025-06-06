@@ -449,11 +449,8 @@ export default function Sponsors() {
 
 	return (
 		<div className="overflow-x-clip mt-156">
-			<motion.div
-				className={`flex flex-col items-center justify-center gap-[40px] md:gap-[${desktopGap}px] min-h-screen`}
-				initial={{ gap: isDesktop ? "160px" : "40px" }}
-				animate={{ gap: isDesktop ? `${desktopGap}px` : "40px" }}
-				transition={{ duration: 0.3, ease: "easeInOut" }}
+			<div
+				className={`flex flex-col items-center justify-center gap-[40px] sm:gap-[${desktopGap}px] min-h-screen`}
 			>
 				<div className="flex flex-col md:flex-row items-center justify-center md:justify-between w-full gap-10">
 					<div className="md:max-w-[50vw] flex flex-col md:gap-5 items-center justify-center md:items-start text-center md:text-left">
@@ -510,7 +507,7 @@ export default function Sponsors() {
                     <ExpandedContent className="md:hidden" selectedSponsor={selectedSponsor} {...expandedContentMobileProps} />
                     <ExpandedContent className="hidden md:block" selectedSponsor={selectedSponsor} {...expandedContentDesktopProps} />
                 </div>
-			</motion.div>
+			</div>
 		</div>
 	);
 }
