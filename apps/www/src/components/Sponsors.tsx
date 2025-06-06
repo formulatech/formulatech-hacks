@@ -450,7 +450,7 @@ export default function Sponsors() {
 	return (
 		<div className="overflow-x-clip mt-156 scroll-mt-20" id="sponsors">
 			<motion.div
-				className={`flex flex-col items-center justify-center px-8 md:px-[92px] py-6 md:py-[77px] gap-[40px] md:gap-[${desktopGap}px] w-6xl min-h-screen`}
+				className={`flex flex-col items-center justify-center gap-[40px] md:gap-[${desktopGap}px] min-h-screen`}
 				initial={{ gap: isDesktop ? "160px" : "40px" }}
 				animate={{ gap: isDesktop ? `${desktopGap}px` : "40px" }}
 				transition={{ duration: 0.3, ease: "easeInOut" }}
