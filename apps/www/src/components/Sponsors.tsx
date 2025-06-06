@@ -226,7 +226,7 @@ function ExpandedContent(
 					>
 						<div
 							style={{
-								width: `${containerWidth * 0.8}px`, // Use the state value
+								width: `${containerWidth * 0.75}px`, // Use the state value
 							}}
 						>
 							<div className="flex flex-row items-center justify-around gap-[18px]">
