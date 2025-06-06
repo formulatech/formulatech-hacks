@@ -471,7 +471,7 @@ export default function Sponsors() {
 	}
 
 	return (
-		<div className="overflow-x-clip mt-156">
+		<div className="overflow-x-clip mt-156 px-8 md:px-[92px] py-6 md:py-[77px] w-full">
 			<div
 				className={`flex flex-col items-center justify-center gap-[40px] sm:gap-[${desktopGap}px] min-h-screen`}
 			>
