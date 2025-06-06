@@ -156,6 +156,7 @@ interface ExpandedContentProps {
 	sponsorNameTextSize: number;
 	expandedSponsorTopMargin: string;
 	className?: string;
+    isDesktop: boolean;
 }
 
 // This function is used to render and animate the expanded content
@@ -179,7 +180,7 @@ function ExpandedContent(
 			}}
 			className={`w-screen flex justify-center ${props.className}`}
 			style={{
-				maxWidth: props.roadMaxWidth, // Add max-width here
+                maxWidth: props.isDesktop ? props.roadMaxWidth : "100%",
 				margin: "0 auto", // Center the container itself
 			}}
 			ref={props.ref} // Reference to the expanding div
@@ -190,6 +191,8 @@ function ExpandedContent(
 				style={{
 					background: `url('${props.roadImgPath}') no-repeat center center / cover`,
 					minHeight: props.roadMinHeight,
+					minWidth: props.isDesktop ? "100%" : "400px", // Add minimum width
+					aspectRatio: props.isDesktop ? "auto" : "400 / 251",
 					width: "100%",
 					marginTop: props.roadOffsetMargin,
 				}}
@@ -382,8 +385,9 @@ export default function Sponsors() {
 		roadOffsetMargin: "-36px",
 		helmetWidthState: mobileHelmetWidth,
 		expandedSponsorLogoWidth: 33,
-		expandedSponsorTopMargin: "mt-18",
+		expandedSponsorTopMargin: "mt-18 sm:mt-36",
 		sponsorNameTextSize: 17,
+        isDesktop: false,
 	};
 	const expandedContentDesktopProps: ExpandedContentProps = {
 		marginTop: 16,
@@ -396,6 +400,7 @@ export default function Sponsors() {
 		expandedSponsorLogoWidth: 144,
 		expandedSponsorTopMargin: "mt-48",
 		sponsorNameTextSize: 48,
+        isDesktop: true,
 	};
 
 	// Use helmet width for scaling to help with the positioning of the stickers when the helmet shrinks
