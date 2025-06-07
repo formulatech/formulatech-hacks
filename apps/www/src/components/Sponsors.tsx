@@ -403,7 +403,7 @@ export default function Sponsors() {
 		roadOffsetMargin: "-36px",
 		helmetWidthState: mobileHelmetWidth,
 		expandedSponsorLogoWidth: "max-w-[33px] sm:max-w-[96px]",
-		expandedSponsorTopMargin: "mt-18 sm:mt-42",
+		expandedSponsorTopMargin: "mt-18 min-[476px]:mt-30 sm:mt-42",
 		sponsorNameTextSize: "text-[17px] sm:text-[36px]",
         isDesktop: false,
 	};
