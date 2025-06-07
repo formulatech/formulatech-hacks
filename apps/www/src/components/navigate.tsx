@@ -11,14 +11,11 @@ export default function Navigate() {
 
 	return (
 		<>
-			<nav className="bg-background text-black w-[80%] mx-auto py-1 px-8 mt-10 rounded-full flex items-center justify-between fixed top-0 left-1/2 -translate-x-1/2 z-[100] backdrop-blur shadow-md">
-				{/* Left: Logo */}
+			<nav className="bg-background text-black w-[80%] mx-auto mt-10 py-1 px-8 rounded-full flex items-center justify-between overflow-hidden font-primary text-xl relative z-[100]">
 				<div className="flex items-center gap-8 min-w-0 flex-nowrap overflow-hidden">
 					<a href="/">
 						<img src={logo.src} alt="Logo" className="h-14 w-auto" />
 					</a>
-
-					{/* Center: Desktop Nav Links */}
 					<ul className="hidden md:flex gap-[clamp(1rem,2vw,4rem)] items-center flex-nowrap min-w-0 overflow-hidden text-nowrap">
 						<li>
 							<a href="#about" className="hover:text-primary transition">
