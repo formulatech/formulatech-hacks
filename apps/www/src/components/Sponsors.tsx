@@ -1,3 +1,6 @@
+// THIS COMPONENT NEEDS TO HAVE A CLIENT DIRECTIVE WHEN USED IN ASTRO
+// OR ELSE MOTION WILL NOT WORK
+
 import { motion } from "motion/react";
 import type React from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
