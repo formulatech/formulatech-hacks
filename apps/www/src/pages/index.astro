@@ -4,14 +4,18 @@ import Navigate from "../components/navigate.tsx";
 import Hero from "../components/Hero.jsx";
 import About from "../components/About.jsx";
 import Sponsors from "../components/Sponsors.jsx";
-import Footer from "../components/Footer.jsx";
 import Countdown from "../components/Countdown.tsx";
+import Teams from "../components/Teams.tsx";
+import FAQ from "../components/FAQ.tsx";
+import Footer from "../components/Footer.jsx";
 ---
 
 <Layout>
 	<Navigate />
 	<Hero />
-	<About/>
+	<About />
 	<Countdown client:load />
 	<Sponsors />
+	<FAQ />	
+	<Teams />
 </Layout>
