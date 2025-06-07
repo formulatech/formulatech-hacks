@@ -29,7 +29,7 @@ const CIRCLE_ROWS = [1, 2, 3, 4];
 const STAND_WIDTH = 1500;
 const CIRCLE_RADIUS = 50;
 const STAND_HEIGHTS = [350, 460, 570, 670];
-const CIRCLE_GAP = 24;
+const CIRCLE_GAP = 80;
 
 export default function Teams() {
   let imgIdx = 0;
