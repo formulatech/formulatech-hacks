@@ -175,7 +175,6 @@ interface ExpandedContentProps {
 	helmetWidthState: number;
 	expandedSponsorLogoWidth: string;
 	sponsorNameTextSize: string;
-	expandedSponsorTopMargin: string;
 	className?: string;
     isDesktop: boolean;
 }
@@ -230,7 +229,7 @@ function ExpandedContent(
 		>
 			{/* Content to reveal */}
 			<div
-				className="p-4 text-white w-full"
+				className="p-4 text-white w-full flex items-center justify-center"
 				style={{
 					background: `url('${props.roadImgPath}') no-repeat center center / cover`,
 					minHeight: props.roadMinHeight,
@@ -243,14 +242,14 @@ function ExpandedContent(
 			>
 				{selectedSponsor && (
 					<div
-						className={`flex flex-col items-center justify-end ${props.expandedSponsorTopMargin}`}
+						className={'flex flex-col items-center justify-end'}
 					>
 						<div
 							style={{
 								width: `${containerWidth * 0.75}px`, // Use the state value
 							}}
 						>
-							<div className="flex flex-row items-center justify-around gap-[18px]">
+							<div className="flex flex-col md:flex-row items-center justify-around">
 								<img
 									src={selectedSponsor.logoPath}
 									alt={selectedSponsor.name}
@@ -437,8 +436,7 @@ export default function Sponsors() {
 		roadMaxWidth: "400px",
 		roadOffsetMargin: "-36px",
 		helmetWidthState: mobileHelmetWidth,
-		expandedSponsorLogoWidth: "max-w-[33px]",
-		expandedSponsorTopMargin: "mt-18",
+		expandedSponsorLogoWidth: "max-w-[56px]",
 		sponsorNameTextSize: "text-[17px]",
         isDesktop: false,
 	};
@@ -450,8 +448,7 @@ export default function Sponsors() {
 		roadMaxWidth: "500px",
 		roadOffsetMargin: "-45px",
 		helmetWidthState: tabletHelmetWidth,
-		expandedSponsorLogoWidth: "max-w-[60px]",
-		expandedSponsorTopMargin: "mt-24",
+		expandedSponsorLogoWidth: "max-w-[120px]",
 		sponsorNameTextSize: "text-[24px]",
         isDesktop: false,
 	};
@@ -464,7 +461,6 @@ export default function Sponsors() {
 		roadOffsetMargin: "-72px",
 		helmetWidthState: desktopHelmetWidth,
 		expandedSponsorLogoWidth: "max-w-[144px]",
-		expandedSponsorTopMargin: "mt-48",
 		sponsorNameTextSize: "text-[48px]",
         isDesktop: true,
 	};
