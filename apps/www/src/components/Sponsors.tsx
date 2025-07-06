@@ -1,7 +1,7 @@
 // THIS COMPONENT NEEDS TO HAVE A CLIENT DIRECTIVE WHEN USED IN ASTRO
 // OR ELSE MOTION WILL NOT WORK
 
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import type React from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -240,33 +240,43 @@ function ExpandedContent(
 				}}
 				ref={resizeObserverRef} // Separate ref for ResizeObserver
 			>
-				{selectedSponsor && (
-					<div
-						className={'flex flex-col items-center justify-end'}
-					>
-						<div
-							style={{
-								width: `${containerWidth * 0.75}px`, // Use the state value
+				<AnimatePresence mode="wait">
+					{selectedSponsor && (
+						<motion.div
+							key={selectedSponsor.key} // Important: unique key for each sponsor
+							className={'flex flex-col items-center justify-end'}
+							initial={{ opacity: 0, y: 20 }}
+							animate={{ opacity: 1, y: 0 }}
+							exit={{ opacity: 0, y: -20 }}
+							transition={{
+								duration: 0.3,
+								ease: "easeOut",
 							}}
 						>
-							<div className="flex flex-col md:flex-row items-center justify-around">
-								<img
-									src={selectedSponsor.logoPath}
-									alt={selectedSponsor.name}
-									className={`object-contain w-full ${props.expandedSponsorLogoWidth}`}
-								/>
-								<h3
-									className={`font-body ${props.sponsorNameTextSize}`}
-								>
-									{selectedSponsor.name}
-								</h3>
+							<div
+								style={{
+									width: `${containerWidth * 0.75}px`, // Use the state value
+								}}
+							>
+								<div className="flex flex-col md:flex-row items-center justify-around">
+									<img
+										src={selectedSponsor.logoPath}
+										alt={selectedSponsor.name}
+										className={`object-contain w-full ${props.expandedSponsorLogoWidth}`}
+									/>
+									<h3
+										className={`font-body ${props.sponsorNameTextSize}`}
+									>
+										{selectedSponsor.name}
+									</h3>
+								</div>
+								<p className="mt-2 text-center font-body sm:text-xl md:text-3xl">
+									{selectedSponsor.description}
+								</p>
 							</div>
-							<p className="mt-2 text-center font-body sm:text-xl md:text-3xl">
-								{selectedSponsor.description}
-							</p>
-						</div>
-					</div>
-				)}
+						</motion.div>
+					)}
+				</AnimatePresence>
 				
 				{/* Close button absolutely positioned at bottom */}
 				{selectedSponsor && (
