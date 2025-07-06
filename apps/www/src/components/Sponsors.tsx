@@ -182,9 +182,9 @@ interface ExpandedContentProps {
 // This function is used to render and animate the expanded content
 // This function must be outside of the component to avoid re-creating it on every render (breaks animation)
 function ExpandedContent(
-	props: ExpandedContentProps & { selectedSponsor: Sponsor | null },
+	props: ExpandedContentProps & { selectedSponsor: Sponsor | null; onClose: () => void },
 ) {
-	const { selectedSponsor } = props;
+	const { selectedSponsor, onClose } = props;
 	const [containerWidth, setContainerWidth] = useState(0);
 	
 	// Separate ref for ResizeObserver - doesn't interfere with click-outside functionality
@@ -229,7 +229,7 @@ function ExpandedContent(
 		>
 			{/* Content to reveal */}
 			<div
-				className="p-4 text-white w-full flex items-center justify-center"
+				className="p-4 text-white w-full flex items-center justify-center relative"
 				style={{
 					background: `url('${props.roadImgPath}') no-repeat center center / cover`,
 					minHeight: props.roadMinHeight,
@@ -266,6 +266,28 @@ function ExpandedContent(
 							</p>
 						</div>
 					</div>
+				)}
+				
+				{/* Close button absolutely positioned at bottom */}
+				{selectedSponsor && (
+					<button
+						type="button"
+						onClick={onClose}
+						className="absolute bottom-4 right-[10%] transform -translate-x-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3 transition-all duration-200 hover:scale-110"
+						aria-label="Close sponsor details"
+					>
+						<svg 
+							xmlns="http://www.w3.org/2000/svg" 
+							fill="none" 
+							viewBox="0 0 24 24" 
+							strokeWidth="2" 
+							stroke="currentColor" 
+							className="w-3 h-3 md:w-6 md:h-6 text-white"
+						>
+							<title>Close</title>
+							<path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+						</svg>
+					</button>
 				)}
 			</div>
 		</motion.div>
@@ -429,6 +451,11 @@ export default function Sponsors() {
 		setSelectedSponsor((prev) => (prev?.key === sponsor.key ? null : sponsor));
 	}
 
+	// Function to close the expanded content
+	function closeSponsor() {
+		setSelectedSponsor(null);
+	}
+
 	// Props for the expanded content for mobile, tablet, and desktop
 	const expandedContentMobileProps: ExpandedContentProps = {
 		marginTop: 16,
@@ -557,7 +584,7 @@ export default function Sponsors() {
 							HelmetStickers={HelmetStickers}
 							className="relative"
 							/>
-						<ExpandedContent selectedSponsor={selectedSponsor} {...expandedContentMobileProps} />
+						<ExpandedContent selectedSponsor={selectedSponsor} onClose={closeSponsor} {...expandedContentMobileProps} />
 					</div>
 
 					<div className="hidden relative sm:flex md:hidden flex-col items-center justify-center">
@@ -570,7 +597,7 @@ export default function Sponsors() {
 							HelmetStickers={HelmetStickers}
 							className="relative"
 						/>
-						<ExpandedContent selectedSponsor={selectedSponsor} {...expandedContentTabletProps} />
+						<ExpandedContent selectedSponsor={selectedSponsor} onClose={closeSponsor} {...expandedContentTabletProps} />
 					</div>
 
 					<a
@@ -630,7 +657,7 @@ export default function Sponsors() {
 							HelmetStickers={HelmetStickers}
 							className="relative"
 						/>
-						<ExpandedContent selectedSponsor={selectedSponsor} {...expandedContentDesktopProps} />
+						<ExpandedContent selectedSponsor={selectedSponsor} onClose={closeSponsor} {...expandedContentDesktopProps} />
 					</div>
 				</div>
 			</div>
