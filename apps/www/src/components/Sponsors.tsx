@@ -580,7 +580,7 @@ export default function Sponsors() {
 						<img
 							src="/become_a_sponsor_CTA.svg"
 							alt="Become a Sponsor"
-							className="w-[77.27px] sm:w-[120px] object-contain"
+							className="w-[120px] sm:w-[140px] object-contain"
 						/>
 					</a>
 				</div>
