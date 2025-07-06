@@ -411,10 +411,46 @@ export default function Sponsors() {
 	const [headingWidth, setHeadingWidth] = useState(0);
 
 	useEffect(() => {
+		const updateHeadingWidth = () => {
+			if (headingRef.current) {
+				const width = headingRef.current.offsetWidth;
+				if (width > 0) { // Defensive check
+					setHeadingWidth(width);
+				}
+			}
+		};
+
+		// Initial measurement
+		updateHeadingWidth();
+
+		// Set up ResizeObserver for real-time updates
+		const observer = new ResizeObserver((entries) => {
+			for (const entry of entries) {
+				if (entry.target === headingRef.current) {
+					const width = entry.contentRect.width;
+					if (width > 0) { // Defensive check
+						setHeadingWidth(width);
+					}
+				}
+			}
+		});
+
 		if (headingRef.current) {
-			setHeadingWidth(headingRef.current.offsetWidth);
+			observer.observe(headingRef.current);
 		}
-	}, []);
+
+		// Also listen for viewport changes
+		const handleResize = () => {
+			updateHeadingWidth();
+		};
+		
+		window.addEventListener('resize', handleResize);
+
+		return () => {
+			observer.disconnect();
+			window.removeEventListener('resize', handleResize);
+		};
+	}, []); // Remove selectedSponsor dependency as it's not necessary for heading width measurement
 
 	// Refs to the expanded content divs
 	// Used to close the expanded content when clicking outside of it
@@ -635,7 +671,10 @@ export default function Sponsors() {
 
 			{/* DESKTOP VIEW */}
 			<div className="hidden md:block">
-				<div className={`flex flex-col items-center justify-center gap-[${desktopGap}px] min-h-screen`}>
+				<div 
+					className="flex flex-col items-center justify-center min-h-screen"
+					style={{ gap: `${desktopGap}px` }}
+				>
 					{/* Desktop Header Section */}
 					<div className="flex flex-row items-center justify-between w-full gap-10">
 						<div className="max-w-[50vw] flex flex-col gap-5 items-start text-left">
@@ -646,7 +685,9 @@ export default function Sponsors() {
 								OUR SPONSORS
 							</h1>
 							<p
-								style={{ maxWidth: `${headingWidth}px` }}
+								style={{ 
+									maxWidth: headingWidth > 0 ? `${headingWidth}px` : 'auto' // Fallback when width is 0
+								}}
 								className="font-body font-regular text-3xl"
 							>
 								Support the next
