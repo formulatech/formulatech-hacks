@@ -276,6 +276,7 @@ interface HelmetProps {
 	selectedSponsor: Sponsor | null;
 	viewport: "mobile" | "tablet" | "desktop";
 	baseHelmetWidth: number;
+	expandedHelmetWidthFactor: number;
 	helmetRef: React.RefObject<HTMLImageElement | null>;
 	HelmetStickers: (viewport: "mobile" | "tablet" | "desktop") => React.JSX.Element[];
 }
@@ -284,6 +285,7 @@ function Helmet(props: HelmetProps & { className?: string }) {
 		selectedSponsor,
 		viewport,
 		baseHelmetWidth,
+		expandedHelmetWidthFactor,
 		helmetRef,
 		HelmetStickers,
 	} = props;
@@ -291,7 +293,7 @@ function Helmet(props: HelmetProps & { className?: string }) {
 		<motion.div
 			animate={{
 				width: selectedSponsor
-					? `${baseHelmetWidth * (151 / 329)}px`
+					? `${baseHelmetWidth * expandedHelmetWidthFactor}px`
 					: `${baseHelmetWidth}px`,
 			}}
 			transition={{
@@ -550,10 +552,11 @@ export default function Sponsors() {
 							selectedSponsor={selectedSponsor} 
 							viewport="mobile" 
 							baseHelmetWidth={200} 
+							expandedHelmetWidthFactor={0.75}
 							helmetRef={mobileHelmet} 
 							HelmetStickers={HelmetStickers}
 							className="relative"
-						/>
+							/>
 						<ExpandedContent selectedSponsor={selectedSponsor} {...expandedContentMobileProps} />
 					</div>
 
@@ -562,6 +565,7 @@ export default function Sponsors() {
 							selectedSponsor={selectedSponsor} 
 							viewport="tablet" 
 							baseHelmetWidth={250} 
+							expandedHelmetWidthFactor={0.75}
 							helmetRef={tabletHelmet} 
 							HelmetStickers={HelmetStickers}
 							className="relative"
@@ -621,6 +625,7 @@ export default function Sponsors() {
 							selectedSponsor={selectedSponsor} 
 							viewport="desktop" 
 							baseHelmetWidth={578} 
+							expandedHelmetWidthFactor={0.5}
 							helmetRef={desktopHelmet} 
 							HelmetStickers={HelmetStickers}
 							className="relative"
