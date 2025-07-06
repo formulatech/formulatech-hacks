@@ -425,9 +425,15 @@ export default function Sponsors() {
 	useEffect(() => {
 		// Add click listener to close sponsor details when clicking outside
 		function handleClickOutside(event: MouseEvent) {
-			// If we have a selected sponsor and clicked outside the expanded element
+			const target = event.target as HTMLElement;
+			
+			// Check if click is on a sponsor sticker (ignore these clicks)
+			const isClickOnSponsorSticker = target.closest('[data-sponsor-sticker]');
+			
+			// If we have a selected sponsor and clicked outside the expanded element (but not on a sticker)
 			if (
 				selectedSponsor &&
+				!isClickOnSponsorSticker &&
 				expandedSponsorRefMobile.current &&
 				!expandedSponsorRefMobile.current.contains(event.target as Node) &&
 				expandedSponsorRefTablet.current &&
@@ -537,6 +543,7 @@ export default function Sponsors() {
 			<button
 				type="button"
 				key={sponsor.key}
+				data-sponsor-sticker="true"
 				className={`absolute z-1 cursor-pointer transition-transform ${selectedSponsor?.key === sponsor.key ? "scale-125" : "hover:scale-110"}`}
 				style={{
 					left: `${sponsor.positions[viewport].x * getScaleFactor(viewport)[viewport]}px`, // Apply scaling factor to maintain position relative to helmet
@@ -544,7 +551,10 @@ export default function Sponsors() {
 					width: `${sponsor.positions[viewport].size}px`,
 					height: `${sponsor.positions[viewport].size}px`,
 				}}
-				onClick={() => toggleSponsor(sponsor)}
+				onClick={(e) => {
+					e.stopPropagation(); // Prevent click from bubbling to document
+					toggleSponsor(sponsor);
+				}}
 				onKeyDown={(e) => {
 					if ((e.key === "Enter" || e.key === " ") && !e.repeat) {
 						toggleSponsor(sponsor);
