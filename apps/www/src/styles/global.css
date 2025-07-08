@@ -35,7 +35,7 @@
 }
 
 .bg {
-    background: #fffff1 url("../assets/bg-full.png") no-repeat top center / 100% auto;
+    background: linear-gradient(to bottom, #00AEB9, #D2273D);
     width: 100vw;
     min-height: 100dvh;
     display: flex;
