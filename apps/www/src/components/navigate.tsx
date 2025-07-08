@@ -178,7 +178,7 @@ export default function Navigate() {
 					</a>
 				</div>
 			</div>
-			)
+			
 		</>
 	);
 }
