@@ -22,7 +22,7 @@ const FAQ_ITEMS = [
 
 export default function FAQ() {
   return (
-    <div className="bg-[#fefdf3] w-full flex flex-col items-center py-8">
+    <div className=" w-full flex flex-col items-center py-8">
       {/* Header */}
       <div className="text-center mb-2">
       <h1 className="font-black text-center p-4 text-7xl capitalize text-white bg-clip-text bg-gradient-to-r from-primary to-secondary stroke-xl font-title">

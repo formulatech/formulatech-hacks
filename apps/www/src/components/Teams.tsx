@@ -36,7 +36,7 @@ export default function Teams() {
   const CAR_HEIGHT = 144; // h-36 = 144px
   const ROAD_HEIGHT = 64; // h-16 = 64px
   return (
-    <div className="bg-[#fefdf3] py-8 w-full flex flex-col items-center">
+    <div className="py-8 w-full flex flex-col items-center">
       <div className="text-center mb-0">
       <h1 className="font-black text-center p-4 text-7xl capitalize text-white bg-clip-text bg-gradient-to-r from-primary to-secondary stroke-xl font-title">
 				THE TEAM
