@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import countdownSvg from "../assets/countdown.svg";
 
 interface TimeLeft {
     days : number;
@@ -63,9 +62,11 @@ export default function Countdown () {
 function CountdownColumn ({label, value} : {label : string, value : number}) {
 
     //take in raw value and break into individual digits
-    const ones = value % 10;
-    const tens = ((value - ones) / 10) % 10;
-    const hundreds = (value - tens - ones) / 100;
+    const intValue = Math.floor(value); 
+    const ones = intValue % 10;
+    const tens = Math.floor((intValue % 100) / 10);
+    const hundreds = Math.floor(intValue / 100);
+    
 
     return (
 
