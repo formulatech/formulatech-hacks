@@ -43,3 +43,7 @@
     align-items: center;
     justify-content: start;
 }   
+
+html {
+	scroll-behavior: smooth;
+}
