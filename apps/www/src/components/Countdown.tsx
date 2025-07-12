@@ -47,7 +47,7 @@ export default function Countdown () {
 
     return (
 
-        <div className="h-[500px] w-8/10 p-3 bg-[#1C1B20] r-2 flex flex-col md:flex-row rounded-4xl border-black border-5 justify-evenly">
+        <div className="h-[500px] md:h-[800px] lg:h-[500px] w-8/10 p-3 bg-[#1C1B20] r-2 flex flex-col lg:flex-row rounded-4xl border-black border-5 justify-evenly">
             <CountdownColumn label="Days" value={curTime.days} />
             <CountdownColumn label="Hours" value={curTime.hours} />
             <CountdownColumn label="Minutes" value={curTime.minutes} />
@@ -70,11 +70,11 @@ function CountdownColumn ({label, value} : {label : string, value : number}) {
 
     return (
 
-        <div className="w-full md:w-23/100 h-1/4 md:h-full flex flex-row md:flex-col md:justify-evenly">
-            <div className="h-full md:h-3/20 flex w-1/2 md:w-full bg-[#fefdf3] rounded-lg border-5 border-[#d1283e] justify-center items-center">
-                <p className="font-bold font-title text-xl md:text-3xl">{label}</p>
+        <div className="w-full lg:w-23/100 h-1/4 lg:h-full flex flex-row lg:flex-col lg:justify-evenly">
+            <div className="h-full lg:h-3/20 flex w-1/2 lg:w-full bg-[#fefdf3] rounded-lg border-5 border-[#d1283e] justify-center items-center">
+                <p className="font-bold font-title text-xl md:text-5xl lg:text-3xl">{label}</p>
             </div>
-            <div className="relative flex h-full md:h-7/10 w-1/2 md:w-full bg-yellow-200 rounded-lg border-5 border-[#d1283e] text-[50px] md:text-[100px]">
+            <div className="relative flex h-full lg:h-7/10 w-1/2 lg:w-full bg-yellow-200 rounded-lg border-5 border-[#d1283e] text-[50px] md:text-[85px] lg:text-[100px]">
                 {//Conditional rendering of extra digit for days
                 value >= 100 ? <Digit dig={hundreds}></Digit> : ""
                 }
@@ -119,7 +119,7 @@ function Digit({ dig }: { dig: number }) {
     return (
         <div className="relative flex-col w-1/2 border border-[#d1283e] perspective-[400px]">
             {/* Static top half */}
-            <div className="w-full h-1/2 bg-[#fefdf3] relative text-center leading-[2.1] md:leading-[3.12]">
+            <div className="w-full h-1/2 bg-[#fefdf3] relative text-center leading-[2.1] lg:leading-[3.12]">
                 {curNumber}
             </div>
             
@@ -130,7 +130,7 @@ function Digit({ dig }: { dig: number }) {
             
             {/* Flipping top half */}
             <div 
-                className={`absolute overflow-hidden top-0 w-full h-1/2 bg-[#fefdf3] text-center leading-[2.1] md:leading-[3.13] origin-bottom ${
+                className={`absolute overflow-hidden top-0 w-full h-1/2 bg-[#fefdf3] text-center leading-[2.1] lg:leading-[3.13] origin-bottom ${
                     isFlippingTop ? 'transition-transform duration-450 ease-in' : ''
                 }`}
                 style={{
