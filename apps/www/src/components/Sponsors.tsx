@@ -278,12 +278,12 @@ function ExpandedContent(
 					)}
 				</AnimatePresence>
 				
-				{/* Close button absolutely positioned at bottom */}
+				{/* Close button absolutely positioned at top center */}
 				{selectedSponsor && (
 					<button
 						type="button"
 						onClick={onClose}
-						className="absolute bottom-4 right-[10%] transform -translate-x-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3 transition-all duration-200 hover:scale-110"
+						className="absolute top-[10%] left-[30%] sm:left-1/2 transform -translate-x-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3 transition-all duration-200 hover:scale-110"
 						aria-label="Close sponsor details"
 					>
 						<svg 
@@ -611,7 +611,7 @@ export default function Sponsors() {
 	}
 
 	return (
-		<div className="overflow-x-clip mt-156 px-8 md:px-[92px] py-6 md:py-[77px] w-full">
+		<div id="sponsors" className="overflow-x-clip mt-156 px-8 md:px-[92px] py-6 md:py-[77px] w-full">
 			{/* MOBILE VIEW */}
 			<div className="md:hidden">
 				<div className="flex flex-col items-center justify-center gap-[40px] min-h-screen">
