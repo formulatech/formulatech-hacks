@@ -258,7 +258,7 @@ function ExpandedContent(
 									width: `${containerWidth * 0.75}px`, // Use the state value
 								}}
 							>
-								<div className="flex flex-col md:flex-row items-center justify-around">
+								<div className="flex flex-col lg:flex-row items-center justify-around">
 									<img
 										src={selectedSponsor.logoPath}
 										alt={selectedSponsor.name}
@@ -270,7 +270,7 @@ function ExpandedContent(
 										{selectedSponsor.name}
 									</h3>
 								</div>
-								<p className="mt-2 text-center font-body sm:text-xl md:text-3xl">
+								<p className="mt-2 text-center font-body sm:text-xl lg:text-3xl">
 									{selectedSponsor.description}
 								</p>
 							</div>
@@ -283,7 +283,7 @@ function ExpandedContent(
 					<button
 						type="button"
 						onClick={onClose}
-						className="absolute top-[10%] left-[30%] sm:left-1/2 transform -translate-x-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3 transition-all duration-200 hover:scale-110"
+						className="absolute top-[10%] left-[30%] min-[500px]:left-1/2 transform -translate-x-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3 transition-all duration-200 hover:scale-110"
 						aria-label="Close sponsor details"
 					>
 						<svg 
@@ -613,7 +613,7 @@ export default function Sponsors() {
 	return (
 		<div id="sponsors" className="overflow-x-clip mt-156 px-8 md:px-[92px] py-6 md:py-[77px] w-full">
 			{/* MOBILE VIEW */}
-			<div className="md:hidden">
+			<div className="lg:hidden">
 				<div className="flex flex-col items-center justify-center gap-[40px] min-h-screen">
 					{/* Mobile Header Section */}
 					<div className="flex flex-col items-center justify-center text-center">
@@ -643,7 +643,7 @@ export default function Sponsors() {
 						<ExpandedContent selectedSponsor={selectedSponsor} onClose={closeSponsor} {...expandedContentMobileProps} />
 					</div>
 
-					<div className="hidden relative sm:flex md:hidden flex-col items-center justify-center">
+					<div className="hidden relative sm:flex lg:hidden flex-col items-center justify-center">
 						<Helmet 
 							selectedSponsor={selectedSponsor} 
 							viewport="tablet" 
@@ -670,7 +670,7 @@ export default function Sponsors() {
 			</div>
 
 			{/* DESKTOP VIEW */}
-			<div className="hidden md:block">
+			<div className="hidden lg:block">
 				<div 
 					className="flex flex-col items-center justify-center min-h-screen"
 					style={{ gap: `${desktopGap}px` }}
