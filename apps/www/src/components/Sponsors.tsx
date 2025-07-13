@@ -659,6 +659,7 @@ export default function Sponsors() {
 					<a
 						href="/become-a-sponsor"
 						className="flex items-center justify-center"
+						style={{ zIndex: 10 }} // Ensure CTA is clickable over "ExpandedContent" component even when invisible
 					>
 						<img
 							src="/become_a_sponsor_CTA.svg"
