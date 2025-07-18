@@ -1,6 +1,9 @@
-import { motion } from "framer-motion";
+// THIS COMPONENT NEEDS TO HAVE A CLIENT DIRECTIVE WHEN USED IN ASTRO
+// OR ELSE MOTION WILL NOT WORK
+
+import { AnimatePresence, motion } from "motion/react";
 import type React from "react";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 function useViewport(minWidth: number) {
 	// Custom hook to get the viewport width and check if it's > minWidth
@@ -32,9 +35,24 @@ interface Sponsor {
 	description: string;
 	positions: {
 		desktop: Position;
+		tablet: Position;
 		mobile: Position;
 	};
 }
+
+// Input type for createSponsor function
+type SponsorInput = {
+	key?: string;
+	name?: string;
+	logoPath?: string;
+	website?: string;
+	description?: string;
+	positions?: {
+		desktop?: Partial<Position>;
+		tablet?: Partial<Position>;
+		mobile?: Partial<Position>;
+	};
+};
 
 // Create a slug from a string (replace spaces with hyphens, lowercase)
 function slugify(text: string): string {
@@ -46,9 +64,23 @@ function slugify(text: string): string {
 		.replace(/--+/g, "-"); // Replace multiple hyphens with single hyphen
 }
 // Create a function that generates sponsors with defaults
-function createSponsor(sponsor: Partial<Sponsor>): Sponsor {
+function createSponsor(sponsor: SponsorInput): Sponsor {
 	const name = sponsor.name || "Default Sponsor";
 	const key = slugify(name);
+
+	// Base helmet widths for ratio calculations
+	const DESKTOP_BASE_WIDTH = 578;
+	const TABLET_BASE_WIDTH = 250;
+	const MOBILE_BASE_WIDTH = 200;
+
+	// Calculate ratios for automatic scaling
+	const tabletRatio = TABLET_BASE_WIDTH / DESKTOP_BASE_WIDTH; // ~0.433
+	const mobileRatio = MOBILE_BASE_WIDTH / DESKTOP_BASE_WIDTH; // ~0.346
+
+	// Desktop defaults
+	const desktopX = sponsor.positions?.desktop?.x || 100;
+	const desktopY = sponsor.positions?.desktop?.y || 100;
+	const desktopSize = sponsor.positions?.desktop?.size || 47;
 
 	return {
 		key: sponsor.key || key,
@@ -58,14 +90,19 @@ function createSponsor(sponsor: Partial<Sponsor>): Sponsor {
 		description: sponsor.description || "Default sponsor description",
 		positions: {
 			desktop: {
-				x: sponsor.positions?.desktop?.x || 100,
-				y: sponsor.positions?.desktop?.y || 100,
-				size: sponsor.positions?.desktop?.size || 47,
+				x: desktopX,
+				y: desktopY,
+				size: desktopSize,
+			},
+			tablet: {
+				x: sponsor.positions?.tablet?.x || Math.round(desktopX * tabletRatio),
+				y: sponsor.positions?.tablet?.y || Math.round(desktopY * tabletRatio),
+				size: sponsor.positions?.tablet?.size || Math.round(desktopSize * tabletRatio * 100) / 100,
 			},
 			mobile: {
-				x: sponsor.positions?.mobile?.x || 50,
-				y: sponsor.positions?.mobile?.y || 50,
-				size: sponsor.positions?.mobile?.size || 23.34,
+				x: sponsor.positions?.mobile?.x || Math.round(desktopX * mobileRatio),
+				y: sponsor.positions?.mobile?.y || Math.round(desktopY * mobileRatio),
+				size: sponsor.positions?.mobile?.size || Math.round(desktopSize * mobileRatio * 100) / 100,
 			},
 		},
 	};
@@ -84,10 +121,6 @@ const sponsors: Sponsor[] = [
 				x: 190,
 				y: 83,
 			},
-			mobile: {
-				x: 94.34,
-				y: 41.05,
-			},
 		},
 	}),
 	createSponsor({
@@ -100,10 +133,6 @@ const sponsors: Sponsor[] = [
 			desktop: {
 				x: 331,
 				y: 109,
-			},
-			mobile: {
-				x: 164.35,
-				y: 53.91,
 			},
 		},
 	}),
@@ -118,10 +147,6 @@ const sponsors: Sponsor[] = [
 				x: 397,
 				y: 212,
 			},
-			mobile: {
-				x: 197.13,
-				y: 104.85,
-			},
 		},
 	}),
 	createSponsor({
@@ -134,10 +159,6 @@ const sponsors: Sponsor[] = [
 			desktop: {
 				x: 284,
 				y: 313,
-			},
-			mobile: {
-				x: 141.02,
-				y: 154.8,
 			},
 		},
 	}),
@@ -152,18 +173,40 @@ interface ExpandedContentProps {
 	roadMaxWidth: string;
 	roadOffsetMargin: string;
 	helmetWidthState: number;
-	expandedSponsorLogoWidth: number;
-	sponsorNameTextSize: number;
-	expandedSponsorTopMargin: string;
+	expandedSponsorLogoWidth: string;
+	sponsorNameTextSize: string;
 	className?: string;
+    isDesktop: boolean;
 }
 
 // This function is used to render and animate the expanded content
 // This function must be outside of the component to avoid re-creating it on every render (breaks animation)
 function ExpandedContent(
-	props: ExpandedContentProps & { selectedSponsor: Sponsor | null },
+	props: ExpandedContentProps & { selectedSponsor: Sponsor | null; onClose: () => void },
 ) {
-	const { selectedSponsor } = props;
+	const { selectedSponsor, onClose } = props;
+	const [containerWidth, setContainerWidth] = useState(0);
+	
+	// Separate ref for ResizeObserver - doesn't interfere with click-outside functionality
+	const resizeObserverRef = useCallback((node: HTMLDivElement | null) => {
+		if (node) {
+			// Set initial width
+			setContainerWidth(node.offsetWidth);
+			
+			// Set up ResizeObserver for real-time updates
+			const observer = new ResizeObserver((entries) => {
+				for (const entry of entries) {
+					setContainerWidth(entry.contentRect.width);
+				}
+			});
+			
+			observer.observe(node);
+			
+			// Cleanup function
+			return () => observer.disconnect();
+		}
+	}, []);
+
 	return (
 		<motion.div
 			initial={false} // Prevents animation on first render
@@ -179,52 +222,82 @@ function ExpandedContent(
 			}}
 			className={`w-screen flex justify-center ${props.className}`}
 			style={{
-				maxWidth: props.roadMaxWidth, // Add max-width here
+                maxWidth: props.isDesktop ? props.roadMaxWidth : "100%",
 				margin: "0 auto", // Center the container itself
 			}}
-			ref={props.ref} // Reference to the expanding div
+			ref={props.ref} // Keep original ref for click-outside functionality
 		>
 			{/* Content to reveal */}
 			<div
-				className="p-4 text-white w-full"
+				className="p-4 text-white w-full flex items-center justify-center relative"
 				style={{
 					background: `url('${props.roadImgPath}') no-repeat center center / cover`,
 					minHeight: props.roadMinHeight,
+					minWidth: props.isDesktop ? "100%" : "400px", // Add minimum width
+					aspectRatio: props.isDesktop ? "auto" : "400 / 251",
 					width: "100%",
 					marginTop: props.roadOffsetMargin,
 				}}
+				ref={resizeObserverRef} // Separate ref for ResizeObserver
 			>
-				{selectedSponsor && (
-					<div
-						className={`flex flex-col items-center justify-end ${props.expandedSponsorTopMargin}`}
-					>
-						<div
-							style={{
-								width: `${props.helmetWidthState * 2}px`,
+				<AnimatePresence mode="wait">
+					{selectedSponsor && (
+						<motion.div
+							key={selectedSponsor.key} // Important: unique key for each sponsor
+							className={'flex flex-col items-center justify-end'}
+							initial={{ opacity: 0, y: 20 }}
+							animate={{ opacity: 1, y: 0 }}
+							exit={{ opacity: 0, y: -20 }}
+							transition={{
+								duration: 0.3,
+								ease: "easeOut",
 							}}
 						>
-							<div className="flex flex-row items-center justify-around gap-[18px]">
-								<img
-									src={selectedSponsor.logoPath}
-									alt={selectedSponsor.name}
-									className={"object-contain"}
-									style={{
-										width: "100%",
-										maxWidth: `${props.expandedSponsorLogoWidth}px`,
-									}}
-								/>
-								<h3
-									className="font-body"
-									style={{ fontSize: `${props.sponsorNameTextSize}px` }}
-								>
-									{selectedSponsor.name}
-								</h3>
+							<div
+								style={{
+									width: `${containerWidth * 0.75}px`, // Use the state value
+								}}
+							>
+								<div className="flex flex-col lg:flex-row items-center justify-around">
+									<img
+										src={selectedSponsor.logoPath}
+										alt={selectedSponsor.name}
+										className={`object-contain w-full ${props.expandedSponsorLogoWidth}`}
+									/>
+									<h3
+										className={`font-body ${props.sponsorNameTextSize}`}
+									>
+										{selectedSponsor.name}
+									</h3>
+								</div>
+								<p className="mt-2 text-center font-body sm:text-xl lg:text-3xl">
+									{selectedSponsor.description}
+								</p>
 							</div>
-							<p className="mt-2 text-center font-body md:text-3xl">
-								{selectedSponsor.description}
-							</p>
-						</div>
-					</div>
+						</motion.div>
+					)}
+				</AnimatePresence>
+				
+				{/* Close button absolutely positioned at top center */}
+				{selectedSponsor && (
+					<button
+						type="button"
+						onClick={onClose}
+						className="absolute top-[10%] left-[30%] min-[500px]:left-1/2 transform -translate-x-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3 transition-all duration-200 hover:scale-110"
+						aria-label="Close sponsor details"
+					>
+						<svg 
+							xmlns="http://www.w3.org/2000/svg" 
+							fill="none" 
+							viewBox="0 0 24 24" 
+							strokeWidth="2" 
+							stroke="currentColor" 
+							className="w-3 h-3 md:w-6 md:h-6 text-white"
+						>
+							<title>Close</title>
+							<path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+						</svg>
+					</button>
 				)}
 			</div>
 		</motion.div>
@@ -233,16 +306,18 @@ function ExpandedContent(
 
 interface HelmetProps {
 	selectedSponsor: Sponsor | null;
-	viewport: "mobile" | "desktop";
+	viewport: "mobile" | "tablet" | "desktop";
 	baseHelmetWidth: number;
+	expandedHelmetWidthFactor: number;
 	helmetRef: React.RefObject<HTMLImageElement | null>;
-	HelmetStickers: (viewport: "mobile" | "desktop") => React.JSX.Element[];
+	HelmetStickers: (viewport: "mobile" | "tablet" | "desktop") => React.JSX.Element[];
 }
 function Helmet(props: HelmetProps & { className?: string }) {
 	const {
 		selectedSponsor,
 		viewport,
 		baseHelmetWidth,
+		expandedHelmetWidthFactor,
 		helmetRef,
 		HelmetStickers,
 	} = props;
@@ -250,7 +325,7 @@ function Helmet(props: HelmetProps & { className?: string }) {
 		<motion.div
 			animate={{
 				width: selectedSponsor
-					? `${baseHelmetWidth * (151 / 329)}px`
+					? `${baseHelmetWidth * expandedHelmetWidthFactor}px`
 					: `${baseHelmetWidth}px`,
 			}}
 			transition={{
@@ -284,7 +359,9 @@ export default function Sponsors() {
 	// Used to ensure that the positions of the stickers relative to the helmet stay the same
 	// when the helmet shrinks after a user clicks on a sponsor sticker
 	const mobileHelmet = useRef<HTMLImageElement>(null);
-	const [mobileHelmetWidth, setMobileHelmetWidth] = useState<number>(287);
+	const [mobileHelmetWidth, setMobileHelmetWidth] = useState<number>(200);
+	const tabletHelmet = useRef<HTMLImageElement>(null);
+	const [tabletHelmetWidth, setTabletHelmetWidth] = useState<number>(250);
 	const desktopHelmet = useRef<HTMLImageElement>(null);
 	const [desktopHelmetWidth, setDesktopHelmetWidth] = useState<number>(578);
 
@@ -292,6 +369,9 @@ export default function Sponsors() {
 	useEffect(() => {
 		if (mobileHelmet.current) {
 			setMobileHelmetWidth(mobileHelmet.current.width);
+		}
+		if (tabletHelmet.current) {
+			setTabletHelmetWidth(tabletHelmet.current.width);
 		}
 		if (desktopHelmet.current) {
 			setDesktopHelmetWidth(desktopHelmet.current.width);
@@ -302,6 +382,8 @@ export default function Sponsors() {
 			for (const entry of entries) {
 				if (entry.target === mobileHelmet.current) {
 					setMobileHelmetWidth(entry.contentRect.width);
+				} else if (entry.target === tabletHelmet.current) {
+					setTabletHelmetWidth(entry.contentRect.width);
 				} else if (entry.target === desktopHelmet.current) {
 					setDesktopHelmetWidth(entry.contentRect.width);
 				}
@@ -311,12 +393,16 @@ export default function Sponsors() {
 		if (mobileHelmet.current) {
 			observer.observe(mobileHelmet.current);
 		}
+		if (tabletHelmet.current) {
+			observer.observe(tabletHelmet.current);
+		}
 		if (desktopHelmet.current) {
 			observer.observe(desktopHelmet.current);
 		}
 
 		return () => {
 			if (mobileHelmet.current) observer.unobserve(mobileHelmet.current);
+			if (tabletHelmet.current) observer.unobserve(tabletHelmet.current);
 			if (desktopHelmet.current) observer.unobserve(desktopHelmet.current);
 		};
 	}, []);
@@ -325,24 +411,69 @@ export default function Sponsors() {
 	const [headingWidth, setHeadingWidth] = useState(0);
 
 	useEffect(() => {
+		const updateHeadingWidth = () => {
+			if (headingRef.current) {
+				const width = headingRef.current.offsetWidth;
+				if (width > 0) { // Defensive check
+					setHeadingWidth(width);
+				}
+			}
+		};
+
+		// Initial measurement
+		updateHeadingWidth();
+
+		// Set up ResizeObserver for real-time updates
+		const observer = new ResizeObserver((entries) => {
+			for (const entry of entries) {
+				if (entry.target === headingRef.current) {
+					const width = entry.contentRect.width;
+					if (width > 0) { // Defensive check
+						setHeadingWidth(width);
+					}
+				}
+			}
+		});
+
 		if (headingRef.current) {
-			setHeadingWidth(headingRef.current.offsetWidth);
+			observer.observe(headingRef.current);
 		}
-	}, []);
+
+		// Also listen for viewport changes
+		const handleResize = () => {
+			updateHeadingWidth();
+		};
+		
+		window.addEventListener('resize', handleResize);
+
+		return () => {
+			observer.disconnect();
+			window.removeEventListener('resize', handleResize);
+		};
+	}, []); // Remove selectedSponsor dependency as it's not necessary for heading width measurement
 
 	// Refs to the expanded content divs
 	// Used to close the expanded content when clicking outside of it
 	const expandedSponsorRefMobile = useRef<HTMLDivElement>(null);
+	const expandedSponsorRefTablet = useRef<HTMLDivElement>(null);
 	const expandedSponsorRefDesktop = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		// Add click listener to close sponsor details when clicking outside
 		function handleClickOutside(event: MouseEvent) {
-			// If we have a selected sponsor and clicked outside the expanded element
+			const target = event.target as HTMLElement;
+			
+			// Check if click is on a sponsor sticker (ignore these clicks)
+			const isClickOnSponsorSticker = target.closest('[data-sponsor-sticker]');
+			
+			// If we have a selected sponsor and clicked outside the expanded element (but not on a sticker)
 			if (
 				selectedSponsor &&
+				!isClickOnSponsorSticker &&
 				expandedSponsorRefMobile.current &&
 				!expandedSponsorRefMobile.current.contains(event.target as Node) &&
+				expandedSponsorRefTablet.current &&
+				!expandedSponsorRefTablet.current.contains(event.target as Node) &&
 				expandedSponsorRefDesktop.current &&
 				!expandedSponsorRefDesktop.current.contains(event.target as Node)
 			) {
@@ -372,7 +503,12 @@ export default function Sponsors() {
 		setSelectedSponsor((prev) => (prev?.key === sponsor.key ? null : sponsor));
 	}
 
-	// Props for the expanded content for mobile and desktop
+	// Function to close the expanded content
+	function closeSponsor() {
+		setSelectedSponsor(null);
+	}
+
+	// Props for the expanded content for mobile, tablet, and desktop
 	const expandedContentMobileProps: ExpandedContentProps = {
 		marginTop: 16,
 		ref: expandedSponsorRefMobile,
@@ -381,9 +517,21 @@ export default function Sponsors() {
 		roadMaxWidth: "400px",
 		roadOffsetMargin: "-36px",
 		helmetWidthState: mobileHelmetWidth,
-		expandedSponsorLogoWidth: 33,
-		expandedSponsorTopMargin: "mt-18",
-		sponsorNameTextSize: 17,
+		expandedSponsorLogoWidth: "max-w-[56px]",
+		sponsorNameTextSize: "text-[17px]",
+        isDesktop: false,
+	};
+	const expandedContentTabletProps: ExpandedContentProps = {
+		marginTop: 16,
+		ref: expandedSponsorRefTablet,
+		roadImgPath: "/sponsor_info_frame_mobile.svg",
+		roadMinHeight: "350px",
+		roadMaxWidth: "500px",
+		roadOffsetMargin: "-45px",
+		helmetWidthState: tabletHelmetWidth,
+		expandedSponsorLogoWidth: "max-w-[120px]",
+		sponsorNameTextSize: "text-[24px]",
+        isDesktop: false,
 	};
 	const expandedContentDesktopProps: ExpandedContentProps = {
 		marginTop: 16,
@@ -393,33 +541,45 @@ export default function Sponsors() {
 		roadMaxWidth: "1200px",
 		roadOffsetMargin: "-72px",
 		helmetWidthState: desktopHelmetWidth,
-		expandedSponsorLogoWidth: 144,
-		expandedSponsorTopMargin: "mt-48",
-		sponsorNameTextSize: 48,
+		expandedSponsorLogoWidth: "max-w-[144px]",
+		sponsorNameTextSize: "text-[48px]",
+        isDesktop: true,
 	};
 
 	// Use helmet width for scaling to help with the positioning of the stickers when the helmet shrinks
-	function getScaleFactor(viewport: "mobile" | "desktop") {
-		const baseWidth = viewport === "mobile" ? 287 : 578;
-		return viewport === "mobile"
-			? {
-					mobile:
-						(mobileHelmetWidth !== 0 ? mobileHelmetWidth : 287) / baseWidth,
-					desktop: 1,
-				}
-			: {
-					mobile: 1,
-					desktop:
-						(desktopHelmetWidth !== 0 ? desktopHelmetWidth : 578) / baseWidth,
-				};
+	function getScaleFactor(viewport: "mobile" | "tablet" | "desktop") {
+		if (viewport === "mobile") {
+			const baseWidth = 200;
+			return {
+				mobile: (mobileHelmetWidth !== 0 ? mobileHelmetWidth : 200) / baseWidth,
+				tablet: 1,
+				desktop: 1,
+			};
+		}
+		if (viewport === "tablet") {
+			const baseWidth = 250;
+			return {
+				mobile: 1,
+				tablet: (tabletHelmetWidth !== 0 ? tabletHelmetWidth : 250) / baseWidth,
+				desktop: 1,
+			};
+		}
+		// desktop case
+		const baseWidth = 578;
+		return {
+			mobile: 1,
+			tablet: 1,
+			desktop: (desktopHelmetWidth !== 0 ? desktopHelmetWidth : 578) / baseWidth,
+		};
 	}
 
 	// Function to render helmet stickers
-	function HelmetStickers(viewport: "mobile" | "desktop") {
+	function HelmetStickers(viewport: "mobile" | "tablet" | "desktop") {
 		return sponsors.map((sponsor) => (
 			<button
 				type="button"
 				key={sponsor.key}
+				data-sponsor-sticker="true"
 				className={`absolute z-1 cursor-pointer transition-transform ${selectedSponsor?.key === sponsor.key ? "scale-125" : "hover:scale-110"}`}
 				style={{
 					left: `${sponsor.positions[viewport].x * getScaleFactor(viewport)[viewport]}px`, // Apply scaling factor to maintain position relative to helmet
@@ -427,7 +587,10 @@ export default function Sponsors() {
 					width: `${sponsor.positions[viewport].size}px`,
 					height: `${sponsor.positions[viewport].size}px`,
 				}}
-				onClick={() => toggleSponsor(sponsor)}
+				onClick={(e) => {
+					e.stopPropagation(); // Prevent click from bubbling to document
+					toggleSponsor(sponsor);
+				}}
 				onKeyDown={(e) => {
 					if ((e.key === "Enter" || e.key === " ") && !e.repeat) {
 						toggleSponsor(sponsor);
@@ -448,46 +611,118 @@ export default function Sponsors() {
 	}
 
 	return (
-		<div className="overflow-x-clip mt-156 scroll-mt-20" id="sponsors">
-			<motion.div
-				className={`flex flex-col items-center justify-center px-8 md:px-[92px] py-6 md:py-[77px] gap-[40px] md:gap-[${desktopGap}px] w-6xl min-h-screen`}
-				initial={{ gap: isDesktop ? "160px" : "40px" }}
-				animate={{ gap: isDesktop ? `${desktopGap}px` : "40px" }}
-				transition={{ duration: 0.3, ease: "easeInOut" }}
-			>
-				<div className="flex flex-col md:flex-row items-center justify-center md:justify-between w-full gap-10">
-					<div className="md:max-w-[50vw] flex flex-col md:gap-5 items-center justify-center md:items-start text-center md:text-left">
+		<div id="sponsors" className="overflow-x-clip mt-156 px-8 md:px-[92px] py-6 md:py-[77px] w-full">
+			{/* MOBILE VIEW */}
+			<div className="lg:hidden">
+				<div className="flex flex-col items-center justify-center gap-[40px] min-h-screen">
+					{/* Mobile Header Section */}
+					<div className="flex flex-col items-center justify-center text-center">
 						<h1
-							ref={headingRef}
-							className="font-black p-5 -ml-2.5 text-xl md:text-5xl capitalize text-white bg-clip-text bg-gradient-to-r from-primary to-secondary stroke-xl font-title"
+							className="font-black p-5 -ml-2.5 text-xl sm:text-3xl capitalize text-white bg-clip-text bg-gradient-to-r from-primary to-secondary stroke-xl font-title"
 						>
 							OUR SPONSORS
 						</h1>
-						<p
-							style={{ maxWidth: isDesktop ? `${headingWidth}px` : "100%" }}
-							className="font-body font-regular text-base md:text-3xl"
-						>
+						<p className="font-body font-regular text-base sm:text-xl">
 							Support the next <br />
 							Generation of hackathons
 						</p>
 					</div>
 
+
+					{/* Mobile Helmet and Expanded Content */}
+					<div className="sm:hidden relative flex flex-col items-center justify-center">
+						<Helmet 
+							selectedSponsor={selectedSponsor} 
+							viewport="mobile" 
+							baseHelmetWidth={200} 
+							expandedHelmetWidthFactor={0.75}
+							helmetRef={mobileHelmet} 
+							HelmetStickers={HelmetStickers}
+							className="relative"
+							/>
+						<ExpandedContent selectedSponsor={selectedSponsor} onClose={closeSponsor} {...expandedContentMobileProps} />
+					</div>
+
+					<div className="hidden relative sm:flex lg:hidden flex-col items-center justify-center">
+						<Helmet 
+							selectedSponsor={selectedSponsor} 
+							viewport="tablet" 
+							baseHelmetWidth={250} 
+							expandedHelmetWidthFactor={0.75}
+							helmetRef={tabletHelmet} 
+							HelmetStickers={HelmetStickers}
+							className="relative"
+						/>
+						<ExpandedContent selectedSponsor={selectedSponsor} onClose={closeSponsor} {...expandedContentTabletProps} />
+					</div>
+
 					<a
 						href="/become-a-sponsor"
 						className="flex items-center justify-center"
+						style={{ zIndex: 10 }} // Ensure CTA is clickable over "ExpandedContent" component even when invisible
 					>
 						<img
 							src="/become_a_sponsor_CTA.svg"
 							alt="Become a Sponsor"
-							className="w-[77.27px] md:w-[194px] object-contain"
+							className="w-[120px] sm:w-[140px] object-contain"
 						/>
 					</a>
 				</div>
+			</div>
 
-				<div className="relative flex flex-col items-center justify-center w-128">
-					<img src="/helmet.svg" />
+			{/* DESKTOP VIEW */}
+			<div className="hidden lg:block">
+				<div 
+					className="flex flex-col items-center justify-center min-h-screen"
+					style={{ gap: `${desktopGap}px` }}
+				>
+					{/* Desktop Header Section */}
+					<div className="flex flex-row items-center justify-between w-full gap-10">
+						<div className="max-w-[50vw] flex flex-col gap-5 items-start text-left">
+							<h1
+								ref={headingRef}
+								className="font-black p-5 -ml-2.5 text-5xl capitalize text-white bg-clip-text bg-gradient-to-r from-primary to-secondary stroke-xl font-title"
+							>
+								OUR SPONSORS
+							</h1>
+							<p
+								style={{ 
+									maxWidth: headingWidth > 0 ? `${headingWidth}px` : 'auto' // Fallback when width is 0
+								}}
+								className="font-body font-regular text-3xl"
+							>
+								Support the next
+								Generation of hackathons
+							</p>
+						</div>
+
+						<a
+							href="/become-a-sponsor"
+							className="flex items-center justify-center"
+						>
+							<img
+								src="/become_a_sponsor_CTA.svg"
+								alt="Become a Sponsor"
+								className="w-[194px] object-contain"
+							/>
+						</a>
+					</div>
+
+					{/* Desktop Helmet and Expanded Content */}
+					<div className="relative flex flex-col items-center justify-center">
+						<Helmet 
+							selectedSponsor={selectedSponsor} 
+							viewport="desktop" 
+							baseHelmetWidth={578} 
+							expandedHelmetWidthFactor={0.5}
+							helmetRef={desktopHelmet} 
+							HelmetStickers={HelmetStickers}
+							className="relative"
+						/>
+						<ExpandedContent selectedSponsor={selectedSponsor} onClose={closeSponsor} {...expandedContentDesktopProps} />
+					</div>
 				</div>
-			</motion.div>
+			</div>
 		</div>
 	);
 }
