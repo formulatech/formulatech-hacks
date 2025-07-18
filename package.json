@@ -3,15 +3,23 @@
 	"version": "0.0.0",
 	"private": true,
 	"type": "module",
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview"
+	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
 		"@commitlint/cli": "^19.8.0",
 		"@commitlint/config-conventional": "^19.8.0",
-		"@types/node": "^22.13.16"
+		"@types/node": "^22.13.16",
+		"astro": "^4.0.0"
 	},
 	"dependencies": {
 		"bootstrap-icons": "^1.11.3",
-		"framer-motion": "^12.23.0"
+		"framer-motion": "^12.23.0",
+		"react": "^19.1.0",
+		"react-dom": "^19.1.0"
 	},
 	"packageManager": "pnpm@10.10.0"
 }
