@@ -31,14 +31,14 @@ export default function Navigate() {
 							</a>
 						</li>
 						<li>
-							<a href="/faqs" className="hover:text-primary transition">
+							{/* <a href="/faqs" className="hover:text-primary transition">
 								FAQs
-							</a>
+							</a> */}
 						</li>
 						<li>
-							<a href="/team" className="hover:text-primary transition">
+							{/* <a href="/team" className="hover:text-primary transition">
 								Team
-							</a>
+							</a> */}
 						</li>
 					</ul>
 				</div>
@@ -58,12 +58,12 @@ export default function Navigate() {
 						</a>
 
 						<div className="ml-4 flex items-center space-x-4">
-							<a href="/register" className="bg-primary text-white font-bold px-4 py-2 rounded-2xl hover:opacity-90 transition">
+							{/* <a href="/register" className="bg-primary text-white font-bold px-4 py-2 rounded-2xl hover:opacity-90 transition">
 								REGISTER
-							</a>
-							<a href="/login" className="border-2 border-primary text-primary font-bold px-4 py-2 rounded-2xl hover:bg-white transition">
+							</a> */}
+							{/* <a href="/login" className="border-2 border-primary text-primary font-bold px-4 py-2 rounded-2xl hover:bg-white transition">
 								LOGIN
-							</a>
+							</a> */}
 						</div>
 					</div>
 
