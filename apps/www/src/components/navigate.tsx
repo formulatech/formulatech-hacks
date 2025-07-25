@@ -111,7 +111,7 @@ export default function Navigate() {
 						}}
 						className="hover:text-red-500 text-xl"
 					>
-						FAQs
+						{/* FAQs */}
 					</button>
 					<button 
 						type = "button"
@@ -121,15 +121,15 @@ export default function Navigate() {
 						}}
 						className="hover:text-red-500 text-xl"
 					>
-						Team
+						{/* Team */}
 					</button>
 					<div className="flex flex-col items-center space-y-4">
-						<a href="/register" className="bg-primary text-white font-bold px-6 py-3 w-40 rounded-2xl hover:opacity-90 transition text-center">
+						{/* <a href="/register" className="bg-primary text-white font-bold px-6 py-3 w-40 rounded-2xl hover:opacity-90 transition text-center">
 							REGISTER
-						</a>
-						<a href="/login" className="border-2 border-primary text-primary font-bold px-6 py-3 w-40 rounded-2xl hover:bg-[#fff] transition text-center">
+						</a> */}
+						{/* <a href="/login" className="border-2 border-primary text-primary font-bold px-6 py-3 w-40 rounded-2xl hover:bg-[#fff] transition text-center">
 							LOGIN
-						</a>
+						</a> */}
 					</div>
 					<div className="flex space-x-6 items-center">
 						<a href="https://www.instagram.com/formulatech.hacks/" className="hover:text-primary fill-primary">
