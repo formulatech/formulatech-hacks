@@ -16,12 +16,13 @@
 	"makefile.configureOnOpen": false,
 	"typescript.format.enable": false,
 	"typescript.preferences.importModuleSpecifier": "non-relative",
-	},
 	"[javascript]": {
 		"editor.defaultFormatter": "biomejs.biome"
 	},
 	"[html]": {
 		"editor.defaultFormatter": "vscode.html-language-features"
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "okraks.contourflow"
 	}
 }
-

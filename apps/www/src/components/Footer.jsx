@@ -61,7 +61,7 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="relative bg-[#D2273D] min-h-[60vh] flex flex-col justify-between border border-[#f3f3e6]">
+    <footer className="relative bg-[#D2273D] min-h-[60vh] flex flex-col justify-between border-t border-white">
       {/* Main content */}
       <div className="flex flex-col lg:flex-row items-center lg:items-start w-full max-w-7xl mx-auto px-4 py-20 gap-8 lg:gap-0">
         {/* Logo placeholder */}
@@ -73,7 +73,7 @@ export default function Footer() {
         
         <div className="flex flex-col items-center lg:items-start w-full">
           <div
-            className="text-4xl sm:text-4.5xl md:text-5.5xl font-bold tracking-wide text-black leading-tight text-center lg:text-left mb-12"
+            className="text-4xl sm:text-4.5xl md:text-5.5xl font-bold tracking-wide text-white leading-tight text-center lg:text-left mb-12"
             style={{ fontFamily: "'Orbitron', 'Exo', 'monospace', 'sans-serif'" }}
           >
             FormulaTech<br />Hacks
@@ -81,11 +81,11 @@ export default function Footer() {
           <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-8">
             {mainSections.map((section) => (
               <div key={section.heading} className="flex flex-col items-center md:items-start">
-                <h4 className="text-lg font-semibold mb-4 text-gray-800">{section.heading}</h4>
+                <h4 className="text-lg font-semibold mb-4 text-white">{section.heading}</h4>
                 <ul className="space-y-2">
                   {section.items.map((item) => (
                     <li key={item.name}>
-                      <a href={item.href} className="text-gray-700 hover:text-gray-900 transition-colors text-base" target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}>
+                      <a href={item.href} className="text-white hover:text-gray-900 transition-colors text-base" target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}>
                         {item.name}
                       </a>
                     </li>
@@ -99,7 +99,7 @@ export default function Footer() {
       {/* Bottom bar with social icons and side sections */}
       <div className="w-full flex flex-row items-center justify-center gap-80 px-10 pb-8 mt-8">
         {/* Left bottom section */}
-        <a href={bottomSections[0].href} className="text-gray-700 hover:text-gray-900 text-base font-medium transition-colors">
+        <a href={bottomSections[0].href} className="text-white hover:text-gray-900 text-base font-medium transition-colors">
           {bottomSections[0].name}
         </a>
         {/* Social icons centered */}
@@ -119,7 +119,7 @@ export default function Footer() {
           ))}
         </div>
         {/* Right bottom section */}
-        <a href={bottomSections[1].href} className="text-gray-700 hover:text-gray-900 text-base font-medium transition-colors">
+        <a href={bottomSections[1].href} className="text-white hover:text-gray-900 text-base font-medium transition-colors">
           {bottomSections[1].name}
         </a>
       </div>
