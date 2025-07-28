@@ -611,21 +611,18 @@ export default function Sponsors() {
 	}
 
 	return (
-		<div id="sponsors" className="overflow-x-clip mt-30 px-8 md:px-[92px] py-6 md:py-[77px] w-full">
+		<div id="sponsors" className="overflow-x-clip mt-156 px-8 md:px-[92px] py-6 md:py-[77px] w-full">
 			{/* MOBILE VIEW */}
 			<div className="lg:hidden">
 				<div className="flex flex-col items-center justify-center gap-[40px] min-h-screen">
 					{/* Mobile Header Section */}
 					<div className="flex flex-col items-center justify-center text-center">
 						<h1
-							className="font-black p-4 text-4xl sm:text-5xl md:text-6xl lg:text-7xl capitalize text-white bg-clip-text bg-gradient-to-r from-primary to-secondary stroke-xl font-title"
+							className="font-black p-5 -ml-2.5 text-xl sm:text-3xl capitalize text-white bg-clip-text bg-gradient-to-r from-primary to-secondary stroke-xl font-title"
 						>
 							OUR SPONSORS
 						</h1>
-						<p className="font-body font-regular text-base sm:text-xl">
-							Support the next <br />
-							Generation of hackathons
-						</p>
+
 					</div>
 
 
@@ -685,15 +682,7 @@ export default function Sponsors() {
 							>
 								OUR SPONSORS
 							</h1>
-							<p
-								style={{ 
-									maxWidth: headingWidth > 0 ? `${headingWidth}px` : 'auto' // Fallback when width is 0
-								}}
-								className="font-body font-regular text-3xl"
-							>
-								Support the next
-								Generation of hackathons
-							</p>
+
 						</div>
 
 						<a
