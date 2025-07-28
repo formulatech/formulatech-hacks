@@ -10,10 +10,10 @@ export default function Hero() {
 
 			<h1 className="font-mono text-xl sm:text-2xl md:text-3xl text-white">Winter 2026</h1>
 			<h1 className="font-mono text-xl sm:text-2xl md:text-3xl text-white">
-				Waterloo’s first ever Formula One hackathon.
+				Waterloo’s first ever Motorsport hackathon.
 			</h1>
 
-			<h1 className="font-mono text-xl sm:text-2xl md:text-3xl text-white hover:text-secondary underline">
+			<h1 className="font-mono text-xl sm:text-2xl md:text-3xl text-white hover:text-primary underline">
 				Interested in becoming a sponsor?
 			</h1>
 
