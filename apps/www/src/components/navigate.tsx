@@ -6,17 +6,27 @@ import linkedin from "../assets/linkedin.svg";
 
 import logo from "../assets/logo.png";
 
+
+
 export default function Navigate() {
+
 	const [menuOpen, setMenuOpen] = useState(false);
 
-	return (
+
+
+
+return (
+
 		<>
 			<nav className="bg-background text-black w-[80%] mx-auto py-1 px-8 mt-10 rounded-full flex items-center justify-between fixed top-0 left-1/2 -translate-x-1/2 z-[100] backdrop-blur shadow-md">
 				{/* Left: Logo */}
 				<div className="flex items-center gap-8 min-w-0 flex-nowrap overflow-hidden">
-					<a href="/">
-						<img src={logo.src} alt="Logo" className="h-14 w-auto" />
-					</a>
+				<button
+  					onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+  					className="focus:outline-none"
+				>
+  				<img src={logo.src} alt="Logo" className="h-14 w-auto" />
+				</button>
 
 					{/* Center: Desktop Nav Links */}
 					<ul className="hidden md:flex gap-[clamp(1rem,2vw,4rem)] items-center flex-nowrap min-w-0 overflow-hidden text-nowrap">
