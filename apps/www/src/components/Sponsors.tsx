@@ -611,7 +611,7 @@ export default function Sponsors() {
 	}
 
 	return (
-		<div id="sponsors" className="overflow-x-clip mt-156 px-8 md:px-[92px] py-6 md:py-[77px] w-full">
+		<div id="sponsors" className="overflow-x-clip mt-156 w-[80%] mx-auto py-6 md:py-[77px]">
 			{/* MOBILE VIEW */}
 			<div className="lg:hidden">
 				<div className="flex flex-col items-center justify-center gap-[40px] min-h-screen">
