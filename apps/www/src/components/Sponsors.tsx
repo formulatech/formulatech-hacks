@@ -611,7 +611,7 @@ export default function Sponsors() {
 	}
 
 	return (
-		<div id="sponsors" className="overflow-x-clip mt-156 w-[80%] mx-auto py-6 md:py-[77px]">
+		<div id="sponsors" className="overflow-x-clip mt-80 w-[80%] mx-auto py-6 md:py-[77px]">
 			{/* MOBILE VIEW */}
 			<div className="lg:hidden">
 				<div className="flex flex-col items-center justify-center gap-[40px] min-h-screen">
@@ -674,7 +674,7 @@ export default function Sponsors() {
 					style={{ gap: `${desktopGap}px` }}
 				>
 					{/* Desktop Header Section */}
-					<div className="flex flex-row items-center justify-between w-full gap-10">
+					<div className="flex flex-row items-start justify-between w-full gap-10">
 						<div className="max-w-[50vw] flex flex-col gap-5 items-start text-left">
 							<h1
 								ref={headingRef}
