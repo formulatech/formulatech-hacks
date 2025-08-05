@@ -611,10 +611,10 @@ export default function Sponsors() {
 	}
 
 	return (
-		<div id="sponsors" className="overflow-x-clip mt-80 w-[80%] mx-auto py-6 md:py-[77px]">
+		<div id="sponsors" className="overflow-x-clip mt-36 w-[80%] mx-auto py-6 md:py-[77px]">
 			{/* MOBILE VIEW */}
 			<div className="lg:hidden">
-				<div className="flex flex-col items-center justify-center gap-[40px] min-h-screen">
+				<div className="flex flex-col items-center justify-center gap-[40px]">
 					{/* Mobile Header Section */}
 					<div className="flex flex-col items-center justify-center text-center">
 						<h1
