@@ -123,45 +123,45 @@ const sponsors: Sponsor[] = [
 			},
 		},
 	}),
-	createSponsor({
-		name: "Sponsor 2",
-		logoPath: "/sponsors/sponsor_sticker.svg",
-		website: "https://www.sponsor2.com",
-		description:
-			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
-		positions: {
-			desktop: {
-				x: 331,
-				y: 109,
-			},
-		},
-	}),
-	createSponsor({
-		name: "Sponsor 3",
-		logoPath: "/sponsors/sponsor_sticker.svg",
-		website: "https://www.sponsor3.com",
-		description:
-			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
-		positions: {
-			desktop: {
-				x: 397,
-				y: 212,
-			},
-		},
-	}),
-	createSponsor({
-		name: "Sponsor 4",
-		logoPath: "/sponsors/sponsor_sticker.svg",
-		website: "https://www.sponsor4.com",
-		description:
-			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
-		positions: {
-			desktop: {
-				x: 284,
-				y: 313,
-			},
-		},
-	}),
+	// createSponsor({
+	// 	name: "Sponsor 2",
+	// 	logoPath: "/sponsors/sponsor_sticker.svg",
+	// 	website: "https://www.sponsor2.com",
+	// 	description:
+	// 		"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
+	// 	positions: {
+	// 		desktop: {
+	// 			x: 331,
+	// 			y: 109,
+	// 		},
+	// 	},
+	// }),
+	// createSponsor({
+	// 	name: "Sponsor 3",
+	// 	logoPath: "/sponsors/sponsor_sticker.svg",
+	// 	website: "https://www.sponsor3.com",
+	// 	description:
+	// 		"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
+	// 	positions: {
+	// 		desktop: {
+	// 			x: 397,
+	// 			y: 212,
+	// 		},
+	// 	},
+	// }),
+	// createSponsor({
+	// 	name: "Sponsor 4",
+	// 	logoPath: "/sponsors/sponsor_sticker.svg",
+	// 	website: "https://www.sponsor4.com",
+	// 	description:
+	// 		"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
+	// 	positions: {
+	// 		desktop: {
+	// 			x: 284,
+	// 			y: 313,
+	// 		},
+	// 	},
+	// }),
 ];
 
 // Define the props for the expanded content (the area that expands when a sponsor is selected)
