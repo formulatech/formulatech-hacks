@@ -123,45 +123,45 @@ const sponsors: Sponsor[] = [
 			},
 		},
 	}),
-	createSponsor({
-		name: "Sponsor 2",
-		logoPath: "/sponsors/sponsor_sticker.svg",
-		website: "https://www.sponsor2.com",
-		description:
-			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
-		positions: {
-			desktop: {
-				x: 331,
-				y: 109,
-			},
-		},
-	}),
-	createSponsor({
-		name: "Sponsor 3",
-		logoPath: "/sponsors/sponsor_sticker.svg",
-		website: "https://www.sponsor3.com",
-		description:
-			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
-		positions: {
-			desktop: {
-				x: 397,
-				y: 212,
-			},
-		},
-	}),
-	createSponsor({
-		name: "Sponsor 4",
-		logoPath: "/sponsors/sponsor_sticker.svg",
-		website: "https://www.sponsor4.com",
-		description:
-			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
-		positions: {
-			desktop: {
-				x: 284,
-				y: 313,
-			},
-		},
-	}),
+	// createSponsor({
+	// 	name: "Sponsor 2",
+	// 	logoPath: "/sponsors/sponsor_sticker.svg",
+	// 	website: "https://www.sponsor2.com",
+	// 	description:
+	// 		"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
+	// 	positions: {
+	// 		desktop: {
+	// 			x: 331,
+	// 			y: 109,
+	// 		},
+	// 	},
+	// }),
+	// createSponsor({
+	// 	name: "Sponsor 3",
+	// 	logoPath: "/sponsors/sponsor_sticker.svg",
+	// 	website: "https://www.sponsor3.com",
+	// 	description:
+	// 		"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
+	// 	positions: {
+	// 		desktop: {
+	// 			x: 397,
+	// 			y: 212,
+	// 		},
+	// 	},
+	// }),
+	// createSponsor({
+	// 	name: "Sponsor 4",
+	// 	logoPath: "/sponsors/sponsor_sticker.svg",
+	// 	website: "https://www.sponsor4.com",
+	// 	description:
+	// 		"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
+	// 	positions: {
+	// 		desktop: {
+	// 			x: 284,
+	// 			y: 313,
+	// 		},
+	// 	},
+	// }),
 ];
 
 // Define the props for the expanded content (the area that expands when a sponsor is selected)
@@ -611,10 +611,10 @@ export default function Sponsors() {
 	}
 
 	return (
-		<div id="sponsors" className="overflow-x-clip mt-156 px-8 md:px-[92px] py-6 md:py-[77px] w-full">
+		<div id="sponsors" className="overflow-x-clip mt-36 w-[80%] mx-auto py-6 md:py-[77px]">
 			{/* MOBILE VIEW */}
 			<div className="lg:hidden">
-				<div className="flex flex-col items-center justify-center gap-[40px] min-h-screen">
+				<div className="flex flex-col items-center justify-center gap-[40px]">
 					{/* Mobile Header Section */}
 					<div className="flex flex-col items-center justify-center text-center">
 						<h1
@@ -674,7 +674,7 @@ export default function Sponsors() {
 					style={{ gap: `${desktopGap}px` }}
 				>
 					{/* Desktop Header Section */}
-					<div className="flex flex-row items-center justify-between w-full gap-10">
+					<div className="flex flex-row items-start justify-between w-full gap-10">
 						<div className="max-w-[50vw] flex flex-col gap-5 items-start text-left">
 							<h1
 								ref={headingRef}
