@@ -25,8 +25,9 @@ export default function About() {
         <img
           src={car.src}
           alt="Birds eye view of car"
-          className="w-[200px] lg:w-[200px] object-contain self-start pt-4"
+          className="w-[200px] lg:w-[200px] object-contain self-center lg:self-start pt-4"
         />
+
       </div>
     </div>
   );
