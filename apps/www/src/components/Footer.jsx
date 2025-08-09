@@ -78,9 +78,9 @@ export default function Footer() {
           >
             FormulaTech<br />Hacks
           </div>
-          <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-8">
+          <div className="inline-grid lg:grid w-auto lg:w-full grid-cols-1 md:grid-cols-3 gap-y-14 sm:gap-y-10 gap-x-20 sm:gap-x-26 md:gap-x-40 mx-auto sm:mx-12 md:mx-6 place-items-center md:place-items-start justify-center self-center">
             {mainSections.map((section) => (
-              <div key={section.heading} className="flex flex-col items-center md:items-start">
+              <div key={section.heading} className="flex flex-col items-center md:items-start text-center md:text-left">
                 <h4 className="text-lg font-semibold mb-4 text-white">{section.heading}</h4>
                 <ul className="space-y-2">
                   {section.items.map((item) => (
