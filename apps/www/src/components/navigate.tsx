@@ -7,21 +7,27 @@ import linkedin from "../assets/linkedin.svg";
 import logo from "../assets/logo.png";
 
 
-
 export default function Navigate() {
 
 	const [menuOpen, setMenuOpen] = useState(false);
 
-
-
+	const scrollToWithOffset = (id: string) => {
+		const headerHeight = document.querySelector("nav")?.getBoundingClientRect().height || 0;
+		const el = document.getElementById(id);
+		if (!el) return;
+		const extra = 50; // CHANGED: breathing room
+		const y = el.getBoundingClientRect().top + window.scrollY - headerHeight - extra; // CHANGED
+		history.pushState(null, "", `#${id}`); // keep hash without instant jump
+		window.scrollTo({ top: y, behavior: "smooth" });
+	};
 
 return (
-
 		<>
 			<nav className="bg-background text-black w-[80%] mx-auto py-1 px-8 mt-10 rounded-full flex items-center justify-between fixed top-0 left-1/2 -translate-x-1/2 z-[100] backdrop-blur shadow-md">
 				{/* Left: Logo */}
 				<div className="flex items-center gap-8 min-w-0 flex-nowrap overflow-hidden">
 				<button
+					type="button"
   					onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
   					className="focus:outline-none"
 				>
@@ -31,12 +37,26 @@ return (
 					{/* Center: Desktop Nav Links */}
 					<ul className="hidden md:flex gap-[clamp(1rem,2vw,4rem)] items-center flex-nowrap min-w-0 overflow-hidden text-nowrap">
 						<li>
-							<a href="#about" className="hover:text-primary transition">
+							<a 
+								href="#about"
+								onClick={(e) => {
+									e.preventDefault();
+									scrollToWithOffset("about");
+								}}
+								className="hover:text-primary transition"
+							>
 								About
 							</a>
 						</li>
 						<li>
-							<a href="#sponsors" className="hover:text-primary transition">
+							<a
+								href="#sponsors"
+								onClick={(e) => {
+									e.preventDefault();
+									scrollToWithOffset("sponsors");
+								}}
+								className="hover:text-primary transition"
+							>
 								Sponsors
 							</a>
 						</li>
@@ -97,7 +117,8 @@ return (
 						type = "button"
 						onClick={() => {
 							setMenuOpen(false);
-							window.location.hash = "#about";
+							setTimeout(() => scrollToWithOffset("about"), 250);
+							//window.location.hash = "#about";
 						}}
 						className="hover:text-red-500 text-xl"
 					>
@@ -107,7 +128,8 @@ return (
 						type = "button"
 						onClick={() => {
 							setMenuOpen(false);
-							window.location.hash = "#sponsors";
+							setTimeout(() => scrollToWithOffset("sponsors"), 250);
+							//window.location.hash = "#sponsors";
 						}}
 						className="hover:text-red-500 text-xl"
 					>
@@ -117,7 +139,8 @@ return (
 						type = "button"
 						onClick={() => {
 							setMenuOpen(false);
-							window.location.hash = "#faqs";
+							setTimeout(() => scrollToWithOffset("faqs"), 250);
+							//window.location.hash = "#faqs";
 						}}
 						className="hover:text-red-500 text-xl"
 					>
@@ -127,7 +150,8 @@ return (
 						type = "button"
 						onClick={() => {
 							setMenuOpen(false);
-							window.location.hash = "#team";
+							setTimeout(() => scrollToWithOffset("team"), 250);
+							//window.location.hash = "#team";
 						}}
 						className="hover:text-red-500 text-xl"
 					>
