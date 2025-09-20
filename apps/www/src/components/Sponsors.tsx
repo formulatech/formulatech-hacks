@@ -31,8 +31,22 @@ interface Sponsor {
 	key: string;
 	name: string;
 	logoPath: string;
+	secondaryLogoPath: string;
 	website: string;
 	description: string;
+	// Max width (in px) of the expanded logo per viewport
+	expandedSponsorLogoWidth: {
+		desktop: number;
+		tablet: number;
+		mobile: number;
+	};
+	// Optional per-viewport description font size classes (Tailwind)
+	// mobile: no prefix, tablet: will be applied with sm:, desktop: will be applied with lg:
+	expandedDescriptionFontSize?: {
+		mobile?: string;
+		tablet?: string;
+		desktop?: string;
+	};
 	positions: {
 		desktop: Position;
 		tablet: Position;
@@ -45,8 +59,19 @@ type SponsorInput = {
 	key?: string;
 	name?: string;
 	logoPath?: string;
+	secondaryLogoPath?: string;
 	website?: string;
 	description?: string;
+	expandedSponsorLogoWidth?: {
+		desktop?: number;
+		tablet?: number;
+		mobile?: number;
+	};
+	expandedDescriptionFontSize?: {
+		mobile?: string;
+		tablet?: string;
+		desktop?: string;
+	};
 	positions?: {
 		desktop?: Partial<Position>;
 		tablet?: Partial<Position>;
@@ -77,17 +102,46 @@ function createSponsor(sponsor: SponsorInput): Sponsor {
 	const tabletRatio = TABLET_BASE_WIDTH / DESKTOP_BASE_WIDTH; // ~0.433
 	const mobileRatio = MOBILE_BASE_WIDTH / DESKTOP_BASE_WIDTH; // ~0.346
 
+	// Default expanded logo max widths (px)
+	const DEFAULT_DESKTOP_LOGO_MAX = 288;
+	const DEFAULT_TABLET_LOGO_MAX = 144;
+	const DEFAULT_MOBILE_LOGO_MAX = 78;
+
+	// Ratios used to scale from desktop when only desktop value is provided
+	const TABLET_LOGO_FROM_DESKTOP_RATIO = DEFAULT_TABLET_LOGO_MAX / DEFAULT_DESKTOP_LOGO_MAX; // ~0.417
+	const MOBILE_LOGO_FROM_DESKTOP_RATIO = DEFAULT_MOBILE_LOGO_MAX / DEFAULT_DESKTOP_LOGO_MAX; // ~0.194
+
 	// Desktop defaults
 	const desktopX = sponsor.positions?.desktop?.x || 100;
 	const desktopY = sponsor.positions?.desktop?.y || 100;
 	const desktopSize = sponsor.positions?.desktop?.size || 47;
 
+	const primaryLogoPath = sponsor.logoPath || "/sponsors/default_sponsor.svg";
+
+	// Determine expanded logo widths per viewport, scaling if needed
+	const desktopLogoMax = sponsor.expandedSponsorLogoWidth?.desktop ?? DEFAULT_DESKTOP_LOGO_MAX;
+	const tabletLogoMax = sponsor.expandedSponsorLogoWidth?.tablet
+		?? (sponsor.expandedSponsorLogoWidth?.desktop != null
+			? Math.round(desktopLogoMax * TABLET_LOGO_FROM_DESKTOP_RATIO)
+			: DEFAULT_TABLET_LOGO_MAX);
+	const mobileLogoMax = sponsor.expandedSponsorLogoWidth?.mobile
+		?? (sponsor.expandedSponsorLogoWidth?.desktop != null
+			? Math.round(desktopLogoMax * MOBILE_LOGO_FROM_DESKTOP_RATIO)
+			: DEFAULT_MOBILE_LOGO_MAX);
+
 	return {
 		key: sponsor.key || key,
 		name: name,
-		logoPath: sponsor.logoPath || "/sponsors/default_sponsor.svg",
+		logoPath: primaryLogoPath,
+		secondaryLogoPath: sponsor.secondaryLogoPath || primaryLogoPath,
 		website: sponsor.website || "https://example.com",
 		description: sponsor.description || "Default sponsor description",
+		expandedSponsorLogoWidth: {
+			desktop: desktopLogoMax,
+			tablet: tabletLogoMax,
+			mobile: mobileLogoMax,
+		},
+		expandedDescriptionFontSize: sponsor.expandedDescriptionFontSize,
 		positions: {
 			desktop: {
 				x: desktopX,
@@ -111,31 +165,45 @@ function createSponsor(sponsor: SponsorInput): Sponsor {
 // ADD AND EDIT SPONSORS HERE
 const sponsors: Sponsor[] = [
 	createSponsor({
-		name: "Sponsor 1",
-		logoPath: "/sponsors/sponsor_sticker.svg",
-		website: "https://www.sponsor1.com",
+		name: "SLEF",
+		logoPath: "/sponsors/slef/SLEF_Logo_Color_Lightbulb.png",
+		secondaryLogoPath: "/sponsors/slef/SLEF_Logo_Color_Logo_Name.png",
+		website: "https://wusa.ca/about/your-money/funding/",
 		description:
-			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
+			"The Student Life Endowment Fund (SLEF) is an income-generating fund that supports student-led projects and initiatives aimed at enhancing campus life and fostering a vibrant, inclusive community for undergraduate students at the University of Waterloo.",
 		positions: {
 			desktop: {
 				x: 190,
 				y: 83,
 			},
 		},
+		expandedSponsorLogoWidth: {
+			desktop: 288
+		},
+		expandedDescriptionFontSize: {
+			// desktop: "text-md",
+			mobile: "text-[11px]"
+		}
 	}),
-	// createSponsor({
-	// 	name: "Sponsor 2",
-	// 	logoPath: "/sponsors/sponsor_sticker.svg",
-	// 	website: "https://www.sponsor2.com",
-	// 	description:
-	// 		"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
-	// 	positions: {
-	// 		desktop: {
-	// 			x: 331,
-	// 			y: 109,
-	// 		},
-	// 	},
-	// }),
+	createSponsor({
+		name: "MEF",
+		logoPath: "/sponsors/mef/MEF_Logo.png",
+		website: "https://uwaterloo.ca/math-endowment-fund/",
+		description:
+			"The Mathematics Endowment Fund (MEF) is an income-generating fund that exists to finance projects that are in the best interests of undergraduate math students at the University of Waterloo.",
+		positions: {
+			desktop: {
+				x: 331,
+				y: 109,
+			},
+		},
+		expandedSponsorLogoWidth: {
+			desktop: 144
+		},
+		expandedDescriptionFontSize: {
+			mobile: "text-[11px]"
+		}
+	}),
 	// createSponsor({
 	// 	name: "Sponsor 3",
 	// 	logoPath: "/sponsors/sponsor_sticker.svg",
@@ -164,6 +232,8 @@ const sponsors: Sponsor[] = [
 	// }),
 ];
 
+const sponsor_package_dir = '/sponsors/FTH%20Sponsorship%20Package.pdf';
+
 // Define the props for the expanded content (the area that expands when a sponsor is selected)
 interface ExpandedContentProps {
 	marginTop: number;
@@ -173,10 +243,10 @@ interface ExpandedContentProps {
 	roadMaxWidth: string;
 	roadOffsetMargin: string;
 	helmetWidthState: number;
-	expandedSponsorLogoWidth: string;
 	sponsorNameTextSize: string;
 	className?: string;
-    isDesktop: boolean;
+	isDesktop: boolean;
+	viewport: "mobile" | "tablet" | "desktop";
 }
 
 // This function is used to render and animate the expanded content
@@ -186,6 +256,12 @@ function ExpandedContent(
 ) {
 	const { selectedSponsor, onClose } = props;
 	const [containerWidth, setContainerWidth] = useState(0);
+
+	const WIDTH_SCALE: Record<"mobile" | "tablet" | "desktop", number> = {
+		mobile: 0.6,
+		tablet: 0.75,
+		desktop: 0.75,
+	};
 	
 	// Separate ref for ResizeObserver - doesn't interfere with click-outside functionality
 	const resizeObserverRef = useCallback((node: HTMLDivElement | null) => {
@@ -255,22 +331,44 @@ function ExpandedContent(
 						>
 							<div
 								style={{
-									width: `${containerWidth * 0.75}px`, // Use the state value
+									width: `${containerWidth * WIDTH_SCALE[props.viewport]}px`, // Use the state value
 								}}
 							>
 								<div className="flex flex-col lg:flex-row items-center justify-around">
 									<img
-										src={selectedSponsor.logoPath}
+										src={selectedSponsor.secondaryLogoPath}
 										alt={selectedSponsor.name}
-										className={`object-contain w-full ${props.expandedSponsorLogoWidth}`}
+										className={"object-contain w-full"}
+										style={{
+											maxWidth: `${selectedSponsor.expandedSponsorLogoWidth[props.viewport]}px`,
+										}}
 									/>
 									<h3
 										className={`font-body ${props.sponsorNameTextSize}`}
 									>
-										{selectedSponsor.name}
+										<a
+											href={selectedSponsor.website}
+											target="_blank"
+											rel="noreferrer"
+											className="text-blue-400 underline underline-offset-2 hover:text-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400 rounded-sm"
+										>
+											{selectedSponsor.name}
+										</a>
 									</h3>
 								</div>
-								<p className="mt-2 text-center font-body sm:text-xl lg:text-3xl">
+								<p
+									className={`mt-2 text-center font-body ${
+										selectedSponsor.expandedDescriptionFontSize?.mobile ?? "text-base"
+									} ${
+										selectedSponsor.expandedDescriptionFontSize?.tablet
+											? `sm:${selectedSponsor.expandedDescriptionFontSize.tablet}`
+											: "sm:text-xl"
+									} ${
+										selectedSponsor.expandedDescriptionFontSize?.desktop
+											? `lg:${selectedSponsor.expandedDescriptionFontSize.desktop}`
+											: "lg:text-3xl"
+									}`}
+								>
 									{selectedSponsor.description}
 								</p>
 							</div>
@@ -517,9 +615,9 @@ export default function Sponsors() {
 		roadMaxWidth: "400px",
 		roadOffsetMargin: "-36px",
 		helmetWidthState: mobileHelmetWidth,
-		expandedSponsorLogoWidth: "max-w-[56px]",
 		sponsorNameTextSize: "text-[17px]",
-        isDesktop: false,
+		isDesktop: false,
+		viewport: "mobile",
 	};
 	const expandedContentTabletProps: ExpandedContentProps = {
 		marginTop: 16,
@@ -529,9 +627,9 @@ export default function Sponsors() {
 		roadMaxWidth: "500px",
 		roadOffsetMargin: "-45px",
 		helmetWidthState: tabletHelmetWidth,
-		expandedSponsorLogoWidth: "max-w-[120px]",
 		sponsorNameTextSize: "text-[24px]",
-        isDesktop: false,
+		isDesktop: false,
+		viewport: "tablet",
 	};
 	const expandedContentDesktopProps: ExpandedContentProps = {
 		marginTop: 16,
@@ -541,9 +639,9 @@ export default function Sponsors() {
 		roadMaxWidth: "1200px",
 		roadOffsetMargin: "-72px",
 		helmetWidthState: desktopHelmetWidth,
-		expandedSponsorLogoWidth: "max-w-[144px]",
 		sponsorNameTextSize: "text-[48px]",
-        isDesktop: true,
+		isDesktop: true,
+		viewport: "desktop",
 	};
 
 	// Use helmet width for scaling to help with the positioning of the stickers when the helmet shrinks
@@ -602,7 +700,7 @@ export default function Sponsors() {
 				aria-label={`Checkout ${sponsor.name}`}
 			>
 				<img
-					src="/sponsors/sponsor_sticker.svg"
+					src={sponsor.logoPath}
 					alt={sponsor.name}
 					className="w-full h-full"
 				/>
@@ -654,7 +752,9 @@ export default function Sponsors() {
 					</div>
 
 					<a
-						href="/become-a-sponsor"
+						href={sponsor_package_dir}
+						rel="noreferrer"
+						target="_blank"
 						className="flex items-center justify-center"
 						style={{ zIndex: 10 }} // Ensure CTA is clickable over "ExpandedContent" component even when invisible
 					>
@@ -686,7 +786,9 @@ export default function Sponsors() {
 						</div>
 
 						<a
-							href="/become-a-sponsor"
+							href={sponsor_package_dir}
+							rel="noreferrer"
+							target="_blank"
 							className="flex items-center justify-center"
 						>
 							<img
