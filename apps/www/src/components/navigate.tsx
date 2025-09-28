@@ -15,9 +15,9 @@ export default function Navigate() {
 		const headerHeight = document.querySelector("nav")?.getBoundingClientRect().height || 0;
 		const el = document.getElementById(id);
 		if (!el) return;
-		const extra = 50; // CHANGED: breathing room
-		const y = el.getBoundingClientRect().top + window.scrollY - headerHeight - extra; // CHANGED
-		history.pushState(null, "", `#${id}`); // keep hash without instant jump
+		const extra = 50;
+		const y = el.getBoundingClientRect().top + window.scrollY - headerHeight - extra;
+		history.pushState(null, "", `#${id}`);
 		window.scrollTo({ top: y, behavior: "smooth" });
 	};
 
@@ -61,9 +61,16 @@ return (
 							</a>
 						</li>
 						<li>
-							{/* <a href="/faqs" className="hover:text-primary transition">
+							<a
+								href="#faqs"
+								onClick={(e) => {
+									e.preventDefault();
+									scrollToWithOffset("faqs");
+								}}
+								className="hover:text-primary transition"
+							>
 								FAQs
-							</a> */}
+							</a>
 						</li>
 						<li>
 							{/* <a href="/team" className="hover:text-primary transition">
