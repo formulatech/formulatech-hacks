@@ -37,40 +37,31 @@ return (
 					{/* Center: Desktop Nav Links */}
 					<ul className="hidden md:flex gap-[clamp(1rem,2vw,4rem)] items-center flex-nowrap min-w-0 overflow-hidden text-nowrap">
 						<li>
-							<a 
-								href="#about"
-								onClick={(e) => {
-									e.preventDefault();
-									scrollToWithOffset("about");
-								}}
-								className="hover:text-primary transition"
+							<button
+								type="button"
+								onClick={() => scrollToWithOffset("about")}
+								className="hover:text-primary transition cursor-pointer"
 							>
 								About
-							</a>
+							</button>
 						</li>
 						<li>
-							<a
-								href="#sponsors"
-								onClick={(e) => {
-									e.preventDefault();
-									scrollToWithOffset("sponsors");
-								}}
-								className="hover:text-primary transition"
+							<button
+								type="button"
+								onClick={() => scrollToWithOffset("sponsors")}
+								className="hover:text-primary transition cursor-pointer"
 							>
 								Sponsors
-							</a>
+							</button>
 						</li>
 						<li>
-							<a
-								href="#faqs"
-								onClick={(e) => {
-									e.preventDefault();
-									scrollToWithOffset("faqs");
-								}}
-								className="hover:text-primary transition"
+							<button
+								type="button"
+								onClick={() => scrollToWithOffset("faqs")}
+								className="hover:text-primary transition cursor-pointer"
 							>
 								FAQs
-							</a>
+							</button>
 						</li>
 						<li>
 							{/* <a href="/team" className="hover:text-primary transition">
