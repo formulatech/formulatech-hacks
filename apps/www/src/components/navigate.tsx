@@ -15,9 +15,9 @@ export default function Navigate() {
 		const headerHeight = document.querySelector("nav")?.getBoundingClientRect().height || 0;
 		const el = document.getElementById(id);
 		if (!el) return;
-		const extra = 50; // CHANGED: breathing room
-		const y = el.getBoundingClientRect().top + window.scrollY - headerHeight - extra; // CHANGED
-		history.pushState(null, "", `#${id}`); // keep hash without instant jump
+		const extra = 50;
+		const y = el.getBoundingClientRect().top + window.scrollY - headerHeight - extra;
+		history.pushState(null, "", `#${id}`);
 		window.scrollTo({ top: y, behavior: "smooth" });
 	};
 
@@ -37,33 +37,31 @@ return (
 					{/* Center: Desktop Nav Links */}
 					<ul className="hidden md:flex gap-[clamp(1rem,2vw,4rem)] items-center flex-nowrap min-w-0 overflow-hidden text-nowrap">
 						<li>
-							<a 
-								href="#about"
-								onClick={(e) => {
-									e.preventDefault();
-									scrollToWithOffset("about");
-								}}
-								className="hover:text-primary transition"
+							<button
+								type="button"
+								onClick={() => scrollToWithOffset("about")}
+								className="hover:text-primary transition cursor-pointer"
 							>
 								About
-							</a>
+							</button>
 						</li>
 						<li>
-							<a
-								href="#sponsors"
-								onClick={(e) => {
-									e.preventDefault();
-									scrollToWithOffset("sponsors");
-								}}
-								className="hover:text-primary transition"
+							<button
+								type="button"
+								onClick={() => scrollToWithOffset("sponsors")}
+								className="hover:text-primary transition cursor-pointer"
 							>
 								Sponsors
-							</a>
+							</button>
 						</li>
 						<li>
-							{/* <a href="/faqs" className="hover:text-primary transition">
+							<button
+								type="button"
+								onClick={() => scrollToWithOffset("faqs")}
+								className="hover:text-primary transition cursor-pointer"
+							>
 								FAQs
-							</a> */}
+							</button>
 						</li>
 						<li>
 							{/* <a href="/team" className="hover:text-primary transition">
