@@ -114,7 +114,7 @@ function createSponsor(sponsor: SponsorInput): Sponsor {
 	// Desktop defaults
 	const desktopX = sponsor.positions?.desktop?.x || 100;
 	const desktopY = sponsor.positions?.desktop?.y || 100;
-	const desktopSize = sponsor.positions?.desktop?.size || 47;
+	const desktopSize = sponsor.positions?.desktop?.size || 75;
 
 	const primaryLogoPath = sponsor.logoPath || "/sponsors/default_sponsor.svg";
 
@@ -678,7 +678,7 @@ export default function Sponsors() {
 				type="button"
 				key={sponsor.key}
 				data-sponsor-sticker="true"
-				className={`absolute z-1 cursor-pointer transition-transform ${selectedSponsor?.key === sponsor.key ? "scale-125" : "hover:scale-110"}`}
+				className={`absolute z-1 cursor-pointer transition-transform ${selectedSponsor ? "" : "hover:scale-110"}`}
 				style={{
 					left: `${sponsor.positions[viewport].x * getScaleFactor(viewport)[viewport]}px`, // Apply scaling factor to maintain position relative to helmet
 					top: `${sponsor.positions[viewport].y * getScaleFactor(viewport)[viewport]}px`,
