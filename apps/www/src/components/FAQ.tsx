@@ -5,23 +5,28 @@ import flag from "../assets/faq-flag.svg";
 import general from "../assets/faq-general.svg";
 import logistics from "../assets/faq-logistics.svg";
 import signup from "../assets/faq-signup.svg";
+import track from "../assets/track.svg";
 
 const questions = {
     General: [
-        { q: "What is FormulaTech Hacks?", a: "It’s a hackathon for students to showcase projects." },
-        { q: "Who can participate?", a: "Anyone in the student community can join." },
+        { q: "What is FormulaTech Hacks?", a: "FormulaTech Hacks is a student-led hackathon hosted at the University of Waterloo that combines innovation, technology, and motorsport culture. Participants compete in software, hardware, and CAD challenges that push technical creativity to the limit." },
+        { q: "Who can participate?", a: "Any college or university student aged 18 or older is welcome to participate." },
+        { q: "What kind of projects can I build?", a: "Anything that aligns with our innovation and technology theme! From software and hardware prototypes to data science and design projects, the sky’s the limit." },
+        { q: "Do I need to be in an engineering or CS program to join?", a: "You don’t need to be in Engineering or Computer Science — the hackathon is open to all programs!" },
     ],
     "Sign-Up": [
-        { q: "How do I register?", a: "You can register via our online form." },
-        { q: "Is there a fee?", a: "No, participation is completely free." },
+        { q: "How do I register?", a: "You can register through our official website once applications open. Keep an eye on our social media for updates!" },
+        { q: "Is there a fee?", a: "Nope! FormulaTech Hacks is completely free to attend, thanks to support from WUSA, MEF, and SLEF." },
+        { q: "Can I sign up with a team?", a: "We dont accept whole teams, just individual apps, team forming can be done at the event or through Discord " },
+        { q: "Do I need prior hackathon experience?", a: "Nope! You don’t need any prior hackathon experience — FormulaTech Hacks is designed to be beginner-friendly and welcoming to everyone, no matter your skill level." },
     ],
     Logistics: [
-        { q: "Where is the event held?", a: "The event is held at Engineering 7 (E7) in the Design Bay" },
-        { q: "When is the hackathon?", a: "FormulaTech Hacks will be taking place on January 17-18th, 2026" },
+        { q: "Where is the event held?", a: "The hackathon will take place in Engineering 7 (E7) Design Bay at the University of Waterloo" },
+        { q: "When is the hackathon?", a: "FormulaTech Hacks’ first hackathon will be held on January 17-18, 2026" },
     ],
     "Code of Conduct": [
-        { q: "What are the rules?", a: "Participants should follow the event’s code of conduct." },
-        { q: "How do I report an issue?", a: "Reach out to the event organizers via email." },
+        { q: "What are the rules?", a: "All participants must follow the FormulaTech Hacks Code of Conduct, which promotes respect, inclusion, and integrity. Harassment or discrimination of any kind will not be tolerated." },
+        { q: "How do I report an issue?", a: "If you experience or witness a violation of the Code of Conduct, please contact an organizer immediately or email us at formulatech.hacks@gmail.com" },
     ],
 } as const;
 
@@ -118,7 +123,7 @@ export default function FAQ() {
                         onClick={() => openPopup("General")}
                         className="flex flex-col items-center hover:scale-105 transition cursor-pointer"
                     >
-                        <img src={general.src} alt="General" className="w-50 h-auto" />
+                        <img src={general.src} alt="General" className="w-75 h-auto" />
                     </button>
     
                     <button
@@ -126,7 +131,7 @@ export default function FAQ() {
                         onClick={() => openPopup("Sign-Up")}
                         className="flex flex-col items-center hover:scale-105 transition cursor-pointer"
                     >
-                        <img src={signup.src} alt="Sign-Up" className="w-50 h-auto" />
+                        <img src={signup.src} alt="Sign-Up" className="w-75 h-auto" />
                     </button>
     
                     <button
@@ -134,7 +139,7 @@ export default function FAQ() {
                         onClick={() => openPopup("Logistics")}
                         className="flex flex-col items-center hover:scale-105 transition cursor-pointer"
                     >
-                        <img src={logistics.src} alt="Logistics" className="w-50 h-auto" />
+                        <img src={logistics.src} alt="Logistics" className="w-75 h-auto" />
                     </button>
 
                     <button
@@ -142,19 +147,15 @@ export default function FAQ() {
                         onClick={() => openPopup("Code of Conduct")}
                         className="flex flex-col items-center hover:scale-105 transition cursor-pointer"
                     >
-                        <img src={codeofconduct.src} alt="Code of Conduct" className="w-50 h-auto" />
+                        <img src={codeofconduct.src} alt="Code of Conduct" className="w-75 h-auto" />
                     </button>
                 </div>
 
-                <div
-                    className="w-[100vw] h-12"
-                    style={{
-                        backgroundColor: "#000000",
-                        backgroundImage: "linear-gradient(to right, white 100%, transparent 0)",
-                        backgroundSize: "16px 2px",
-                        backgroundRepeat: "repeat-x",
-                        backgroundPosition: "center",
-                    }}
+                <img
+                    src={track.src}
+                    alt="Track"
+                    className="w-screen h-auto object-cover"
+                    style={{ maxWidth: "100vw" }}
                 />
 
                 <div className="w-full flex justify-center -mt-2">
