@@ -34,6 +34,7 @@ interface Sponsor {
     secondaryLogoPath: string;
     website: string;
     description: string;
+    tier: keyof typeof SPONSOR_TIERS;
     // Max width (in px) of the expanded logo per viewport
     expandedSponsorLogoWidth: {
         desktop: number;
@@ -62,6 +63,7 @@ type SponsorInput = {
     secondaryLogoPath?: string;
     website?: string;
     description?: string;
+    tier?: keyof typeof SPONSOR_TIERS;
     expandedSponsorLogoWidth?: {
         desktop?: number;
         tablet?: number;
@@ -141,6 +143,7 @@ function createSponsor(sponsor: SponsorInput): Sponsor {
         secondaryLogoPath: sponsor.secondaryLogoPath || primaryLogoPath,
         website: sponsor.website || "https://example.com",
         description: sponsor.description || "Default sponsor description",
+        tier: sponsor.tier || "BRONZE",
         expandedSponsorLogoWidth: {
             desktop: desktopLogoMax,
             tablet: tabletLogoMax,
@@ -179,10 +182,28 @@ function createSponsor(sponsor: SponsorInput): Sponsor {
     };
 }
 
+// Sponsor tier presets based on sticker size
+// Bronze (baseline) uses SLEF's desktop.size of 75 as the reference
+const SPONSOR_TIERS = {
+    BRONZE: {
+        sizeFactor: 1.0, // 75px sticker size (baseline)
+        backgroundHue: "hsl(30, 80%, 50%)", // Bronze/copper color for glow effect
+    },
+    SILVER: {
+        sizeFactor: 2.0, // 150px sticker size (2x bronze)
+        backgroundHue: "hsl(0, 0%, 85%)", // Silver/gray color for glow effect
+    },
+    GOLD: {
+        sizeFactor: 2.5, // 187.5px sticker size (2.5x bronze)
+        backgroundHue: "hsl(48, 90%, 55%)", // Gold/yellow color for glow effect
+    },
+} as const;
+
 // ADD AND EDIT SPONSORS HERE
 const sponsors: Sponsor[] = [
     createSponsor({
         name: "SLEF",
+        tier: "BRONZE",
         logoPath: "/sponsors/slef/SLEF_Logo_Color_Lightbulb.png",
         secondaryLogoPath: "/sponsors/slef/SLEF_Logo_Color_Logo_Name.png",
         website: "https://wusa.ca/about/your-money/funding/",
@@ -192,6 +213,7 @@ const sponsors: Sponsor[] = [
             desktop: {
                 x: 190,
                 y: 83,
+                size: 75 * SPONSOR_TIERS.BRONZE.sizeFactor, // 75px
             },
         },
         expandedSponsorLogoWidth: {
@@ -204,6 +226,7 @@ const sponsors: Sponsor[] = [
     }),
     createSponsor({
         name: "MEF",
+        tier: "SILVER",
         logoPath: "/sponsors/mef/MEF_Logo.png",
         website: "https://uwaterloo.ca/math-endowment-fund/",
         description:
@@ -212,7 +235,7 @@ const sponsors: Sponsor[] = [
             desktop: {
                 x: 320,
                 y: 150,
-                size: 150,
+                size: 75 * SPONSOR_TIERS.SILVER.sizeFactor, // 150px
             },
         },
         expandedSponsorLogoWidth: {
@@ -731,12 +754,13 @@ export default function Sponsors() {
                 type="button"
                 key={sponsor.key}
                 data-sponsor-sticker="true"
-                className={`absolute z-1 cursor-pointer transition-transform drop-shadow-lg ${selectedSponsor ? "" : "hover:scale-110"}`}
+                className={`absolute z-1 cursor-pointer transition-transform ${selectedSponsor ? "" : "hover:scale-110"}`}
                 style={{
                     left: `${sponsor.positions[viewport].x * getScaleFactor(viewport)[viewport]}px`, // Apply scaling factor to maintain position relative to helmet
                     top: `${sponsor.positions[viewport].y * getScaleFactor(viewport)[viewport]}px`,
                     width: `${sponsor.positions[viewport].size}px`,
                     height: `${sponsor.positions[viewport].size}px`,
+                    filter: `drop-shadow(0 0 1px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 2px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 6px ${SPONSOR_TIERS[sponsor.tier].backgroundHue}) drop-shadow(0 0 12px ${SPONSOR_TIERS[sponsor.tier].backgroundHue}) drop-shadow(0 0 20px ${SPONSOR_TIERS[sponsor.tier].backgroundHue})`,
                 }}
                 onClick={(e) => {
                     e.stopPropagation(); // Prevent click from bubbling to document
@@ -747,7 +771,7 @@ export default function Sponsors() {
                         toggleSponsor(sponsor);
                     }
                 }}
-                tabIndex={0} // Make it focusableenergizing space where motorsport enthusiasts can thrive, fostering an environment that accelerates learning and ignites passion for the sport. Our hackathon runs on Waterloo University’s campus and is organized by a student-led team with you in mind. We aim to be the catalyst that transforms curious fans into experts. This year, students can compete in one of our three tracks: Software, Hardware, or CAD to gain technical experience and drive innovation forwar
+                tabIndex={0} // Make it focusableenergizing space where motorsport enthusiasts can thrive, fostering an environment that accelerates learning and ignites passion for the sport. Our hackathon runs on Waterloo University's campus and is organized by a student-led team with you in mind. We aim to be the catalyst that transforms curious fans into experts. This year, students can compete in one of our three tracks: Software, Hardware, or CAD to gain technical experience and drive innovation forwar
                 aria-expanded={selectedSponsor?.key === sponsor.key}
                 aria-controls={`sponsor-details-${sponsor.key}`}
                 aria-label={`Checkout ${sponsor.name}`}
