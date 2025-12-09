@@ -5,6 +5,7 @@ import marketingCar from "../assets/marketingCar.png";
 import financeCar from "../assets/financeCar.png";
 import designCar from "../assets/designCar.png";
 import workshopsCar from "../assets/workshopsCar.svg";
+import track from "../assets/track.svg";
 
 export default function Teams() {
     const [selectedCar, setSelectedCar] = useState<string | null>(null);
@@ -42,7 +43,7 @@ export default function Teams() {
             </div>
 
             {/* cars at the bottom */}
-            <div className="w-full overflow-hidden mt-16 md:mt-20 lg:mt-24">
+            <div className="w-full overflow-hidden mt-16 md:mt-20 lg:mt-24 relative">
                 <div 
                     className="flex items-center gap-8 md:gap-12 lg:gap-16 car-scroll-animation"
                     style={{
@@ -54,7 +55,7 @@ export default function Teams() {
                             key={`${car.name}-${index}`}
                             type="button"
                             onClick={() => handleCarClick(car.name)}
-                            className={`flex-shrink-0 transition-transform duration-200 hover:scale-110 cursor-pointer ${
+                            className={`flex-shrink-0 transition-transform duration-200 hover:scale-110 cursor-pointer z-10 relative ${
                                 selectedCar === car.name ? "scale-110" : ""
                             }`}
                             aria-label={`${car.name} Team`}
@@ -62,11 +63,19 @@ export default function Teams() {
                             <img
                                 src={car.src}
                                 alt={car.alt}
-                                className="w-48 md:w-64 lg:w-80 xl:w-96 h-auto object-contain"
+                                className="w-48 md:w-64 lg:w-80 xl:w-96 h-auto -translate-y-4 object-contain"
                             />
                         </button>
                     ))}
                 </div>
+                
+                {/* Road */}
+                <img
+                    src={track.src}
+                    alt="Road"
+                    className="w-full h-auto object-cover absolute bottom-0 left-0"
+                    style={{ maxWidth: "100vw" }}
+                />
             </div>
         </>
     );
