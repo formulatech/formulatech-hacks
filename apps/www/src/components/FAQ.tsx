@@ -31,9 +31,9 @@ const questions = {
 } as const;
 
 export default function FAQ() {
-    const [activeCategory, setActiveCategory] = useState<string | null>(null);
+    const [activeCategory, setActiveCategory] = useState<string | null>("General");
     const [openQuestions, setOpenQuestions] = useState<Record<string, boolean>>({});
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
     const popupRef = useRef<HTMLDivElement | null>(null);
     const carsRef = useRef<HTMLDivElement | null>(null);
     const hideTimeoutRef = useRef<number | null>(null);

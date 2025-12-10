@@ -31,7 +31,7 @@ export default function About() {
                         rel="noopener noreferrer"
                         className="bg-primary hover:bg-primary/90 text-white font-mono font-bold text-lg sm:text-xl md:text-2xl px-8 py-4 rounded-full uppercase tracking-wide transition-all duration-200 hover:scale-105"
                     >
-                        EXPRESS INTEREST
+                        SAVE MY SPOT
                     </a>
                 </div>
 

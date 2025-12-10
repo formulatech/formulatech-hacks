@@ -9,7 +9,7 @@ export default function Hero() {
             </h1>
 
             <h1 className="font-mono text-xl sm:text-2xl md:text-3xl text-white text-center">
-                January 17 - 18, 2026 <br />
+                February 7th - 8ths, 2026 <br />
                 Waterloo's first ever{" "}
                 <span className="font-bold">Formula One</span> hackathon.
             </h1>
