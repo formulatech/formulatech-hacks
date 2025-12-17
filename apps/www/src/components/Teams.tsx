@@ -7,12 +7,14 @@ import designCar from "../assets/designCar.png";
 import workshopsCar from "../assets/workshopsCar.svg";
 import track from "../assets/track.svg";
 
+// Team member headshots
+import francesZhao from "../assets/headshots/francess - Frances Zhao.jpeg";
+
 export default function Teams() {
     const [selectedCar, setSelectedCar] = useState<string | null>(null);
 
-    const handleCarClick = (carName: string) => {
+    const handleCarHover = (carName: string | null) => {
         setSelectedCar(carName);
-        console.log(`Clicked on ${carName} car`);
     };
 
     const cars = [
@@ -21,6 +23,39 @@ export default function Teams() {
         { name: "Finance", src: financeCar.src, alt: "Finance Car" },
         { name: "Design", src: designCar.src, alt: "Design Car" },
         { name: "Workshops", src: workshopsCar.src, alt: "Workshops Car" },
+    ];
+
+    // Team members data - members can be part of multiple teams
+    const teamMembers = [
+        // Development Team
+        { name: "Marwa Zaryab", teams: ["Development", "Workshops","Finance"], image: "/src/assets/headshots/IMG_9466 - Marwa Zaryab.JPG", level: 1 },
+        //{ name: "Rodney Wu", teams: ["Development"], image: "/src/assets/headshots/IMG_1788 - Rodney Wu.jpeg", level: 2 },
+        { name: "Dequan Kong", teams: ["Workshops"], image: "/src/assets/headshots/Dequan_Kong_Headshot - Dequan Kong.jpg", level: 2 },
+        { name: "Richard Li", teams: ["Development"], image: "/src/assets/headshots/headshot - Richard Li.png", level: 3 },
+        { name: "Adrian Mathew", teams: ["Finance"], image: "/src/assets/headshots/IMG_6749 - Adrian Mathew.jpeg", level: 5 },
+        { name: "Sharvesh V", teams: ["Finance"], image: "/src/assets/headshots/IMG_4442 - Sharvesh V.jpeg", level: 3 },
+
+        // Marketing Team
+        { name: "Maira Khawaja", teams: ["Logistics"], image: "/src/assets/headshots/IMG_2884 - Maira Khawaja.heic", level: 1 },
+        { name: "Ana Maniram", teams: ["Marketing"], image: "/src/assets/headshots/100_2669 - Ana Maniram.jpeg", level: 2 },
+        { name: "Victoria Gee", teams: ["Logistics"], image: "/src/assets/headshots/VGee Headshot - Victoria Gee.JPG", level: 1 },
+
+        // Finance Team
+        { name: "Linda Chen", teams: ["Marketing"], image: "/src/assets/headshots/lindawinda - Linda Chen.PNG", level: 2 },
+
+        // Design Team
+        { name: "Frances Zhao", teams: ["Design"], image: francesZhao.src, level: 1 },
+        { name: "Elin Zhang", teams: ["Marketing"], image: "/src/assets/headshots/54565301122_051267de38_q - Elin Zhang.jpg", level: 1 },
+        { name: "Ariel", teams: ["Finance"], image: "/src/assets/headshots/IMG_8261 - Ariel.heic", level: 5 },
+
+        // Workshops Team
+        { name: "Ammar Adam", teams: ["Finance"], image: "/src/assets/headshots/headshot! - Ammar Adam.jpg", level: 5 },
+
+        // Additional members
+        { name: "Deepika", teams: ["Marketing"], image: "/src/assets/headshots/deepika.png", level: 4 },
+        //{ name: "Akriti Batra", teams: ["Design"], image: "/src/assets/headshots/IMG_2801 - Akriti Batra.heic", level: 3 },
+        { name: "Hy Lac Nguyen", teams: ["Development"], image: "/src/assets/headshots/IMG-20240503-WA0046 - Hy Lac Nguyen.jpg", level: 2 },
+        { name: "Jovitta Seb", teams: ["Logistics"], image: "/src/assets/headshots/WhatsApp Image 2025-12-06 at 11.39.53 AM - Jovitta Seb.jpeg", level: 4 },
     ];
 
     return (
@@ -32,13 +67,55 @@ export default function Teams() {
             </div>
 
             {/* stands container */}
-            <div className="relative w-full flex flex-col items-center justify-center -mt-12">
+            <div className="relative w-full flex flex-col items-center justify-center mt-20">
                 <div className="relative w-full max-w-7xl flex justify-center">
                     <img
                         src={stands.src}
                         alt="Team Stands"
-                        className="w-full h-auto object-contain scale-150 mx-auto"
+                        className="w-full h-auto object-contain scale-110 md:scale-150 mx-auto"
                     />
+
+                    {/* Team member circles on stands */}
+                    {teamMembers.map((member) => {
+                        // Group members by level and calculate their position within the level
+                        const membersInLevel = teamMembers.filter(m => m.level === member.level);
+                        const memberIndexInLevel = membersInLevel.findIndex(m => m.name === member.name);
+                        const spacing = 100 / (membersInLevel.length + 1); // Distribute evenly across the level
+
+                        // Calculate position based on level (responsive positioning)
+                        const levelConfigs = {
+                            1: { top: "0%", baseLeft: 3 }, // Top level
+                            2: { top: "20%", baseLeft: 3 }, // Upper middle level
+                            3: { top: "41%", baseLeft: 3 }, // Lower middle level
+                            4: { top: "63%", baseLeft: 3 }, // Bottom level
+                            5: { top: "90%", baseLeft: 3 }, // Lowest level
+                        };
+                        const config = levelConfigs[member.level as keyof typeof levelConfigs];
+                        const leftPosition = config.baseLeft + (memberIndexInLevel + 1) * spacing;
+
+                        return (
+                            <div
+                                key={member.name}
+                                className={`absolute w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24 rounded-full border-2 border-white shadow-2xl overflow-hidden transition-all duration-300 drop-shadow-lg ${
+                                    selectedCar === null || member.teams.includes(selectedCar)
+                                        ? "opacity-100 scale-100"
+                                        : "opacity-30 scale-90"
+                                }`}
+                                style={{
+                                    top: config.top,
+                                    left: `${leftPosition}%`,
+                                    transform: "translate(-50%, 0%)", // Positioned to sit directly on stands
+                                }}
+                                title={member.name}
+                            >
+                                <img
+                                    src={member.image}
+                                    alt={member.name}
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
 
@@ -54,7 +131,8 @@ export default function Teams() {
                         <button
                             key={`${car.name}-${index}`}
                             type="button"
-                            onClick={() => handleCarClick(car.name)}
+                            onMouseEnter={() => handleCarHover(car.name)}
+                            onMouseLeave={() => handleCarHover(null)}
                             className={`flex-shrink-0 transition-transform duration-200 hover:scale-110 cursor-pointer z-10 relative ${
                                 selectedCar === car.name ? "scale-110" : ""
                             }`}
