@@ -200,34 +200,37 @@ export default function Teams() {
                                         className={`relative ${
                                             hoveredMember === member.name ? "z-30" : "z-10"
                                         }`}
-                                        onMouseEnter={e =>
-                                            handleMemberHover(member.name, e.currentTarget)
-                                        }
-                                        onMouseLeave={() => setHoveredMember(null)}
                                     >
-                                        {/* Circle */}
-                                        <div
-                                        className={`w-[clamp(1.5rem,5vw,6rem)] h-[clamp(1.5rem,5vw,6rem)]
+                                        <button
+                                            type="button"
+                                            className={`w-[clamp(1.5rem,5vw,6rem)] h-[clamp(1.5rem,5vw,6rem)]
                                             rounded-full border-2 border-white shadow-2xl overflow-hidden transition-transform duration-200 ease-out hover:scale-125 hover:z-20 cursor-pointer
                                             ${
                                               selectedCar === null || member.teams.includes(selectedCar)
                                                 ? 'opacity-100 scale-100'
                                                 : 'opacity-30 scale-90'
+                                            }`}
+                                            aria-label={member.name}
+                                            onMouseEnter={e =>
+                                                handleMemberHover(member.name, e.currentTarget)
                                             }
-                                        `}
-                                        aria-label={member.name}
+                                            onMouseLeave={() => setHoveredMember(null)}
+                                            onFocus={e =>
+                                                handleMemberHover(member.name, e.currentTarget)
+                                            }
+                                            onBlur={() => setHoveredMember(null)}
                                         >
-                                        <img
-                                            src={member.image.src}
-                                            alt=""
-                                            aria-hidden="true"
-                                            width={member.image.width}
-                                            height={member.image.height}
-                                            loading="lazy"
-                                            decoding="async"
-                                            className="w-full h-full object-cover"
-                                        />
-                                        </div>
+                                            <img
+                                                src={member.image.src}
+                                                alt=""
+                                                aria-hidden="true"
+                                                width={member.image.width}
+                                                height={member.image.height}
+                                                loading="lazy"
+                                                decoding="async"
+                                                className="w-full h-full object-cover"
+                                            />
+                                        </button>
 
                                         {/* Popup card */}
                                         <div
