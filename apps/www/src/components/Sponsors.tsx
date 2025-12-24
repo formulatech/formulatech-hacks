@@ -119,23 +119,30 @@ export default function Sponsors() {
           {/* Title - Single on mobile, repeating on desktop */}
           <div className="w-full">
             {/* Mobile: show single title */}
-            <h1 className="md:hidden font-title font-black text-2xl text-center bg-gradient-to-r from-[#D2273D] via-[#D2273D] to-[#00AEB9] bg-clip-text text-transparent whitespace-nowrap">
+            <h1
+              className="md:hidden font-title font-black text-2xl text-center bg-clip-text text-transparent whitespace-nowrap"
+              style={{
+                backgroundImage: "linear-gradient(90deg, rgba(210, 39, 61, 1) 41%, rgba(0, 174, 185, 1) 85%)"
+              }}
+            >
               OUR SPONSORS
             </h1>
-            {/* Desktop: show repeating pattern - evenly distributed */}
-            <div className="hidden md:flex flex-row items-center justify-between w-full gap-5">
-              {Array.from({ length: 4 }).map((_, i) => (
-                <React.Fragment key={i}>
-                  <h1 className="font-title font-black text-5xl bg-gradient-to-r from-[#D2273D] via-[#D2273D] to-[#00AEB9] bg-clip-text text-transparent whitespace-nowrap">
-                    OUR SPONSORS
-                  </h1>
-                  {i < 3 && (
-                    <span className="font-title font-black text-5xl bg-gradient-to-r from-[#D2273D] via-[#D2273D] to-[#00AEB9] bg-clip-text text-transparent">
-                      /
-                    </span>
-                  )}
-                </React.Fragment>
-              ))}
+            {/* Desktop: show repeating pattern with first item cut off */}
+            <div className="hidden md:block w-full overflow-hidden">
+              <div className="flex flex-row items-center gap-[30px] -ml-[280px]">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <React.Fragment key={i}>
+                    <h1 className="font-title font-black text-5xl bg-gradient-to-r from-[#D2273D] via-[#D2273D] to-[#00AEB9] bg-clip-text text-transparent whitespace-nowrap">
+                      OUR SPONSORS
+                    </h1>
+                    {i < 4 && (
+                      <span className="font-title font-black text-5xl bg-gradient-to-r from-[#D2273D] via-[#D2273D] to-[#00AEB9] bg-clip-text text-transparent">
+                        /
+                      </span>
+                    )}
+                  </React.Fragment>
+                ))}
+              </div>
             </div>
           </div>
         </div>
