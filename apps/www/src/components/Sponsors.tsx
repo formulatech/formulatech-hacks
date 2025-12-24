@@ -139,7 +139,7 @@ export default function Sponsors() {
   // Use subtle centered gradient for mobile, flashlight gradient for desktop
   const backgroundGradient = isDesktop
     ? `radial-gradient(circle 600px at ${mousePos.x}% ${mousePos.y}%, rgba(49, 49, 49, 1) 0%, rgba(25, 25, 25, 1) 50%, rgba(0, 0, 0, 1) 100%)`
-    : "radial-gradient(circle at 50% 50%, rgba(35, 35, 35, 1) 0%, rgba(20, 20, 20, 1) 40%, rgba(0, 0, 0, 1) 80%)";
+    : "radial-gradient(circle 400px at 50% 50%, rgba(49, 49, 49, 1) 0%, rgba(25, 25, 25, 1) 50%, rgba(0, 0, 0, 1) 100%)";
 
   return (
     <div
