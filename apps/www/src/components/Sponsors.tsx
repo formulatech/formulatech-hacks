@@ -150,7 +150,7 @@ export default function Sponsors() {
 
       <div className="px-6">
         <div
-          className="w-full mx-auto p-[0px_30px_50px] md:p-[0px_150px_80px] flex flex-col items-center gap-5"
+          className="w-full mx-auto p-[0px_30px_50px] md:p-[0px_150px_80px] flex flex-col items-center gap-5 md:gap-12"
         >
           <div className="flex flex-col items-center gap-5 w-full">
             {/* Description */}
@@ -169,22 +169,85 @@ export default function Sponsors() {
               exercitation
             </p>
 
-            {/* CTA Button */}
-            <a
-              href={sponsor_package_dir}
-              rel="noreferrer"
-              target="_blank"
-              className="flex items-center justify-center hover:scale-105 transition-transform duration-200"
-              style={{
-                filter: "drop-shadow(0px 4px 10.9px rgba(0, 0, 0, 0.25))",
-              }}
-            >
-              <img
-                src="/become_a_sponsor_CTA.svg"
-                alt="Become a Sponsor"
-                className="w-[150px] md:w-[197px] h-auto object-contain"
-              />
-            </a>
+            {/* Contact Section */}
+            <div className="flex flex-col items-center gap-5 w-full">
+              {/* Email Text */}
+              <p
+                className="text-sm md:text-xl text-center"
+                style={{
+                  fontFamily: "Inter, sans-serif",
+                  fontWeight: 600,
+                  color: "#FFFAEB",
+                  letterSpacing: "-0.05em",
+                  lineHeight: "1.8em",
+                }}
+              >
+                Email us at address@gmail.com
+              </p>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col md:flex-row gap-5 items-center justify-center">
+                {/* Filled Button - Mobile: white text, Desktop: dark text */}
+                <a
+                  href={sponsor_package_dir}
+                  rel="noreferrer"
+                  target="_blank"
+                  className="rounded-full hover:opacity-90 transition-opacity px-[15px] py-[10px] md:px-5 md:py-5"
+                  style={{
+                    backgroundColor: "#00AEB9",
+                  }}
+                >
+                  <span
+                    className="md:hidden font-title font-black text-sm whitespace-nowrap"
+                    style={{
+                      color: "#FFFFFF",
+                      lineHeight: "1.254em",
+                    }}
+                  >
+                    BECOME A SPONSOR
+                  </span>
+                  <span
+                    className="hidden md:inline font-title font-black text-xl whitespace-nowrap"
+                    style={{
+                      color: "#020202",
+                      lineHeight: "1.254em",
+                    }}
+                  >
+                    BECOME A SPONSOR
+                  </span>
+                </a>
+
+                {/* Outlined Button */}
+                <a
+                  href={sponsor_package_dir}
+                  rel="noreferrer"
+                  target="_blank"
+                  className="rounded-full hover:opacity-90 transition-opacity px-[15px] py-[10px] md:px-5 md:py-5"
+                  style={{
+                    border: "3px solid #00AEB9",
+                  }}
+                >
+                  <span
+                    className="md:hidden font-title font-black text-sm whitespace-nowrap"
+                    style={{
+                      color: "#00AEB9",
+                      lineHeight: "1.254em",
+                    }}
+                  >
+                    SPONSORSHIP PACKAGE
+                  </span>
+                  <span
+                    className="hidden md:inline font-title font-black text-xl whitespace-nowrap"
+                    style={{
+                      color: "#00AEB9",
+                      lineHeight: "1.254em",
+                    }}
+                  >
+                    SPONSORSHIP PACKAGE
+                  </span>
+                </a>
+              </div>
+            </div>
           </div>
 
           {/* Sponsors Grid */}
