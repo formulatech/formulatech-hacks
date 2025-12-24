@@ -76,7 +76,12 @@ function SponsorCard({ sponsor, size }: SponsorCardProps) {
       href={sponsor.website}
       target="_blank"
       rel="noreferrer"
-      className="flex-1 min-w-[200px] bg-gradient-to-b from-[#FB2C46] to-[#00AEB9] rounded-[20px] p-[30px] hover:opacity-90 transition-opacity duration-300"
+      className="flex-1 min-w-[200px] rounded-[20px] p-[30px] transition-all duration-300 backdrop-blur-md hover:backdrop-blur-lg"
+      style={{
+        background: "linear-gradient(180deg, rgba(251, 44, 70, 0.3) 0%, rgba(0, 174, 185, 0.3) 100%)",
+        border: "1px solid rgba(255, 255, 255, 0.1)",
+        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+      }}
     >
       <div className="flex flex-col gap-4 items-center justify-center h-full">
         <div className="w-full flex items-center justify-center">
