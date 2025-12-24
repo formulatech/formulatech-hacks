@@ -5,6 +5,8 @@ import flag from "../assets/faq-flag.svg";
 import general from "../assets/faq-general.svg";
 import logistics from "../assets/faq-logistics.svg";
 import signup from "../assets/faq-signup.svg";
+//import redstar from "../assets/red-star.svg";
+//import tealstar from "../assets/teal-star.svg";
 import track from "../assets/track.svg";
 
 const questions = {
@@ -33,7 +35,7 @@ const questions = {
 export default function FAQ() {
     const [activeCategory, setActiveCategory] = useState<string | null>("General");
     const [openQuestions, setOpenQuestions] = useState<Record<string, boolean>>({});
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
     const popupRef = useRef<HTMLDivElement | null>(null);
     const carsRef = useRef<HTMLDivElement | null>(null);
     const hideTimeoutRef = useRef<number | null>(null);
@@ -106,9 +108,17 @@ export default function FAQ() {
     };
 
     return (
-        <div className="mt-[20dvh] pt-20 w-[80%] mx-auto flex flex-col gap-[30px]" id="faqs">
-            <h1 className="font-black p-5 -ml-2.5 text-5xl capitalize text-white bg-clip-text bg-gradient-to-r from-primary to-secondary stroke-xl font-title">
-                FREQUENTLY ASKED QUESTIONS
+        <div className="mt-[20dvh] pt-20 w-[95%] flex flex-col gap-[30px] relative pb-20 min-h-[50vw]"
+            id="faqs"
+        >
+            <h1
+                className="flex flex-col md:flex-row items-center font-black px-3 py-4 md:p-5 sm:ml-0 lg:ml-15 font-title capitalize text-center leading-tight"
+                style={{ fontSize: "clamp(1.4rem, 4vw, 2.75rem)" }}>
+                <span className="mr-6 bg-clip-text text-transparent bg-gradient-to-t from-primary to-secondary hidden md:block">/</span>
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+                    FREQUENTLY ASKED QUESTIONS
+                </span>
+                <span className="ml-6 bg-clip-text text-transparent bg-gradient-to-t from-primary to-secondary hidden md:block">/</span>
             </h1>
     
             {/* Cars + Road Grid */}
@@ -116,14 +126,15 @@ export default function FAQ() {
                 {/* Cars (give this a ref so clicks on the cars do NOT close popup) */}
                 <div
                     ref={carsRef}
-                    className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10 w-full place-items-center z-10 relative"
+                    className="flex justify-between items-center w-full z-10 relative"
+                    style={{ gap: "clamp(0.25rem, 0.5vw, 0.5rem)" }}
                 >
                     <button
                         type="button"
                         onClick={() => openPopup("General")}
                         className="flex flex-col items-center hover:scale-105 transition cursor-pointer"
                     >
-                        <img src={general.src} alt="General" className="w-75 h-auto" />
+                        <img src={general.src} alt="General" className="w-100 h-auto" />
                     </button>
     
                     <button
@@ -131,7 +142,7 @@ export default function FAQ() {
                         onClick={() => openPopup("Sign-Up")}
                         className="flex flex-col items-center hover:scale-105 transition cursor-pointer"
                     >
-                        <img src={signup.src} alt="Sign-Up" className="w-75 h-auto" />
+                        <img src={signup.src} alt="Sign-Up" className="w-100 h-auto" />
                     </button>
     
                     <button
@@ -139,7 +150,7 @@ export default function FAQ() {
                         onClick={() => openPopup("Logistics")}
                         className="flex flex-col items-center hover:scale-105 transition cursor-pointer"
                     >
-                        <img src={logistics.src} alt="Logistics" className="w-75 h-auto" />
+                        <img src={logistics.src} alt="Logistics" className="w-100 h-auto" />
                     </button>
 
                     <button
@@ -147,7 +158,7 @@ export default function FAQ() {
                         onClick={() => openPopup("Code of Conduct")}
                         className="flex flex-col items-center hover:scale-105 transition cursor-pointer"
                     >
-                        <img src={codeofconduct.src} alt="Code of Conduct" className="w-75 h-auto" />
+                        <img src={codeofconduct.src} alt="Code of Conduct" className="w-100 h-auto" />
                     </button>
                 </div>
 
@@ -156,48 +167,48 @@ export default function FAQ() {
                     alt="Track"
                     className="w-screen h-auto object-cover"
                     style={{ maxWidth: "100vw" }}
-                />
-
+                />                
                 <div className="w-full flex justify-center -mt-2">
                     <div
                         ref={popupRef}
-                        className={`bg-black rounded-b-2xl p-6 text-white shadow-lg relative
-                            transition-all duration-300 ease-in-out overflow-hidden
-                            w-[80vw] min-w-[300px] max-w-[75vw]
-                            ${isOpen ? "opacity-100 translate-y-0 max-h-[600px] pointer-events-auto" : "opacity-0 -translate-y-4 max-h-0 pointer-events-none"}
+                        className={`bg-black rounded-b-2xl pt-10 pl-10 pr-15 text-white shadow-lg relative transition-all duration-300 ease-in-out overflow-hidden
+                            w-[85vw]
+                            ${isOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-4 max-h-0 pointer-events-none"}
                         `}
                         aria-hidden={!isOpen}
                     >
                         <button
                             type="button"
                             onClick={closePopup}
-                            className="absolute top-3 right-3 text-xl font-bold hover:text-red-500"
+                            className="absolute top-6 right-5 text-6xl text-red-500 cursor-pointer rotate-45 text-[clamp(2rem,6vw,4rem)]"
                         >
-                        ✖
+                        +
                         </button>
     
                         {/* CONTENT: only this changes when clicking cars */}
                         {activeCategory ? (
-                            <div className="flex flex-col gap-4">
-                                {questions[activeCategory as keyof typeof questions].map(({ q, a }) => (
-                                    <div key={q} className="flex flex-col">
-                                        <button type="button" onClick={() => toggleQuestion(q)} className="flex items-center cursor-pointer group">
-                                            <img src={flag.src} alt="flag"
-                                                className="w-15 h-15 transform transition-transform duration-200 group-hover:scale-125"
-                                            />
-                                            <span className="font-bold">{q}</span>
-                                        </button>
-                                        <div
-                                            className={`transition-all duration-300 ease-in-out overflow-hidden ${
-                                                openQuestions[q]
-                                                ? "opacity-100 translate-y-0 max-h-40"
-                                                : "opacity-0 -translate-y-2 max-h-0"
-                                            }`}
-                                        >
-                                            <p className=" ml-15 mt-2 text-primary-2">{a}</p>
+                            <div className="mt-10 mb-10">
+                                <div className="flex flex-col gap-4">
+                                    {questions[activeCategory as keyof typeof questions].map(({ q, a }) => (
+                                        <div key={q} className="flex flex-col mb-6">
+                                            <button type="button" onClick={() => toggleQuestion(q)} className="flex items-center text-left cursor-pointer group uppercase font-title">
+                                                <img src={flag.src} alt="flag"
+                                                    className="w-[clamp(2rem,3vw,3rem)] h-[clamp(2rem,3vw,3rem)] transform transition-transform duration-200 group-hover:scale-125"
+                                                />
+                                                <span className="mx-5 font-bold text-[clamp(0.875rem,2vw,1.25rem)]">{q}</span>
+                                            </button>
+                                            <div
+                                                className={`transition-all duration-300 ease-in-out overflow-hidden ${
+                                                    openQuestions[q]
+                                                    ? "opacity-100 translate-y-0 max-h-400"
+                                                    : "opacity-0 -translate-y-2 max-h-0"
+                                                }`}
+                                            >
+                                                <p className="mt-2 text-primary-2 font-primary text-left text-[clamp(0.75rem,1.8vw,1rem)]">{a}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    ))}
+                                </div>
                             </div>
                         ) : (
                             <div className="text-center text-gray-400">No category selected</div>
@@ -205,6 +216,20 @@ export default function FAQ() {
                     </div>
                 </div>
             </div>
+            {/* TODO: Fix the positioning of these, for now
+            <img
+                src={redstar.src}
+                alt="Decorative star"
+                className="hidden md:block absolute -right-30 -bottom-[-12rem] w-80 h-80 red-star-spin z-50 pointer-events-none"
+                style={{ width: "clamp(10rem, 22vw, 20rem)", height: "clamp(10rem, 22vw, 20rem)" }}
+            />
+            <img
+                src={tealstar.src}
+                alt="Decorative star"
+                className="hidden md:block absolute -left-40 -bottom-[-1rem] w-80 h-80 teal-star-spin z-50 pointer-events-none"
+                style={{ width: "clamp(10rem, 22vw, 20rem)", height: "clamp(10rem, 22vw, 20rem)" }}
+            />
+            */}
         </div>
     );
 }

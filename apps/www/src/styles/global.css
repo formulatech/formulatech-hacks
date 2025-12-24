@@ -8,7 +8,7 @@
 	--color-secondary: #00aeb9;
 	--color-road: #383838;
 
-	--font-primary: sans-serif;
+	--font-primary: "Inter", sans-serif;
 	--font-secondary: serif;
 
 	/* Selected fonts (labelled by a star in the Figma Wireframes) */
@@ -50,4 +50,17 @@ html {
 
 html, body {
     overflow-x: hidden;
+}
+
+@keyframes spin-slow {
+	from { transform: rotate(0deg); }
+	to   { transform: rotate(360deg); }
+}
+
+.red-star-spin {
+	animation: spin-slow 20s linear infinite;
+}
+.teal-star-spin {
+	animation: spin-slow 20s linear infinite;
+	animation-direction: reverse;
 }
