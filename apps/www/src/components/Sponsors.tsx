@@ -111,11 +111,23 @@ export default function Sponsors() {
   const silverSponsors = sponsors.filter((s) => s.tier === "SILVER");
   const bronzeSponsors = sponsors.filter((s) => s.tier === "BRONZE");
 
+  // Track mouse position for flashlight effect
+  const [mousePos, setMousePos] = React.useState({ x: 50, y: 50 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    setMousePos({ x, y });
+  };
+
   return (
-    <div id="sponsors" className="w-full my-12 md:my-20 rounded-[30px] md:rounded-[60px]"
+    <div
+      id="sponsors"
+      className="w-full my-12 md:my-20 rounded-[30px] md:rounded-[60px]"
+      onMouseMove={handleMouseMove}
       style={{
-        background:
-          "radial-gradient(circle at 50% 50%, rgba(49, 49, 49, 1) 51%, rgba(0, 0, 0, 1) 100%)",
+        background: `radial-gradient(circle 600px at ${mousePos.x}% ${mousePos.y}%, rgba(49, 49, 49, 1) 0%, rgba(25, 25, 25, 1) 50%, rgba(0, 0, 0, 1) 100%)`,
       }}
     >
 
