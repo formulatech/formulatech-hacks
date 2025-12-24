@@ -1,203 +1,244 @@
 // THIS COMPONENT NEEDS TO HAVE A CLIENT DIRECTIVE WHEN USED IN ASTRO
 
-import type React from "react";
+import React from "react";
 
 interface Sponsor {
-    key: string;
-    name: string;
-    logoPath: string;
-    website: string;
-    description: string;
-    tier: "GOLD" | "SILVER" | "BRONZE";
+  key: string;
+  name: string;
+  logoPath: string;
+  website: string;
+  description: string;
+  tier: "GOLD" | "SILVER" | "BRONZE";
 }
 
 // Create a slug from a string (replace spaces with hyphens, lowercase)
 function slugify(text: string): string {
-    return text
-        .toLowerCase()
-        .trim()
-        .replace(/\s+/g, "-")
-        .replace(/[^\w-]+/g, "")
-        .replace(/--+/g, "-");
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/[^\w-]+/g, "")
+    .replace(/--+/g, "-");
 }
 
 // Create a function that generates sponsors with defaults
 function createSponsor(sponsor: {
-    name?: string;
-    logoPath?: string;
-    website?: string;
-    description?: string;
-    tier?: "GOLD" | "SILVER" | "BRONZE";
+  name?: string;
+  logoPath?: string;
+  website?: string;
+  description?: string;
+  tier?: "GOLD" | "SILVER" | "BRONZE";
 }): Sponsor {
-    const name = sponsor.name || "Default Sponsor";
-    const key = slugify(name);
+  const name = sponsor.name || "Default Sponsor";
+  const key = slugify(name);
 
-    return {
-        key,
-        name,
-        logoPath: sponsor.logoPath || "/sponsors/default_sponsor.svg",
-        website: sponsor.website || "https://example.com",
-        description: sponsor.description || "Default sponsor description",
-        tier: sponsor.tier || "BRONZE",
-    };
+  return {
+    key,
+    name,
+    logoPath: sponsor.logoPath || "/sponsors/default_sponsor.svg",
+    website: sponsor.website || "https://example.com",
+    description: sponsor.description || "Default sponsor description",
+    tier: sponsor.tier || "BRONZE",
+  };
 }
 
 // ADD AND EDIT SPONSORS HERE
 const sponsors: Sponsor[] = [
-    createSponsor({
-        name: "SLEF",
-        tier: "BRONZE",
-        logoPath: "/sponsors/slef/SLEF_Logo_Color_Logo_Name.png",
-        website: "https://wusa.ca/about/your-money/funding/",
-        description:
-            "The Student Life Endowment Fund (SLEF) is an income-generating fund that supports student-led projects and initiatives aimed at enhancing campus life and fostering a vibrant, inclusive community for undergraduate students at the University of Waterloo.",
-    }),
-    createSponsor({
-        name: "MEF",
-        tier: "SILVER",
-        logoPath: "/sponsors/mef/MEF_Logo.png",
-        website: "https://uwaterloo.ca/math-endowment-fund/",
-        description:
-            "The Mathematics Endowment Fund (MEF) is an income-generating fund that exists to finance projects that are in the best interests of undergraduate math students at the University of Waterloo.",
-    }),
+  createSponsor({
+    name: "SLEF",
+    tier: "BRONZE",
+    logoPath: "/sponsors/slef/SLEF_Logo_Color_Logo_Name.png",
+    website: "https://wusa.ca/about/your-money/funding/",
+    description:
+      "The Student Life Endowment Fund (SLEF) is an income-generating fund that supports student-led projects and initiatives aimed at enhancing campus life and fostering a vibrant, inclusive community for undergraduate students at the University of Waterloo.",
+  }),
+  createSponsor({
+    name: "MEF",
+    tier: "SILVER",
+    logoPath: "/sponsors/mef/MEF_Logo.png",
+    website: "https://uwaterloo.ca/math-endowment-fund/",
+    description:
+      "The Mathematics Endowment Fund (MEF) is an income-generating fund that exists to finance projects that are in the best interests of undergraduate math students at the University of Waterloo.",
+  }),
 ];
 
 const sponsor_package_dir = "/sponsors/FTH%20Sponsorship%20Package.pdf";
 
 // Sponsor Card Component
 interface SponsorCardProps {
-    sponsor: Sponsor;
-    size: "large" | "medium" | "small";
+  sponsor: Sponsor;
+  size: "large" | "medium" | "small";
 }
 
 function SponsorCard({ sponsor, size }: SponsorCardProps) {
-    // Set width based on tier to maintain consistent sizing
-    const widthClasses = {
-        large: "w-full", // 1 column - full width
-        medium: "w-full md:w-[calc((100%-30px)/2)]", // 2 columns on desktop
-        small: "w-full md:w-[calc((100%-60px)/3)]", // 3 columns on desktop
-    };
-
-    return (
-        <a
-            href={sponsor.website}
-            target="_blank"
-            rel="noreferrer"
-            className={`${widthClasses[size]} bg-[rgba(254,251,241,0.3)] rounded-[10px] p-6 md:p-8 hover:bg-[rgba(254,251,241,0.4)] transition-all duration-300 group`}
-        >
-            <div className="flex flex-col gap-4 items-center justify-center h-full">
-                <div className="w-full flex items-center justify-center p-4">
-                    <img
-                        src={sponsor.logoPath}
-                        alt={sponsor.name}
-                        className="max-h-[100px] md:max-h-[140px] w-auto object-contain"
-                    />
-                </div>
-                <h3 className="font-title font-bold text-white text-center text-lg md:text-xl">
-                    {sponsor.name}
-                </h3>
-                {size === "large" && (
-                    <p className="font-body text-white/80 text-center text-sm md:text-base">
-                        {sponsor.description}
-                    </p>
-                )}
-            </div>
-        </a>
-    );
+  return (
+    <a
+      href={sponsor.website}
+      target="_blank"
+      rel="noreferrer"
+      className="flex-1 min-w-[200px] bg-gradient-to-b from-[#FB2C46] to-[#00AEB9] rounded-[20px] p-[30px] hover:opacity-90 transition-opacity duration-300"
+    >
+      <div className="flex flex-col gap-4 items-center justify-center h-full">
+        <div className="w-full flex items-center justify-center">
+          <img
+            src={sponsor.logoPath}
+            alt={sponsor.name}
+            className="max-h-[100px] md:max-h-[140px] w-auto object-contain"
+          />
+        </div>
+        <h3 className="font-title font-bold text-white text-center text-lg md:text-xl">
+          {sponsor.name}
+        </h3>
+        {size === "large" && (
+          <p className="font-body text-white/90 text-center text-sm md:text-base">
+            {sponsor.description}
+          </p>
+        )}
+      </div>
+    </a>
+  );
 }
 
 // Exported component
 export default function Sponsors() {
-    // Organize sponsors by tier
-    const goldSponsors = sponsors.filter((s) => s.tier === "GOLD");
-    const silverSponsors = sponsors.filter((s) => s.tier === "SILVER");
-    const bronzeSponsors = sponsors.filter((s) => s.tier === "BRONZE");
+  // Organize sponsors by tier
+  const goldSponsors = sponsors.filter((s) => s.tier === "GOLD");
+  const silverSponsors = sponsors.filter((s) => s.tier === "SILVER");
+  const bronzeSponsors = sponsors.filter((s) => s.tier === "BRONZE");
 
-    return (
-        <div
-            id="sponsors"
-            className="mt-24 md:mt-36 w-full mx-auto px-6 py-12 md:py-20"
-        >
-            <div className="flex flex-col items-center gap-[71px]">
-                {/* Header Section */}
-                <div className="flex flex-col items-center gap-6 md:gap-[35px] w-full">
-                    <h1 className="font-black p-5 -ml-2.5 text-5xl capitalize text-white bg-clip-text bg-gradient-to-r from-primary to-secondary stroke-xl font-title">
-                        OUR SPONSORS
-                    </h1>
-                    <p className="font-body text-base md:text-2xl text-white text-center max-w-[800px] leading-relaxed">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation
-                    </p>
-                    <a
-                        href={sponsor_package_dir}
-                        rel="noreferrer"
-                        target="_blank"
-                        className="flex items-center justify-center hover:scale-105 transition-transform duration-200"
-                        style={{
-                            filter: "drop-shadow(0px 4px 10.9px rgba(0, 0, 0, 0.25))",
-                        }}
-                    >
-                        <img
-                            src="/become_a_sponsor_CTA.svg"
-                            alt="Become a Sponsor"
-                            className="w-[150px] md:w-[194px] object-contain"
-                        />
-                    </a>
-                </div>
+  return (
+    <div id="sponsors" className="w-full my-12 md:my-20 rounded-[30px] md:rounded-[60px]"
+      style={{
+        background:
+          "radial-gradient(circle at 50% 50%, rgba(49, 49, 49, 1) 51%, rgba(0, 0, 0, 1) 100%)",
+      }}
+    >
 
-                {/* Sponsors Grid */}
-                <div className="flex flex-col gap-6 md:gap-[30px] w-full">
-                    {/* Gold tier sponsors - 1 column */}
-                    {goldSponsors.length > 0 && (
-                        <div className="flex flex-wrap justify-center gap-6 md:gap-[30px] w-full">
-                            {goldSponsors.map((sponsor) => (
-                                <SponsorCard
-                                    key={sponsor.key}
-                                    sponsor={sponsor}
-                                    size="large"
-                                />
-                            ))}
-                        </div>
-                    )}
-
-                    {/* Silver tier - 2 columns on desktop */}
-                    {silverSponsors.length > 0 && (
-                        <div className="flex flex-wrap justify-center gap-6 md:gap-[30px] w-full">
-                            {silverSponsors.map((sponsor) => (
-                                <SponsorCard
-                                    key={sponsor.key}
-                                    sponsor={sponsor}
-                                    size="medium"
-                                />
-                            ))}
-                        </div>
-                    )}
-
-                    {/* Bronze tier - 3 columns on desktop */}
-                    {bronzeSponsors.length > 0 && (
-                        <div className="flex flex-wrap justify-center gap-6 md:gap-[30px] w-full">
-                            {bronzeSponsors.map((sponsor) => (
-                                <SponsorCard
-                                    key={sponsor.key}
-                                    sponsor={sponsor}
-                                    size="small"
-                                />
-                            ))}
-                        </div>
-                    )}
-
-                    {/* Placeholder message when no sponsors */}
-                    {sponsors.length === 0 && (
-                        <div className="text-center py-12">
-                            <p className="font-body text-white/60 text-lg">
-                                Sponsor information coming soon
-                            </p>
-                        </div>
-                    )}
-                </div>
+      <div className="pt-[30px] md:pt-[80px] pb-4">
+        <div className="flex flex-col items-center gap-5 w-full">
+          {/* Title - Single on mobile, repeating on desktop */}
+          <div className="w-full">
+            {/* Mobile: show single title */}
+            <h1 className="md:hidden font-title font-black text-2xl text-center bg-gradient-to-r from-[#D2273D] via-[#D2273D] to-[#00AEB9] bg-clip-text text-transparent whitespace-nowrap">
+              OUR SPONSORS
+            </h1>
+            {/* Desktop: show repeating pattern - evenly distributed */}
+            <div className="hidden md:flex flex-row items-center justify-between w-full gap-5">
+              {Array.from({ length: 4 }).map((_, i) => (
+                <React.Fragment key={i}>
+                  <h1 className="font-title font-black text-5xl bg-gradient-to-r from-[#D2273D] via-[#D2273D] to-[#00AEB9] bg-clip-text text-transparent whitespace-nowrap">
+                    OUR SPONSORS
+                  </h1>
+                  {i < 3 && (
+                    <span className="font-title font-black text-5xl bg-gradient-to-r from-[#D2273D] via-[#D2273D] to-[#00AEB9] bg-clip-text text-transparent">
+                      /
+                    </span>
+                  )}
+                </React.Fragment>
+              ))}
             </div>
+          </div>
         </div>
-    );
+      </div>
+
+      <div className="px-6">
+        <div
+          className="w-full mx-auto p-[0px_30px_50px] md:p-[0px_150px_80px] flex flex-col items-center gap-5"
+        >
+          <div className="flex flex-col items-center gap-5 w-full">
+            {/* Description */}
+            <p
+              className="text-sm md:text-xl text-center leading-relaxed md:leading-[1.8] w-full"
+              style={{
+                fontFamily: "Inter, sans-serif",
+                fontWeight: 500,
+                color: "#FFFAEB",
+                letterSpacing: "-0.05em",
+              }}
+            >
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+              sed do eiusmod tempor incididunt ut labore et dolore
+              magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation
+            </p>
+
+            {/* CTA Button */}
+            <a
+              href={sponsor_package_dir}
+              rel="noreferrer"
+              target="_blank"
+              className="flex items-center justify-center hover:scale-105 transition-transform duration-200"
+              style={{
+                filter: "drop-shadow(0px 4px 10.9px rgba(0, 0, 0, 0.25))",
+              }}
+            >
+              <img
+                src="/become_a_sponsor_CTA.svg"
+                alt="Become a Sponsor"
+                className="w-[150px] md:w-[197px] h-auto object-contain"
+              />
+            </a>
+          </div>
+
+          {/* Sponsors Grid */}
+          <div className="flex flex-col gap-5 md:gap-[30px] w-full mt-5">
+            {/* Gold tier sponsors - 1 per row */}
+            {goldSponsors.length > 0 && (
+              <div className="flex flex-wrap justify-center gap-5 md:gap-[30px] w-full">
+                {goldSponsors.map((sponsor) => (
+                  <SponsorCard
+                    key={sponsor.key}
+                    sponsor={sponsor}
+                    size="large"
+                  />
+                ))}
+              </div>
+            )}
+
+            {/* Silver tier - 2 per row on desktop */}
+            {silverSponsors.length > 0 && (
+              <div className="flex flex-wrap justify-between gap-5 md:gap-[30px] w-full">
+                {silverSponsors.map((sponsor) => (
+                  <SponsorCard
+                    key={sponsor.key}
+                    sponsor={sponsor}
+                    size="medium"
+                  />
+                ))}
+              </div>
+            )}
+
+            {/* Bronze tier - 3 per row on desktop */}
+            {bronzeSponsors.length > 0 && (
+              <div className="flex flex-wrap justify-between gap-5 md:gap-[30px] w-full">
+                {bronzeSponsors.map((sponsor) => (
+                  <SponsorCard
+                    key={sponsor.key}
+                    sponsor={sponsor}
+                    size="small"
+                  />
+                ))}
+              </div>
+            )}
+
+            {/* Placeholder message when no sponsors */}
+            {sponsors.length === 0 && (
+              <div className="text-center py-12">
+                <p
+                  className="text-lg"
+                  style={{
+                    fontFamily: "Inter, sans-serif",
+                    color: "#FFFAEB",
+                    opacity: 0.6,
+                  }}
+                >
+                  Sponsor information coming soon
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
