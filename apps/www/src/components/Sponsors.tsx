@@ -150,7 +150,7 @@ export default function Sponsors() {
 
       <div className="px-6">
         <div
-          className="w-full mx-auto p-[0px_30px_50px] md:p-[0px_150px_80px] flex flex-col items-center gap-5 md:gap-12"
+          className="w-full mx-auto p-[0px_30px_50px] md:p-[0px_150px_80px] flex flex-col items-center gap-5 md:gap-0"
         >
           <div className="flex flex-col items-center gap-5 w-full">
             {/* Description */}
@@ -170,10 +170,11 @@ export default function Sponsors() {
             </p>
 
             {/* Contact Section */}
-            <div className="flex flex-col items-center gap-5 w-full">
+            {/* Mobile Layout - Simple Column */}
+            <div className="md:hidden flex flex-col items-center gap-5 w-full">
               {/* Email Text */}
               <p
-                className="text-sm md:text-xl text-center"
+                className="text-sm text-center"
                 style={{
                   fontFamily: "Inter, sans-serif",
                   fontWeight: 600,
@@ -186,30 +187,21 @@ export default function Sponsors() {
               </p>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col md:flex-row gap-5 items-center justify-center">
-                {/* Filled Button - Mobile: white text, Desktop: dark text */}
+              <div className="flex flex-col gap-5 items-center justify-center">
+                {/* Filled Button */}
                 <a
                   href={sponsor_package_dir}
                   rel="noreferrer"
                   target="_blank"
-                  className="rounded-full hover:opacity-90 transition-opacity px-[15px] py-[10px] md:px-5 md:py-5"
+                  className="rounded-full hover:opacity-90 transition-opacity px-[15px] py-[10px]"
                   style={{
                     backgroundColor: "#00AEB9",
                   }}
                 >
                   <span
-                    className="md:hidden font-title font-black text-sm whitespace-nowrap"
+                    className="font-title font-black text-sm whitespace-nowrap"
                     style={{
                       color: "#FFFFFF",
-                      lineHeight: "1.254em",
-                    }}
-                  >
-                    BECOME A SPONSOR
-                  </span>
-                  <span
-                    className="hidden md:inline font-title font-black text-xl whitespace-nowrap"
-                    style={{
-                      color: "#020202",
                       lineHeight: "1.254em",
                     }}
                   >
@@ -222,22 +214,13 @@ export default function Sponsors() {
                   href={sponsor_package_dir}
                   rel="noreferrer"
                   target="_blank"
-                  className="rounded-full hover:opacity-90 transition-opacity px-[15px] py-[10px] md:px-5 md:py-5"
+                  className="rounded-full hover:opacity-90 transition-opacity px-[15px] py-[10px]"
                   style={{
                     border: "3px solid #00AEB9",
                   }}
                 >
                   <span
-                    className="md:hidden font-title font-black text-sm whitespace-nowrap"
-                    style={{
-                      color: "#00AEB9",
-                      lineHeight: "1.254em",
-                    }}
-                  >
-                    SPONSORSHIP PACKAGE
-                  </span>
-                  <span
-                    className="hidden md:inline font-title font-black text-xl whitespace-nowrap"
+                    className="font-title font-black text-sm whitespace-nowrap"
                     style={{
                       color: "#00AEB9",
                       lineHeight: "1.254em",
@@ -247,6 +230,85 @@ export default function Sponsors() {
                   </span>
                 </a>
               </div>
+            </div>
+
+            {/* Desktop Layout - With Flags */}
+            <div className="hidden md:flex flex-row items-start justify-center gap-5 w-full">
+              {/* Left Flag */}
+              <img
+                src="/sponsors/group_6.svg"
+                alt="Decorative flag"
+                className="w-[197.58px] h-[211px] object-contain"
+              />
+
+              {/* Center Content */}
+              <div className="flex flex-col items-center gap-5">
+                {/* Email Text */}
+                <p
+                  className="text-xl text-center"
+                  style={{
+                    fontFamily: "Inter, sans-serif",
+                    fontWeight: 600,
+                    color: "#FFFAEB",
+                    letterSpacing: "-0.05em",
+                    lineHeight: "1.8em",
+                  }}
+                >
+                  Email us at address@gmail.com
+                </p>
+
+                {/* CTA Buttons */}
+                <div className="flex flex-row gap-5 items-center justify-center">
+                  {/* Filled Button */}
+                  <a
+                    href={sponsor_package_dir}
+                    rel="noreferrer"
+                    target="_blank"
+                    className="rounded-full hover:opacity-90 transition-opacity px-5 py-5"
+                    style={{
+                      backgroundColor: "#00AEB9",
+                    }}
+                  >
+                    <span
+                      className="font-title font-black text-xl whitespace-nowrap"
+                      style={{
+                        color: "#020202",
+                        lineHeight: "1.254em",
+                      }}
+                    >
+                      BECOME A SPONSOR
+                    </span>
+                  </a>
+
+                  {/* Outlined Button */}
+                  <a
+                    href={sponsor_package_dir}
+                    rel="noreferrer"
+                    target="_blank"
+                    className="rounded-full hover:opacity-90 transition-opacity px-5 py-5"
+                    style={{
+                      border: "3px solid #00AEB9",
+                    }}
+                  >
+                    <span
+                      className="font-title font-black text-xl whitespace-nowrap"
+                      style={{
+                        color: "#00AEB9",
+                        lineHeight: "1.254em",
+                      }}
+                    >
+                      SPONSORSHIP PACKAGE
+                    </span>
+                  </a>
+                </div>
+              </div>
+
+              {/* Right Flag */}
+              <img
+                src="/sponsors/flag.svg"
+                alt="Decorative flag"
+                className="w-[197.58px] h-[211px] object-contain"
+              />
             </div>
           </div>
 
