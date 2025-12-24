@@ -132,19 +132,42 @@ export default function Sponsors() {
             >
               OUR SPONSORS
             </h1>
-            {/* Desktop: show repeating pattern with first item cut off */}
+            {/* Desktop: show repeating pattern with infinite scroll */}
             <div className="hidden md:block w-full overflow-hidden">
-              <div className="flex flex-row items-center gap-[30px] -ml-[280px]">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <React.Fragment key={i}>
+              <style>{`
+                @keyframes scroll-left {
+                  0% {
+                    transform: translateX(0);
+                  }
+                  100% {
+                    transform: translateX(-50%);
+                  }
+                }
+                .animate-scroll {
+                  animation: scroll-left 20s linear infinite;
+                }
+              `}</style>
+              <div className="flex flex-row items-center gap-[30px] animate-scroll">
+                {/* First set */}
+                {Array.from({ length: 8 }).map((_, i) => (
+                  <React.Fragment key={`set1-${i}`}>
                     <h1 className="font-title font-black text-5xl bg-gradient-to-r from-[#D2273D] via-[#D2273D] to-[#00AEB9] bg-clip-text text-transparent whitespace-nowrap">
                       OUR SPONSORS
                     </h1>
-                    {i < 4 && (
-                      <span className="font-title font-black text-5xl bg-gradient-to-r from-[#D2273D] via-[#D2273D] to-[#00AEB9] bg-clip-text text-transparent">
-                        /
-                      </span>
-                    )}
+                    <span className="font-title font-black text-5xl bg-gradient-to-r from-[#D2273D] via-[#D2273D] to-[#00AEB9] bg-clip-text text-transparent">
+                      /
+                    </span>
+                  </React.Fragment>
+                ))}
+                {/* Second set (duplicate for seamless loop) */}
+                {Array.from({ length: 8 }).map((_, i) => (
+                  <React.Fragment key={`set2-${i}`}>
+                    <h1 className="font-title font-black text-5xl bg-gradient-to-r from-[#D2273D] via-[#D2273D] to-[#00AEB9] bg-clip-text text-transparent whitespace-nowrap">
+                      OUR SPONSORS
+                    </h1>
+                    <span className="font-title font-black text-5xl bg-gradient-to-r from-[#D2273D] via-[#D2273D] to-[#00AEB9] bg-clip-text text-transparent">
+                      /
+                    </span>
                   </React.Fragment>
                 ))}
               </div>
