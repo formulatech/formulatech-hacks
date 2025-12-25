@@ -3,12 +3,9 @@ import { useState } from "react";
 import email from "../assets/email.svg";
 import instagram from "../assets/instagram.svg";
 import linkedin from "../assets/linkedin.svg";
-
-import logo from "../assets/logo.png";
-
+import logo from "../assets/logo.svg";
 
 export default function Navigate() {
-
 	const [menuOpen, setMenuOpen] = useState(false);
 
 	const scrollToWithOffset = (id: string) => {
@@ -31,18 +28,18 @@ return (
   					onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
   					className="focus:outline-none"
 				>
-  				<img src={logo.src} alt="Logo" className="h-14 w-auto" />
+  				<img src={logo.src} alt="Logo" className="h-8 w-auto cursor-pointer" />
 				</button>
 
 					{/* Center: Desktop Nav Links */}
-					<ul className="hidden md:flex gap-[clamp(1rem,2vw,4rem)] items-center flex-nowrap min-w-0 overflow-hidden text-nowrap">
+					<ul className="hidden md:flex gap-[clamp(1rem,3vw,4rem)] items-center flex-nowrap min-w-0 overflow-hidden text-nowrap font-title font-bold">
 						<li>
 							<button
 								type="button"
 								onClick={() => scrollToWithOffset("about")}
 								className="hover:text-primary transition cursor-pointer"
 							>
-								About
+								ABOUT
 							</button>
 						</li>
 						<li>
@@ -51,7 +48,7 @@ return (
 								onClick={() => scrollToWithOffset("sponsors")}
 								className="hover:text-primary transition cursor-pointer"
 							>
-								Sponsors
+								SPONSORS
 							</button>
 						</li>
 						<li>
@@ -63,36 +60,51 @@ return (
 								FAQs
 							</button>
 						</li>
+						{/*
 						<li>
-							{/* <a href="/team" className="hover:text-primary transition">
-								Team
-							</a> */}
+							<button
+								type="button"
+								onClick={() => scrollToWithOffset("team")}
+								className="hover:text-primary transition cursor-pointer"
+							>
+								FAQs
+							</button>
 						</li>
+						*/}
 					</ul>
 				</div>
 
 				{/* Right: Socials / Auth / Hamburger */}
 				<div className="flex items-center gap-[clamp(0.5rem,1vw,1.5rem)] flex-nowrap min-w-0 overflow-hidden">
 					{/* Desktop Only */}
-					<div className="hidden md:flex items-center gap-[clamp(0.5rem,1vw,1.5rem)] min-w-0">
-						<a href="https://www.instagram.com/formulatech.hacks/" className="hover:text-primary fill-primary">
-							<img src={instagram.src} alt="Instagram" className="h-15 w-15 object-cover fill-current"/>
+					<div className="hidden md:flex items-center gap-[clamp(1rem,1.5vw,2rem)] min-w-0">
+						<a href="https://www.instagram.com/formulatech.hacks/" target="_blank" rel="noopener noreferrer">
+							<img src={instagram.src} alt="Instagram" className="h-7 w-7 object-cover" />
 						</a>
-						<a href="https://www.linkedin.com/company/formulatech-hacks" className="hover:text-primary">
-							<img src={linkedin.src} alt="LinkedIn" className="h-7 w-7 object-cover fill-current"/>
+						<a href="https://www.linkedin.com/company/formulatech-hacks" target="_blank" rel="noopener noreferrer">
+							<img src={linkedin.src} alt="LinkedIn" className="h-7 w-7 object-cover" />
 						</a>
-						<a href="mailto:someone@example.com" className="hover:text-primary">
-							<img src={email.src} alt="Email" className="h-15 w-15 object-cover fill-current"/>
+						<button
+							type="button"
+							onClick={() =>
+								window.open(
+									"https://mail.google.com/mail/?view=cm&fs=1&to=formulatech.hacks@gmail.com",
+									"_blank",
+									"noopener,noreferrer"
+								)
+							}
+							className="hover:text-primary cursor-pointer"
+							aria-label="Email us"
+						>
+							<img
+								src={email.src}
+								alt="Email"
+								className="h-6 w-auto object-cover"
+							/>
+						</button>
+						<a href="https://docs.google.com/forms/d/e/1FAIpQLScru3wvO6uZcbIDaXxxaUfB5GVFhpmB5LtLRFH8gHBSazsdFg/viewform" className="flex items-center bg-primary text-white font-bold px-3 py-2 rounded-4xl hover:opacity-90 transition text-center font-title">
+							SIGN UP NOW
 						</a>
-
-						<div className="ml-4 flex items-center space-x-4">
-							{/* <a href="/register" className="bg-primary text-white font-bold px-4 py-2 rounded-2xl hover:opacity-90 transition">
-								REGISTER
-							</a> */}
-							{/* <a href="/login" className="border-2 border-primary text-primary font-bold px-4 py-2 rounded-2xl hover:bg-white transition">
-								LOGIN
-							</a> */}
-						</div>
 					</div>
 
 					{/* Mobile Toggle Button */}
@@ -142,7 +154,7 @@ return (
 						}}
 						className="hover:text-red-500 text-xl"
 					>
-						{/* FAQs */}
+						FAQs
 					</button>
 					<button 
 						type = "button"
@@ -155,32 +167,34 @@ return (
 					>
 						{/* Team */}
 					</button>
-					<div className="flex flex-col items-center space-y-4">
-						{/* <a href="/register" className="bg-primary text-white font-bold px-6 py-3 w-40 rounded-2xl hover:opacity-90 transition text-center">
-							REGISTER
-						</a> */}
-						{/* <a href="/login" className="border-2 border-primary text-primary font-bold px-6 py-3 w-40 rounded-2xl hover:bg-[#fff] transition text-center">
-							LOGIN
-						</a> */}
-					</div>
+					<a href="https://forms.gle/MQNpzN5k63cHYiPn6" className="flex flex-col items-center space-y-4 bg-primary text-white font-bold px-6 py-3 w-40 rounded-2xl hover:opacity-90 transition text-center">
+						SIGN UP NOW
+					</a>
 					<div className="flex space-x-6 items-center">
-						<a href="https://www.instagram.com/formulatech.hacks/" className="hover:text-primary fill-primary">
-							<img src={instagram.src} alt="Instagram" className="h-20 w-20 object-contain filter brightness-0 invert"/>
+						<a href="https://www.instagram.com/formulatech.hacks/" target="_blank" rel="noopener noreferrer" className="hover:text-primary">
+							<img src={instagram.src} alt="Instagram" className="h-12 w-12 object-contain filter brightness-0 invert" />
 						</a>
-						<a href="https://www.linkedin.com/company/formulatech-hacks" className="hover:text-primary">
-							<img
-								src={linkedin.src}
-								alt="LinkedIn"
-								className="h-10 w-10 object-contain filter brightness-0 invert"
-							/>
+						<a href="https://www.linkedin.com/company/formulatech-hacks" target="_blank" rel="noopener noreferrer" className="hover:text-primary">
+							<img src={linkedin.src} alt="LinkedIn" className="h-12 w-12 object-contain filter brightness-0 invert" />
 						</a>
-						<a href="mailto:someone@example.com" className="hover:text-primary">
+						<button
+							type="button"
+							onClick={() =>
+								window.open(
+									"https://mail.google.com/mail/?view=cm&fs=1&to=formulatech.hacks@gmail.com",
+									"_blank",
+									"noopener,noreferrer"
+								)
+							}
+							className="hover:text-primary cursor-pointer"
+							aria-label="Email us"
+						>
 							<img
 								src={email.src}
 								alt="Email"
-								className="h-20 w-20 object-contain filter brightness-0 invert"
+								className="h-10 w-auto object-contain filter brightness-0 invert"
 							/>
-						</a>
+						</button>
 					</div>
 				</div>
 			)}
