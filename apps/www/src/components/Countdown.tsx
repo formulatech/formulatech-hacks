@@ -34,29 +34,40 @@ export default function Countdown () {
         setCurTime(calculateTimeLeft());
 
         const intervalId = setInterval(() => {
-            console.log("Interval running");
             setCurTime(calculateTimeLeft());
         }, 1000);
 
         return () => {
-            console.log("Cleanup running");
             clearInterval(intervalId);
         };
 
     }, []);
 
     return (
-
-        <div className="h-[500px] md:h-[800px] lg:h-[500px] w-8/10 p-3 bg-[#1C1B20] r-2 flex flex-col lg:flex-row rounded-4xl border-black border-5 justify-evenly">
-            <CountdownColumn label="Days" value={curTime.days} />
-            <CountdownColumn label="Hours" value={curTime.hours} />
-            <CountdownColumn label="Minutes" value={curTime.minutes} />
-            <CountdownColumn label="Seconds" value={curTime.seconds} />
+        <div className="w-full flex flex-col items-center">
+            <div className="flex">
+                <div className="hidden md:block font-title font-bold text-4xl mb-8 bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">/</div>
+                <div className="font-title font-bold text-center text-2xl md:text-3xl lg:text-4xl mb-8 mx-8 bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">COUNTDOWN TO HACKATHON</div>
+                <div className="hidden md:block font-title font-bold text-4xl mb-8 bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">/</div>
+            </div>
+            <div className="hidden h-[250px] lg:h-[370px] w-8/10 p-3 bg-[#1C1B20] r-2 md:flex md:flex-row rounded-4xl border-black border-5 gap-0 justify-center">
+                <CountdownColumn label="Days" value={curTime.days} />
+                <CountdownColumn label="Hours" value={curTime.hours} />
+                <CountdownColumn label="Minutes" value={curTime.minutes} />
+                <CountdownColumn label="Seconds" value={curTime.seconds} />
+            </div>
+            <div className="md:hidden h-[300px] flex flex-wrap w-8/10 bg-black rounded-2xl">
+                <div className="h-1/2 w-full flex justify-evenly items-center">
+                    <CountdownColumn label="Days" value={curTime.days} />
+                    <CountdownColumn label="Hours" value={curTime.hours} />
+                </div>
+                <div className="h-1/2 w-full flex justify-evenly items-center">
+                    <CountdownColumn label="Minutes" value={curTime.minutes} />
+                    <CountdownColumn label="Seconds" value={curTime.seconds} />
+                </div>
+            </div>
         </div>
-        
-
     )
-
 }
 
 function CountdownColumn ({label, value} : {label : string, value : number}) {
@@ -70,11 +81,11 @@ function CountdownColumn ({label, value} : {label : string, value : number}) {
 
     return (
 
-        <div className="w-full lg:w-23/100 h-1/4 lg:h-full flex flex-row lg:flex-col lg:justify-evenly">
-            <div className="h-full lg:h-3/20 flex w-1/2 lg:w-full bg-[#fefdf3] rounded-lg border-5 border-[#d1283e] justify-center items-center">
-                <p className="font-bold font-title text-xl md:text-5xl lg:text-3xl">{label}</p>
+        <div className="w-1/3 md:w-24/100 h-8/10 md:h-full flex flex-col justify-evenly">
+            <div className="h-1/5 flex w-full bg-[#fefdf3] rounded-lg border-2 md:border-4 lg:border-5 border-[#d1283e] justify-center items-center">
+                <p className="font-bold font-title text-sm md:text-xl lg:text-3xl">{label}</p>
             </div>
-            <div className="relative flex h-full lg:h-7/10 w-1/2 lg:w-full bg-yellow-200 rounded-lg border-5 border-[#d1283e] text-[50px] md:text-[85px] lg:text-[100px]">
+            <div className="relative flex h-7/10 w-full bg-yellow-200 rounded-lg border-2 md:border-4 lg:border-5 border-[#d1283e] text-[30px] md:text-[55px] lg:text-[100px]">
                 {//Conditional rendering of extra digit for days
                 value >= 100 ? <Digit dig={hundreds}></Digit> : ""
                 }
@@ -117,9 +128,9 @@ function Digit({ dig }: { dig: number }) {
     }, [dig]);
 
     return (
-        <div className="relative flex-col w-1/2 border border-[#d1283e] perspective-[400px]">
+        <div className="relative flex-col w-1/2 border border-[#d1283e] perspective-[400px] font-title">
             {/* Static top half */}
-            <div className="w-full h-1/2 bg-[#fefdf3] relative text-center leading-[2.1] lg:leading-[3.12]">
+            <div className="w-full h-1/2 bg-[#fefdf3] relative text-center leading-[2.64] md:leading-[2.52] lg:leading-[2.24]">
                 {curNumber}
             </div>
             
@@ -130,7 +141,7 @@ function Digit({ dig }: { dig: number }) {
             
             {/* Flipping top half */}
             <div 
-                className={`absolute overflow-hidden top-0 w-full h-1/2 bg-[#fefdf3] text-center leading-[2.1] lg:leading-[3.13] origin-bottom ${
+                className={`absolute overflow-hidden top-0 w-full h-1/2 bg-[#fefdf3] text-center leading-[2.64] md:leading-[2.52] lg:leading-[2.24] origin-bottom ${
                     isFlippingTop ? 'transition-transform duration-450 ease-in' : ''
                 }`}
                 style={{
