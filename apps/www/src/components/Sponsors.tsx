@@ -71,12 +71,22 @@ interface SponsorCardProps {
 }
 
 function SponsorCard({ sponsor, size }: SponsorCardProps) {
+  // Define width classes based on tier
+  // Mobile: Gold=1/2, Silver=1/3, Bronze=1/3
+  // Desktop: Gold=1/2, Silver=1/3, Bronze=1/4
+  const widthClasses =
+    size === "large"
+      ? "w-[calc(50%-10px)] md:w-[calc(50%-15px)]" // Gold: 1/2 on both
+      : size === "medium"
+        ? "w-[calc(33.333%-13.333px)] md:w-[calc(33.333%-20px)]" // Silver: 1/3 on both
+        : "w-[calc(33.333%-13.333px)] md:w-[calc(25%-22.5px)]"; // Bronze: 1/3 mobile, 1/4 desktop
+
   return (
     <a
       href={sponsor.website}
       target="_blank"
       rel="noreferrer"
-      className="flex-1 min-w-[200px] rounded-[20px] p-[30px] transition-all duration-300 backdrop-blur-md hover:backdrop-blur-lg"
+      className={`${widthClasses} flex-shrink-0 rounded-[20px] p-[12px] md:p-[30px] transition-all duration-300 backdrop-blur-md hover:backdrop-blur-lg`}
       style={{
         background: "linear-gradient(180deg, rgba(251, 44, 70, 0.3) 0%, rgba(0, 174, 185, 0.3) 100%)",
         border: "1px solid rgba(255, 255, 255, 0.1)",
@@ -91,7 +101,7 @@ function SponsorCard({ sponsor, size }: SponsorCardProps) {
             className="max-h-[100px] md:max-h-[140px] w-auto object-contain"
           />
         </div>
-        <h3 className="font-title font-bold text-white text-center text-lg md:text-xl">
+        <h3 className="font-title font-bold text-white text-center text-xs md:text-lg md:text-xl">
           {sponsor.name}
         </h3>
         {size === "large" && (
@@ -374,7 +384,7 @@ export default function Sponsors() {
 
           {/* Sponsors Grid */}
           <div className="flex flex-col gap-5 md:gap-[30px] w-full mt-5">
-            {/* Gold tier sponsors - 1 per row */}
+            {/* Gold tier sponsors - 2 per row */}
             {goldSponsors.length > 0 && (
               <div className="flex flex-wrap justify-center gap-5 md:gap-[30px] w-full">
                 {goldSponsors.map((sponsor) => (
@@ -387,9 +397,9 @@ export default function Sponsors() {
               </div>
             )}
 
-            {/* Silver tier - 2 per row on desktop */}
+            {/* Silver tier - 3 per row */}
             {silverSponsors.length > 0 && (
-              <div className="flex flex-wrap justify-between gap-5 md:gap-[30px] w-full">
+              <div className="flex flex-wrap justify-center gap-5 md:gap-[30px] w-full">
                 {silverSponsors.map((sponsor) => (
                   <SponsorCard
                     key={sponsor.key}
@@ -400,9 +410,9 @@ export default function Sponsors() {
               </div>
             )}
 
-            {/* Bronze tier - 3 per row on desktop */}
+            {/* Bronze tier - 3 per row on mobile, 4 per row on desktop */}
             {bronzeSponsors.length > 0 && (
-              <div className="flex flex-wrap justify-between gap-5 md:gap-[30px] w-full">
+              <div className="flex flex-wrap justify-center gap-5 md:gap-[30px] w-full">
                 {bronzeSponsors.map((sponsor) => (
                   <SponsorCard
                     key={sponsor.key}
