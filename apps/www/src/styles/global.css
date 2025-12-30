@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@tailwind utilities;
 
 @theme {
 	--color-background: #fffcf3;
@@ -33,6 +34,25 @@
     -webkit-text-stroke: 36px transparent;
     background-size: 100% 100%;
 }
+
+.stroke-responsive {
+  -webkit-text-stroke: 8px transparent; 
+  background-size: 100% 100%;
+}
+
+@media (min-width: 768px) { 
+  .stroke-responsive {
+    -webkit-text-stroke: 13px transparent;
+  }
+}
+
+@media (min-width: 1024px) { 
+  .stroke-responsive {
+    -webkit-text-stroke: 18px transparent;
+  }
+}
+
+
 
 .bg {
     background: linear-gradient(to bottom, #00AEB9, #D2273D);
