@@ -6,7 +6,7 @@ export default function Hero() {
     <div className="relative w-full overflow-hidden aspect-[98/216] min-[412px]:max-sm:max-h-[916px] sm:aspect-auto sm:min-h-screen sm:pb-16 lg:aspect-[1512/1300] lg:pb-0">
       {/* Mobile Background SVG - Clipped to frame bounds */}
       <svg
-        className="absolute inset-0 w-full h-full sm:hidden min-[412px]:max-sm:-top-[25%] min-[412px]:max-sm:h-[125%] min-[568px]:max-sm:-top-[35%] min-[568px]:max-sm:h-[135%]"
+        className="absolute inset-0 w-full h-full sm:hidden min-[412px]:max-sm:-top-[25%] min-[412px]:max-sm:h-[125%] min-[524px]:max-sm:-top-[45%] min-[524px]:max-sm:h-[145%] min-[568px]:max-sm:-top-[50%] min-[568px]:max-sm:h-[150%]"
         viewBox="0 0 393 1200"
         preserveAspectRatio="xMidYMin slice"
         xmlns="http://www.w3.org/2000/svg"
@@ -16,6 +16,39 @@ export default function Hero() {
             <stop offset="0%" stopColor="#00AEB9" />
             <stop offset="100%" stopColor="#FF1A37" />
           </linearGradient>
+
+          {/* Star filters and gradients */}
+          <filter id="mobileStarTealFilter" x="0" y="0" width="157" height="153.564" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+            <feFlood floodOpacity="0" result="BackgroundImageFix" />
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+            <feOffset dx="4" dy="4" />
+            <feGaussianBlur stdDeviation="2" />
+            <feComposite in2="hardAlpha" operator="out" />
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
+          </filter>
+
+          <radialGradient id="mobileStarTealGradient" cx="-12.5" cy="540.8" r="80" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#00AEB9" />
+            <stop offset="100%" stopColor="#007A82" />
+          </radialGradient>
+
+          <filter id="mobileStarRedFilter" x="0" y="0" width="174.729" height="183" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+            <feFlood floodOpacity="0" result="BackgroundImageFix" />
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+            <feOffset dx="4" dy="4" />
+            <feGaussianBlur stdDeviation="2" />
+            <feComposite in2="hardAlpha" operator="out" />
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
+          </filter>
+
+          <radialGradient id="mobileStarRedGradient" cx="331.4" cy="771.5" r="85" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#D2273D" />
+            <stop offset="100%" stopColor="#A41023" />
+          </radialGradient>
         </defs>
 
         {/* Rectangle 114 - Gradient Background at (-577, -132) */}
@@ -60,6 +93,18 @@ export default function Hero() {
           <rect x="478.48" y="68.28" width="22.76" height="22.76" fill="#FB2C46" fillOpacity="0.3" />
           <rect x="501.24" y="91.04" width="22.76" height="22.76" fill="#FB2C46" fillOpacity="0.1" />
           <rect x="524" y="113.8" width="22.76" height="22.76" fill="#FB2C46" fillOpacity="0.3" />
+        </g>
+
+        {/* Star 4 (Teal) - Positioned on left side, around CTA row */}
+        <g transform="translate(-67, 468)" filter="url(#mobileStarTealFilter)">
+          <path d="M135.711 35.4168L99.6079 66.7939L145.977 78.5353L98.326 82.6988L128.938 119.453L87.9402 94.8127L91.1023 142.541L72.4175 98.5085L46.9219 138.98L57.6872 92.3744L13.2722 110.131L49.3756 78.7535L3.0063 67.0121L50.6575 62.8486L20.0454 26.0944L61.0432 50.7347L57.8811 3.00661L76.5659 47.039L102.062 6.56746L91.2963 53.173L135.711 35.4168Z" fill="url(#mobileStarTealGradient)" />
+          <path d="M136.994 34.6342C137.376 35.2602 137.25 36.0704 136.697 36.5514L102.764 66.0413L146.346 77.0784C147.057 77.2584 147.534 77.925 147.475 78.6559C147.416 79.3869 146.839 79.9683 146.108 80.0323L101.322 83.9452L130.093 118.491C130.563 119.054 130.556 119.874 130.079 120.431C129.602 120.988 128.792 121.119 128.164 120.741L89.6306 97.5818L92.6024 142.441C92.6508 143.173 92.1639 143.833 91.4505 144.003C90.737 144.173 90.0051 143.803 89.7186 143.128L72.1568 101.742L48.1934 139.781C47.8025 140.402 47.0213 140.649 46.3443 140.367C45.6673 140.085 45.2926 139.356 45.4577 138.642L55.576 94.8372L13.8305 111.526C13.1496 111.798 12.3716 111.54 11.9895 110.914C11.6075 110.288 11.733 109.477 12.2865 108.996L46.2193 79.5036L2.63724 68.4688C1.9264 68.2887 1.44945 67.6222 1.50837 66.8912C1.56737 66.1603 2.14483 65.5787 2.8753 65.5148L47.6619 61.6006L18.8902 27.0562C18.421 26.4927 18.427 25.6727 18.9043 25.116C19.3816 24.5593 20.1912 24.4281 20.8197 24.8058L59.3532 47.964L56.3811 3.10578C56.3328 2.37407 56.8196 1.71408 57.533 1.54423C58.2464 1.37445 58.9783 1.74418 59.2649 2.41911L76.8271 43.8036L100.79 5.76607C101.181 5.14579 101.962 4.8981 102.639 5.17995C103.316 5.46184 103.691 6.19086 103.526 6.90533L93.4083 50.7094L135.153 34.0211C135.834 33.7489 136.612 34.0082 136.994 34.6342Z" fill="none" stroke="white" strokeWidth="3" strokeLinejoin="round" />
+        </g>
+
+        {/* Star 3 (Red) - Positioned on right side, lower in section */}
+        <g transform="translate(248, 684)" filter="url(#mobileStarRedFilter)">
+          <path d="M83.3647 3L92.765 58.5689L133.033 19.1381L107.975 69.6196L163.729 61.3881L113.785 87.5L163.729 113.612L107.975 105.38L133.033 155.862L92.765 116.431L83.3647 172L73.9644 116.431L33.6969 155.862L58.7544 105.38L3.00047 113.612L52.9447 87.5L3.00047 61.3881L58.7544 69.6196L33.6969 19.1381L73.9644 58.5689L83.3647 3Z" fill="url(#mobileStarRedGradient)" />
+          <path d="M83.3647 1.5C84.0966 1.5 84.7212 2.02837 84.8433 2.75L93.7651 55.4893L131.983 18.0664C132.506 17.5543 133.322 17.4946 133.915 17.9248C134.506 18.355 134.702 19.1493 134.376 19.8047L110.593 67.7158L163.51 59.9043C164.234 59.7976 164.93 60.2288 165.156 60.9248C165.382 61.6208 165.073 62.3787 164.424 62.7178L117.022 87.5L164.424 112.282C165.073 112.621 165.382 113.379 165.156 114.075C164.93 114.771 164.234 115.202 163.51 115.096L110.593 107.283L134.376 155.195C134.702 155.851 134.506 156.645 133.915 157.075C133.322 157.505 132.506 157.446 131.983 156.934L93.7651 119.51L84.8433 172.25C84.7212 172.972 84.0966 173.5 83.3647 173.5C82.6329 173.5 82.0083 172.972 81.8862 172.25L72.9634 119.51L34.7466 156.934C34.2237 157.446 33.407 157.505 32.8149 157.075C32.2232 156.645 32.0279 155.851 32.353 155.195L56.1353 107.283L3.21924 115.096C2.49531 115.202 1.79986 114.771 1.57373 114.075C1.34776 113.379 1.65673 112.621 2.30518 112.282L49.7065 87.5L2.30518 62.7178C1.65673 62.3787 1.34776 61.6208 1.57373 60.9248C1.79986 60.2288 2.49531 59.7976 3.21924 59.9043L56.1353 67.7158L32.353 19.8047C32.0279 19.1493 32.2232 18.355 32.8149 17.9248C33.407 17.4946 34.2237 17.5543 34.7466 18.0664L72.9634 55.4893L81.8862 2.75L81.9146 2.61719C82.0864 1.9644 82.6785 1.5 83.3647 1.5Z" fill="none" stroke="white" strokeWidth="3" strokeLinejoin="round" />
         </g>
       </svg>
 
