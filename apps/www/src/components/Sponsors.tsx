@@ -233,10 +233,8 @@ export default function Sponsors() {
                 letterSpacing: "-0.05em",
               }}
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-              sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua. Ut enim ad minim veniam, quis nostrud
-              exercitation
+              We are incredibly grateful to our sponsors for their generous support in making this hackathon possible. 
+              Their contributions help us create an inclusive, inspiring, and impactful experience for every participant.
             </p>
 
             {/* Contact Section */}
@@ -253,7 +251,7 @@ export default function Sponsors() {
                   lineHeight: "1.8em",
                 }}
               >
-                Email us at address@gmail.com
+                Email us at formulatech.hacks@gmail.com
               </p>
 
               {/* CTA Buttons */}
@@ -324,7 +322,7 @@ export default function Sponsors() {
                     lineHeight: "1.8em",
                   }}
                 >
-                  Email us at address@gmail.com
+                  Email us at formulatech.hacks@gmail.com
                 </p>
 
                 {/* CTA Buttons */}
