@@ -1,5 +1,7 @@
 import "../styles/Hero.css";
 import carSide from "../assets/car-side.svg";
+import desktopStarRed from "../assets/desktop-star-red.svg";
+import desktopStarTeal from "../assets/desktop-star-teal.svg";
 
 export default function Hero() {
   return (
@@ -232,6 +234,25 @@ export default function Hero() {
           <rect width="61.625" height="61.625" transform="matrix(-1 0 0 1 308.125 61.625)" fill="#FB2C46" fillOpacity="0.3" />
           <rect width="61.625" height="61.625" transform="matrix(-1 0 0 1 246.5 0)" fill="#FB2C46" fillOpacity="0.3" />
         </g>
+
+        {/* Desktop Stars */}
+        {/* Red star */}
+        <image
+          href={desktopStarRed.src}
+          x="-96"
+          y="248"
+          width="419"
+          height="438"
+        />
+
+        {/* Teal star */}
+        <image
+          href={desktopStarTeal.src}
+          x="1184"
+          y="468"
+          width="457"
+          height="447"
+        />
       </svg>
 
       {/* Content Container */}
