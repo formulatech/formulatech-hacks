@@ -1,0 +1,44 @@
+/* Star rotation animations */
+@keyframes rotateClockwise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateCounterClockwise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+/* Mobile stars */
+.mobile-star-teal {
+  animation: rotateCounterClockwise 25s linear infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+.mobile-star-red {
+  animation: rotateClockwise 25s linear infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+/* Desktop stars */
+.desktop-star-red {
+  animation: rotateClockwise 25s linear infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+.desktop-star-teal {
+  animation: rotateCounterClockwise 25s linear infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
