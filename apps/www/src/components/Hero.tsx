@@ -5,7 +5,7 @@ import desktopStarTeal from "../assets/desktop-star-teal.svg";
 
 export default function Hero() {
   return (
-    <div className="relative w-full overflow-hidden aspect-[98/216] min-[412px]:max-sm:max-h-[916px] sm:aspect-auto sm:min-h-screen sm:pb-16 lg:aspect-[1512/1300] lg:pb-0">
+    <div className="relative w-full overflow-hidden aspect-[98/216] min-[412px]:max-sm:max-h-[916px] sm:aspect-auto sm:min-h-screen sm:pb-16 lg:aspect-[1512/1444] lg:pb-0 min-[1144px]:aspect-[1512/1300]">
       {/* Mobile Background SVG - Clipped to frame bounds */}
       <svg
         className="absolute inset-0 w-full h-full sm:hidden min-[412px]:max-sm:-top-[25%] min-[412px]:max-sm:h-[125%] min-[524px]:max-sm:-top-[45%] min-[524px]:max-sm:h-[145%] min-[568px]:max-sm:-top-[50%] min-[568px]:max-sm:h-[150%]"
@@ -271,7 +271,8 @@ export default function Hero() {
               className="text-white text-center text-[14px] font-semibold tracking-[-0.03em] sm:text-[16px] md:text-[18px] lg:text-[20px]"
               style={{
                 fontFamily: 'Inter, sans-serif',
-                lineHeight: '1.2102272851126534em'
+                lineHeight: '1.2102272851126534em',
+                textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'
               }}
             >
               xx/xx/2026
@@ -280,7 +281,8 @@ export default function Hero() {
               className="text-white text-center text-[14px] font-semibold tracking-[-0.03em] sm:text-[16px] md:text-[18px] lg:text-[20px]"
               style={{
                 fontFamily: 'Inter, sans-serif',
-                lineHeight: '1.2102272851126534em'
+                lineHeight: '1.2102272851126534em',
+                textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'
               }}
             >
               UNIVERSITY OF WATERLOO, LOCATION
@@ -299,6 +301,9 @@ export default function Hero() {
                 <stop offset="0%" style={{ stopColor: '#D2273D', stopOpacity: 1 }} />
                 <stop offset="100%" style={{ stopColor: '#00AEB9', stopOpacity: 1 }} />
               </linearGradient>
+              <filter id="smTitleDropShadow" x="-50%" y="-50%" width="200%" height="200%">
+                <feDropShadow dx="0" dy="2" stdDeviation="3" floodOpacity="0.3"/>
+              </filter>
             </defs>
             <text
               textAnchor="middle"
@@ -309,6 +314,7 @@ export default function Hero() {
               fontFamily="Orbitron, sans-serif"
               fontWeight="900"
               paintOrder="stroke fill"
+              filter="url(#smTitleDropShadow)"
             >
               <tspan x="50%" y="47">FORMULATECH</tspan>
               <tspan x="50%" y="103">HACKS</tspan>
@@ -327,6 +333,9 @@ export default function Hero() {
                 <stop offset="0%" style={{ stopColor: '#D2273D', stopOpacity: 1 }} />
                 <stop offset="100%" style={{ stopColor: '#00AEB9', stopOpacity: 1 }} />
               </linearGradient>
+              <filter id="mdTitleDropShadow" x="-50%" y="-50%" width="200%" height="200%">
+                <feDropShadow dx="0" dy="2" stdDeviation="3" floodOpacity="0.3"/>
+              </filter>
             </defs>
             <text
               textAnchor="middle"
@@ -337,6 +346,7 @@ export default function Hero() {
               fontFamily="Orbitron, sans-serif"
               fontWeight="900"
               paintOrder="stroke fill"
+              filter="url(#mdTitleDropShadow)"
             >
               <tspan x="50%" y="58">FORMULATECH</tspan>
               <tspan x="50%" y="128">HACKS</tspan>
@@ -355,6 +365,9 @@ export default function Hero() {
                 <stop offset="0%" style={{ stopColor: '#D2273D', stopOpacity: 1 }} />
                 <stop offset="100%" style={{ stopColor: '#00AEB9', stopOpacity: 1 }} />
               </linearGradient>
+              <filter id="lgTitleDropShadow" x="-50%" y="-50%" width="200%" height="200%">
+                <feDropShadow dx="0" dy="2" stdDeviation="3" floodOpacity="0.3"/>
+              </filter>
             </defs>
             <text
               textAnchor="middle"
@@ -365,6 +378,7 @@ export default function Hero() {
               fontFamily="Orbitron, sans-serif"
               fontWeight="900"
               paintOrder="stroke fill"
+              filter="url(#lgTitleDropShadow)"
             >
               <tspan x="50%" y="70">FORMULATECH</tspan>
               <tspan x="50%" y="154">HACKS</tspan>
@@ -383,6 +397,9 @@ export default function Hero() {
                 <stop offset="0%" style={{ stopColor: '#D2273D', stopOpacity: 1 }} />
                 <stop offset="100%" style={{ stopColor: '#00AEB9', stopOpacity: 1 }} />
               </linearGradient>
+              <filter id="mobileTitleDropShadow" x="-50%" y="-50%" width="200%" height="200%">
+                <feDropShadow dx="0" dy="2" stdDeviation="3" floodOpacity="0.3"/>
+              </filter>
             </defs>
             <text
               textAnchor="middle"
@@ -393,6 +410,7 @@ export default function Hero() {
               fontFamily="Orbitron, sans-serif"
               fontWeight="900"
               paintOrder="stroke fill"
+              filter="url(#mobileTitleDropShadow)"
             >
               <tspan x="50%" y="30">FORMULATECH</tspan>
               <tspan x="50%" y="66">HACKS</tspan>
@@ -405,7 +423,8 @@ export default function Hero() {
           className="text-white text-center text-base font-semibold tracking-[-0.03em] w-full sm:text-[22px] md:text-[26px] lg:text-[32px] sm:tracking-[-0.05em]"
           style={{
             fontFamily: 'Inter, sans-serif',
-            lineHeight: '1.1em'
+            lineHeight: '1.1em',
+            textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'
           }}
         >
           Where motorsport meets makers.
@@ -420,7 +439,7 @@ export default function Hero() {
             href="https://docs.google.com/forms/d/e/1FAIpQLScru3wvO6uZcbIDaXxxaUfB5GVFhpmB5LtLRFH8gHBSazsdFg/viewform"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-row justify-center items-center gap-[10px] px-[15px] py-[10px] bg-[#D2273D] rounded-[300px] hover:bg-[#D2273D]/90 transition-all duration-200 sm:px-[16px] sm:py-[16px] md:px-[18px] md:py-[18px] lg:px-[20px] lg:py-[20px]"
+            className="flex flex-row justify-center items-center gap-[10px] px-[15px] py-[10px] bg-[#D2273D] rounded-[300px] hover:bg-[#D2273D]/90 transition-all duration-200 drop-shadow-md sm:px-[16px] sm:py-[16px] md:px-[18px] md:py-[18px] lg:px-[20px] lg:py-[20px]"
           >
             <span
               className="text-white text-[14px] font-black text-left sm:text-[15px] md:text-[16px] lg:text-[18px]"
@@ -436,7 +455,7 @@ export default function Hero() {
           {/* Secondary Button */}
           <a
             href="#sponsors"
-            className="flex flex-row justify-center items-center gap-[10px] px-[15px] py-[10px] border-[3px] border-[#FBFCEE] rounded-[300px] hover:bg-white/10 transition-all duration-200 sm:px-[16px] sm:py-[16px] md:px-[18px] md:py-[18px] lg:px-[20px] lg:py-[20px]"
+            className="flex flex-row justify-center items-center gap-[10px] px-[15px] py-[10px] border-[3px] border-[#FBFCEE] rounded-[300px] hover:bg-white/10 transition-all duration-200 drop-shadow-md sm:px-[16px] sm:py-[16px] md:px-[18px] md:py-[18px] lg:px-[20px] lg:py-[20px]"
           >
             <span
               className="text-white text-[14px] font-black text-left sm:text-[15px] md:text-[16px] lg:text-[18px]"
@@ -452,7 +471,7 @@ export default function Hero() {
 
         {/* Car Image - responsive sizing */}
         <img
-          className="mt-5 w-[281px] h-[160px] sm:w-[420px] sm:h-[241px] md:w-[530px] md:h-[304px] lg:w-[642px] lg:h-[368px]"
+          className="mt-5 w-[281px] h-[160px] drop-shadow-md sm:w-[420px] sm:h-[241px] md:w-[530px] md:h-[304px] lg:w-[642px] lg:h-[368px]"
           src={carSide.src}
           alt="Side Car"
         />
