@@ -108,7 +108,7 @@ export default function FAQ() {
     };
 
     return (
-        <div className="mt-[20dvh] pt-20 w-[95%] flex flex-col gap-[30px] relative pb-20 min-h-[50vw]"
+        <div className="mt-[20dvh] pt-20 w-[95%] flex flex-col gap-[30px] relative pb-20 min-h-[50vw] bg-[#fafbee]"
             id="faqs"
         >
             <h1
