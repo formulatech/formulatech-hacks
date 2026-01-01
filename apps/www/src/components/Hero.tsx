@@ -285,7 +285,7 @@ export default function Hero() {
                 textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'
               }}
             >
-              UNIVERSITY OF WATERLOO, LOCATION
+              UNIVERSITY OF WATERLOO
             </p>
           </div>
 
