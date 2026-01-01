@@ -1,11 +1,12 @@
 import { useState } from "react";
-import stands from "../assets/Stands.png";
+import stands from "../assets/stands.svg";
 import developersCar from "../assets/developersCar.png";
 import marketingCar from "../assets/marketingCar.png";
 import financeCar from "../assets/financeCar.png";
 import designCar from "../assets/designCar.png";
 import workshopsCar from "../assets/workshopsCar.svg";
 import track from "../assets/track.svg";
+import blueStar from "../assets/teal-star.svg";
 
 // Team member headshots
 import francesZhao from "../assets/headshots/francess - Frances Zhao.jpeg";
@@ -25,7 +26,6 @@ export default function Teams() {
         { name: "Workshops", src: workshopsCar.src, alt: "Workshops Car" },
     ];
 
-    // Team members data - members can be part of multiple teams
     const teamMembers = [
         // Development Team
         { name: "Marwa Zaryab", teams: ["Development", "Workshops","Finance"], image: "/src/assets/headshots/IMG_9466 - Marwa Zaryab.JPG", level: 1 },
@@ -34,18 +34,19 @@ export default function Teams() {
         { name: "Richard Li", teams: ["Development"], image: "/src/assets/headshots/headshot - Richard Li.png", level: 3 },
         { name: "Adrian Mathew", teams: ["Finance"], image: "/src/assets/headshots/IMG_6749 - Adrian Mathew.jpeg", level: 5 },
         { name: "Sharvesh V", teams: ["Finance"], image: "/src/assets/headshots/IMG_4442 - Sharvesh V.jpeg", level: 3 },
+        { name: "Rayyan", teams: ["Marketing"], image: "/src/assets/headshots/headshot - Rayyan Huda.png", level: 3},
 
         // Marketing Team
         { name: "Maira Khawaja", teams: ["Logistics"], image: "/src/assets/headshots/IMG_2884 - Maira Khawaja.heic", level: 1 },
-        { name: "Ana Maniram", teams: ["Marketing"], image: "/src/assets/headshots/100_2669 - Ana Maniram.jpeg", level: 2 },
+        { name: "Ana Maniram", teams: ["Marketing"], image: "/src/assets/headshots/100_2669 - Ana Maniram.jpeg", level: 3 },
         { name: "Victoria Gee", teams: ["Logistics"], image: "/src/assets/headshots/VGee Headshot - Victoria Gee.JPG", level: 1 },
 
         // Finance Team
         { name: "Linda Chen", teams: ["Marketing"], image: "/src/assets/headshots/lindawinda - Linda Chen.PNG", level: 2 },
 
         // Design Team
-        { name: "Frances Zhao", teams: ["Design"], image: francesZhao.src, level: 1 },
-        { name: "Elin Zhang", teams: ["Marketing"], image: "/src/assets/headshots/54565301122_051267de38_q - Elin Zhang.jpg", level: 1 },
+        { name: "Frances Zhao", teams: ["Design"], image: francesZhao.src, level: 2 },
+        { name: "Elin Zhang", teams: ["Marketing"], image: "/src/assets/headshots/54565301122_051267de38_q - Elin Zhang.jpg", level: 2 },
         { name: "Ariel", teams: ["Finance"], image: "/src/assets/headshots/IMG_8261 - Ariel.heic", level: 5 },
 
         // Workshops Team
@@ -60,8 +61,9 @@ export default function Teams() {
 
     return (
         <>
-            <div className="mt-[5dvh] pt-5 w-[80%] mx-auto flex flex-col gap-[30px]" id="teams">
-                <h1 className="font-black p-5 -ml-2.5 text-5xl capitalize text-white bg-clip-text bg-gradient-to-r from-primary to-secondary stroke-xl font-title">
+            <div className="mt-[5dvh] pt-5 w-[80%] mx-auto flex flex-col gap-[30px] bg-[#fafbee]" id="teams">
+                <img src={blueStar.src} alt="Blue Star" className="absolute top-0 left-0 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-56 xl:h-56 -mt-10 -ml-10 z-0" />
+                <h1 className="font-black p-5 -ml-2.5 text-5xl capitalize text-foreground stroke-xl font-title">
                     THE TEAM
                 </h1>
             </div>
@@ -71,24 +73,23 @@ export default function Teams() {
                 <div className="relative w-full max-w-7xl flex justify-center">
                     <img
                         src={stands.src}
-                        alt="Team Stands"
-                        className="w-full h-auto object-contain scale-110 md:scale-150 mx-auto"
+                    alt="Team Stands"
+                        className="w-full h-auto object-contain scale-90 md:scale-100 mx-auto"
                     />
 
                     {/* Team member circles on stands */}
                     {teamMembers.map((member) => {
-                        // Group members by level and calculate their position within the level
                         const membersInLevel = teamMembers.filter(m => m.level === member.level);
                         const memberIndexInLevel = membersInLevel.findIndex(m => m.name === member.name);
                         const spacing = 100 / (membersInLevel.length + 1); // Distribute evenly across the level
 
                         // Calculate position based on level (responsive positioning)
                         const levelConfigs = {
-                            1: { top: "0%", baseLeft: 3 }, // Top level
-                            2: { top: "20%", baseLeft: 3 }, // Upper middle level
-                            3: { top: "41%", baseLeft: 3 }, // Lower middle level
+                            1: { top: "3%", baseLeft: 3 }, // Top level
+                            2: { top: "23%", baseLeft: 3 }, // Upper middle level
+                            3: { top: "43%", baseLeft: 3 }, // Lower middle level
                             4: { top: "63%", baseLeft: 3 }, // Bottom level
-                            5: { top: "90%", baseLeft: 3 }, // Lowest level
+                            5: { top: "83%", baseLeft: 3 }, // Lowest level
                         };
                         const config = levelConfigs[member.level as keyof typeof levelConfigs];
                         const leftPosition = config.baseLeft + (memberIndexInLevel + 1) * spacing;
@@ -96,15 +97,15 @@ export default function Teams() {
                         return (
                             <div
                                 key={member.name}
-                                className={`absolute w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24 rounded-full border-2 border-white shadow-2xl overflow-hidden transition-all duration-300 drop-shadow-lg ${
+                                className={`absolute w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-18 lg:h-18 xl:w-20 xl:h-20 rounded-full border-2 border-white shadow-2xl overflow-hidden transition-all duration-300 drop-shadow-lg ${
                                     selectedCar === null || member.teams.includes(selectedCar)
                                         ? "opacity-100 scale-100"
                                         : "opacity-30 scale-90"
                                 }`}
-                                style={{
+                            style={{
                                     top: config.top,
                                     left: `${leftPosition}%`,
-                                    transform: "translate(-50%, 0%)", // Positioned to sit directly on stands
+                                    transform: "translate(-70%, 0%)", // Positioned to sit directly on stands
                                 }}
                                 title={member.name}
                             >
