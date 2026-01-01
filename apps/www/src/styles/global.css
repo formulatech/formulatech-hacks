@@ -56,12 +56,11 @@
 
 .bg {
     background: linear-gradient(to bottom, #00AEB9, #D2273D);
-    width: 100%;
-    min-height: 100dvh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: start;
+	background-image: url('../assets/top layer.svg');
+    background-color: #fafbee; /* Fallback color */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }   
 
 html {
