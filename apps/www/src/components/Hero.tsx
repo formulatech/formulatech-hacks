@@ -275,7 +275,7 @@ export default function Hero() {
                 textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'
               }}
             >
-              xx/xx/2026
+              21/03/2026
             </p>
             <p
               className="text-white text-center text-[14px] font-semibold tracking-[-0.03em] sm:text-[16px] md:text-[18px] lg:text-[20px]"
