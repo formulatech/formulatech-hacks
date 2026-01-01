@@ -9,7 +9,7 @@ interface TimeLeft {
 
 export default function Countdown () {
 
-    const hackathonDay = new Date(2026, 1, 7, 0, 0, 0); // February 7th, 2026 at midnight
+    const hackathonDay = new Date(2026, 3, 21, 0, 0, 0); // March 21st, 2026 at midnight
     const initTimeLeft = {days : 0, hours : 0, minutes : 0, seconds : 0};
     const [curTime, setCurTime] = useState<TimeLeft>(initTimeLeft);
 
