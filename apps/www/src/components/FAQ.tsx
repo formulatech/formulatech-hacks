@@ -35,7 +35,7 @@ const questions = {
 export default function FAQ() {
     const [activeCategory, setActiveCategory] = useState<string | null>("General");
     const [openQuestions, setOpenQuestions] = useState<Record<string, boolean>>({});
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
     const popupRef = useRef<HTMLDivElement | null>(null);
     const carsRef = useRef<HTMLDivElement | null>(null);
     const hideTimeoutRef = useRef<number | null>(null);
@@ -108,7 +108,7 @@ export default function FAQ() {
     };
 
     return (
-        <div className="mt-[20dvh] pt-20 w-[95%] flex flex-col gap-[30px] relative pb-20 min-h-[50vw] bg-[#fafbee]"
+        <div className="mt-[20dvh] pt-20 w-full flex flex-col gap-[30px] relative pb-20 min-h-[50vw] bg-[#fafbee]"
             id="faqs"
         >
             <h1
