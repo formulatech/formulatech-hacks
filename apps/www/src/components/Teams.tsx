@@ -9,6 +9,41 @@ import track from "../assets/track.svg";
 import workshopsCar from "../assets/workshopsCar.svg";
 
 // Team member headshots
+import adrianMathew from "../assets/headshots/adrian_mathew.jpeg";
+import francesZhao from "../assets/headshots/frances_zhao.jpeg";
+import mairaKhawaja from "../assets/headshots/maira_khawaja.png";
+import marwaZaryab from "../assets/headshots/marwa_zaryab.jpg";
+import rayyanHuda from "../assets/headshots/rayyan_huda.png";
+import sharveshV from "../assets/headshots/sharvesh_v.jpeg";
+import victoriaGee from "../assets/headshots/victoria_gee.jpg";
+
+import anaManiram from "../assets/headshots/ana_maniram.jpeg";
+import deepikaAnbalagan from "../assets/headshots/deepika_anbalagan.png";
+
+import sunnyHu from "../assets/headshots/blank_headshot.png";
+import emileeChen from "../assets/headshots/blank_headshot.png";
+import jovittaSeb from "../assets/headshots/jovitta_seb.jpeg";
+
+import ammarAdam from "../assets/headshots/ammar_adam.jpg";
+import arielLiu from "../assets/headshots/blank_headshot.png";
+import akritiBatra from "../assets/headshots/blank_headshot.png";
+import rodneyWu from "../assets/headshots/rodney_wu.jpeg";
+
+import akkiSengupta from "../assets/headshots/blank_headshot.png";
+import elinZhang from "../assets/headshots/elin_zhang.jpg";
+import hyLacNguyen from "../assets/headshots/hy_lac_nguyen.jpg";
+import lindaChen from "../assets/headshots/linda_chen.png";
+import richardLi from "../assets/headshots/richard_li.png";
+
+import annieSong from "../assets/headshots/blank_headshot.png";
+import irisZhu from "../assets/headshots/blank_headshot.png";
+import aidanChien from "../assets/headshots/blank_headshot.png";
+
+import frankDing from "../assets/headshots/blank_headshot.png";
+import muhammadAhmad from "../assets/headshots/muhammad_ahmad.jpg";
+
+import advaitGore from "../assets/headshots/blank_headshot.png";
+import dequanKong from "../assets/headshots/dequan_kong.jpg";
 
 export default function Teams() {
     const [selectedCar, setSelectedCar] = useState<string | null>(null);
@@ -68,48 +103,48 @@ export default function Teams() {
 
     const teamMembers = [
         // Chair and Team Leads
-        { name: "Adrian Mathew", teams: ["Finance"], role: ["Treasurer", "Finance Team Lead"], image: "/src/assets/headshots/adrian_mathew.jpeg", level: 5 },
-        { name: "Frances Zhao", teams: ["Design"], role: ["Design Team Lead"], image: "/src/assets/headshots/frances_zhao.jpeg", level: 5 },
-        { name: "Marwa Zaryab", teams: ["Development", "Design", "Marketing", "Finance", "Workshops", "Logistics", "Sponsorship"], role: ["Deputy Chair", "Secretary", "Developer Team Lead"], image: "/src/assets/headshots/marwa_zaryab.jpg", level: 5 },
-        { name: "Maira Khawaja", teams: ["Development", "Design", "Marketing", "Finance", "Workshops", "Logistics", "Sponsorship"], role: ["President"], image: "/src/assets/headshots/maira_khawaja.png", level: 5 },
-        { name: "Rayyan Huda", teams: ["Marketing"], role: ["Marketing Team Lead"], image: "/src/assets/headshots/rayyan_huda.png", level: 5 },
-        { name: "Sharvesh Vivekanandhan", teams: ["Finance", "Sponsorship Team Lead"], role: ["Sponsorship Team Lead"], image: "/src/assets/headshots/sharvesh_v.jpeg", level: 5 },
-        { name: "Victoria Gee", teams: ["Logistics"], role: ["Logistics Team Lead"], image: "/src/assets/headshots/victoria_gee.JPG", level: 5 },
+        { name: "Adrian Mathew", teams: ["Finance"], role: ["Treasurer", "Finance Team Lead"], image: adrianMathew, level: 5 },
+        { name: "Frances Zhao", teams: ["Design"], role: ["Design Team Lead"], image: francesZhao, level: 5 },
+        { name: "Marwa Zaryab", teams: ["Development", "Design", "Marketing", "Finance", "Workshops", "Logistics", "Sponsorship"], role: ["Deputy Chair", "Secretary", "Developer Team Lead"], image: marwaZaryab, level: 5 },
+        { name: "Maira Khawaja", teams: ["Development", "Design", "Marketing", "Finance", "Workshops", "Logistics", "Sponsorship"], role: ["President"], image: mairaKhawaja, level: 5 },
+        { name: "Rayyan Huda", teams: ["Marketing"], role: ["Marketing Team Lead"], image: rayyanHuda, level: 5 },
+        { name: "Sharvesh Vivekanandhan", teams: ["Finance", "Sponsorship Team Lead"], role: ["Sponsorship Team Lead"], image: sharveshV, level: 5 },
+        { name: "Victoria Gee", teams: ["Logistics"], role: ["Logistics Team Lead"], image: victoriaGee, level: 5 },
 
         // Marketing Team
-        { name: "Ana Maniram Rodriguez", teams: ["Marketing"], role: ["Media Manager"], image: "/src/assets/headshots/ana_maniram.jpeg", level: 4 },
-        { name: "Deepika Anbalagan", teams: ["Marketing"], role: ["Marketing Coordinator"], image: "/src/assets/headshots/deepika_anbalagan.png", level: 4 },
+        { name: "Ana Maniram Rodriguez", teams: ["Marketing"], role: ["Media Manager"], image: anaManiram, level: 4 },
+        { name: "Deepika Anbalagan", teams: ["Marketing"], role: ["Marketing Coordinator"], image: deepikaAnbalagan, level: 4 },
 
         // Logistics Team
-        { name: "Jovitta Sebastiampillai", teams: ["Logistics"], role: ["Logistics Coordinator"], image: "/src/assets/headshots/jovitta_seb.jpeg", level: 4 },
-        { name: "Sunny Hu", teams: ["Logistics"], role: ["Logistics Coordinator"], image: "/src/assets/headshots/blank_headshot.png", level: 4 },
-        { name: "Emilee Chen", teams: ["Logistics"], role: ["Logistics Coordinator"], image: "/src/assets/headshots/blank_headshot.png", level: 4 },
+        { name: "Jovitta Sebastiampillai", teams: ["Logistics"], role: ["Logistics Coordinator"], image: jovittaSeb, level: 4 },
+        { name: "Sunny Hu", teams: ["Logistics"], role: ["Logistics Coordinator"], image: sunnyHu, level: 4 },
+        { name: "Emilee Chen", teams: ["Logistics"], role: ["Logistics Coordinator"], image: emileeChen, level: 4 },
 
         // Finance Team
-        { name: "Ariel Liu", teams: ["Finance", "Sponsorship"], role: ["Sponsorship General Member", "Finance Coordinator"], image: "/src/assets/headshots/blank_headshot.png", level: 4 },
-        { name: "Ammar Adam", teams: ["Finance"], role: ["Finance Coordinator"], image: "/src/assets/headshots/ammar_adam.jpg", level: 4 },
-        { name: "Rodney Wu", teams: ["Finance"], role: ["Finance Coordinator"], image: "/src/assets/headshots/rodney_wu.jpeg", level: 3 },
-        { name: "Akriti Batra", teams: ["Finance"], role: ["Finance Coordinator"], image: "/src/assets/headshots/blank_headshot.png", level: 2 },
+        { name: "Ariel Liu", teams: ["Finance", "Sponsorship"], role: ["Sponsorship General Member", "Finance Coordinator"], image: arielLiu, level: 4 },
+        { name: "Ammar Adam", teams: ["Finance"], role: ["Finance Coordinator"], image: ammarAdam, level: 4 },
+        { name: "Rodney Wu", teams: ["Finance"], role: ["Finance Coordinator"], image: rodneyWu, level: 3 },
+        { name: "Akriti Batra", teams: ["Finance"], role: ["Finance Coordinator"], image: akritiBatra, level: 2 },
 
         // Development Team
-        { name: "Richard Li", teams: ["Development", "Sponsorship"], role: ["Front-End Developer", "Back-End Developer"], image: "/src/assets/headshots/richard_li.png", level: 3 },
-        { name: "Linda Chen", teams: ["Marketing", "Development"], role: ["Front-End Devloper", "Outreach Manager"], image: "/src/assets/headshots/linda_chen.png", level: 3 },
-        { name: "Elin Zhang", teams: ["Marketing", "Development"], role: ["Front-End Developer", "Marketing Coordinator"], image: "/src/assets/headshots/elin_zhang.jpg", level: 3 },
-        { name: "Hy Lac Nguyen", teams: ["Development"], role: ["Front-End Developer"], image: "/src/assets/headshots/hy_lac_nguyen.jpg", level: 3 },
-        { name: "Akki Sengupta", teams: ["Development"], role: ["Back-End Developer"], image: "/src/assets/headshots/blank_headshot.png", level: 3 },
+        { name: "Richard Li", teams: ["Development", "Sponsorship"], role: ["Front-End Developer", "Back-End Developer"], image: richardLi, level: 3 },
+        { name: "Linda Chen", teams: ["Marketing", "Development"], role: ["Front-End Devloper", "Outreach Manager"], image: lindaChen, level: 3 },
+        { name: "Elin Zhang", teams: ["Marketing", "Development"], role: ["Front-End Developer", "Marketing Coordinator"], image: elinZhang, level: 3 },
+        { name: "Hy Lac Nguyen", teams: ["Development"], role: ["Front-End Developer"], image: hyLacNguyen, level: 3 },
+        { name: "Akki Sengupta", teams: ["Development"], role: ["Back-End Developer"], image: akkiSengupta, level: 3 },
 
         // Design Team
-        { name: "Annie Song", teams: ["Design"], role: ["Designer"], image: "/src/assets/headshots/blank_headshot.png", level: 2 },
-        { name: "Iris Zhu", teams: ["Design"], role: ["Designer"], image: "/src/assets/headshots/blank_headshot.png", level: 2 },
-        { name: "Aidan Chien", teams: ["Design"], role: ["Designer"], image: "/src/assets/headshots/blank_headshot.png", level: 2 },
+        { name: "Annie Song", teams: ["Design"], role: ["Designer"], image: annieSong, level: 2 },
+        { name: "Iris Zhu", teams: ["Design"], role: ["Designer"], image: irisZhu, level: 2 },
+        { name: "Aidan Chien", teams: ["Design"], role: ["Designer"], image: aidanChien, level: 2 },
 
         // Sponsorship Team
-        { name: "Frank Ding", teams: ["Finance"], role: ["Sponsorship General Member"], image: "/src/assets/headshots/blank_headshot.png", level: 1 },  // replace with sponsorship
-        { name: "Muhammad Ahmad", teams: ["Finance"], role: ["Sponsorship General Member"], image: "/src/assets/headshots/muhammad_ahmad.jpg", level: 1 },  // replace with sponsorship
+        { name: "Frank Ding", teams: ["Finance"], role: ["Sponsorship General Member"], image: frankDing, level: 1 },
+        { name: "Muhammad Ahmad", teams: ["Finance"], role: ["Sponsorship General Member"], image: muhammadAhmad, level: 1 },
 
         // Workshops Team
-        { name: "Dequan Kong", teams: ["Workshops", "Logistics"], role: ["Logistics Coordinator", "Workshops Coordinator"], image: "/src/assets/headshots/dequan_kong.jpg", level: 1 },
-        { name: "Advait Gore", teams: ["Workshops"], role: ["Workshops Coordinator"], image: "/src/assets/headshots/blank_headshot.png", level: 1 },
+        { name: "Dequan Kong", teams: ["Workshops", "Logistics"], role: ["Logistics Coordinator", "Workshops Coordinator"], image: dequanKong, level: 1 },
+        { name: "Advait Gore", teams: ["Workshops"], role: ["Workshops Coordinator"], image: advaitGore, level: 1 },
     ];
 
     const levels = [5, 4, 3, 2, 1];
@@ -187,7 +222,7 @@ export default function Teams() {
                                         title={member.name}
                                         >
                                         <img
-                                            src={member.image}
+                                            src={member.image.src}
                                             alt={member.name}
                                             className="w-full h-full object-cover"
                                         />
