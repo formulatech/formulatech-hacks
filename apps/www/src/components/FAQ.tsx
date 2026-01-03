@@ -5,8 +5,8 @@ import flag from "../assets/faq-flag.svg";
 import general from "../assets/faq-general.svg";
 import logistics from "../assets/faq-logistics.svg";
 import signup from "../assets/faq-signup.svg";
-//import redstar from "../assets/red-star.svg";
-//import tealstar from "../assets/teal-star.svg";
+import redstar from "../assets/red-star.svg";
+import tealstar from "../assets/teal-star.svg";
 import track from "../assets/track.svg";
 
 const questions = {
@@ -216,20 +216,18 @@ export default function FAQ() {
                     </div>
                 </div>
             </div>
-            {/* TODO: Fix the positioning of these, for now
             <img
                 src={redstar.src}
                 alt="Decorative star"
-                className="hidden md:block absolute -right-30 -bottom-[-12rem] w-80 h-80 red-star-spin z-50 pointer-events-none"
-                style={{ width: "clamp(10rem, 22vw, 20rem)", height: "clamp(10rem, 22vw, 20rem)" }}
+                className="hidden md:block absolute -right-40 -bottom-[-3rem] w-80 h-80 red-star-spin z-50 pointer-events-none"
+                style={{ width: "clamp(10rem, 24vw, 30rem)", height: "clamp(10rem, 24vw, 30rem)" }}
             />
             <img
                 src={tealstar.src}
                 alt="Decorative star"
-                className="hidden md:block absolute -left-40 -bottom-[-1rem] w-80 h-80 teal-star-spin z-50 pointer-events-none"
-                style={{ width: "clamp(10rem, 22vw, 20rem)", height: "clamp(10rem, 22vw, 20rem)" }}
+                className="hidden md:block absolute -left-50 -bottom-[14rem] w-80 h-80 teal-star-spin z-50 pointer-events-none"
+                style={{ width: "clamp(10rem, 24vw, 30rem)", height: "clamp(10rem, 24vw, 30rem)" }}
             />
-            */}
         </div>
     );
 }

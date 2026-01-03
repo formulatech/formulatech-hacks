@@ -60,17 +60,15 @@ return (
 								FAQs
 							</button>
 						</li>
-						{/*
 						<li>
 							<button
 								type="button"
-								onClick={() => scrollToWithOffset("team")}
+								onClick={() => scrollToWithOffset("teams")}
 								className="hover:text-primary transition cursor-pointer"
 							>
-								FAQs
+								TEAM
 							</button>
 						</li>
-						*/}
 					</ul>
 				</div>
 
@@ -165,7 +163,7 @@ return (
 						}}
 						className="hover:text-red-500 text-xl"
 					>
-						{/* Team */}
+						Team
 					</button>
 					<a href="https://forms.gle/MQNpzN5k63cHYiPn6" className="flex flex-col items-center space-y-4 bg-primary text-white font-bold px-6 py-3 w-40 rounded-2xl hover:opacity-90 transition text-center">
 						SIGN UP NOW
