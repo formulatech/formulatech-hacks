@@ -49,13 +49,14 @@ export default function Teams() {
     useEffect(() => {
         const interval = setInterval(() => {
             setOffsetPx(prev => {
-            const next = prev + CAR_WIDTH;
-            return next >= cars.length * CAR_WIDTH ? 0 : next;
+                const next = prev + 2;
+                const totalWidth = cars.length * CAR_WIDTH;
+                return next >= totalWidth ? 0 : next;
             });
-        }, 2000);
-        
+        }, 16);
+    
         return () => clearInterval(interval);
-    }, [cars.length]);      
+    }, [cars.length]);
     
     /**
      * TODO:
@@ -227,11 +228,11 @@ export default function Teams() {
             </div>
 
             {/* cars at the bottom */}
-            <div className="w-full overflow-hidden mt-16 md:mt-20 lg:mt-24 relative">
+            <div className="w-full overflow-hidden relative">
             {/* Moving cars */}
                 <div
-                    className="flex items-center gap-8 md:gap-12 lg:gap-16 car-scroll"
-                    style={{ width: "fit-content" }}
+                    className="flex mt-[5dvh] items-end gap-8 md:gap-12 lg:gap-16 car-scroll"
+                    style={{ transform: `translateX(-${offsetPx}px)` }}
                 >
                     {loopCars.map((car, index) => (
                     <button
@@ -257,7 +258,7 @@ export default function Teams() {
                 <img
                     src={track.src}
                     alt="Road"
-                    className="w-full h-auto object-cover absolute bottom-0 left-0"
+                    className="w-full h-auto object-cover z-0"
                 />
             </div>
         </>

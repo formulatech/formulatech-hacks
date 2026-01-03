@@ -35,7 +35,7 @@ const socialLinks = [
 const headingClass="font-title text-nowrap text-xl md:text-2xl lg:text-4xl font-black inline-block bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text";
 export default function Footer() {
   return (
-    <div className="bg-[#FBFCEE] mt-[20dvh]">
+    <div className="bg-[#FBFCEE] mt-[10dvh]">
       <footer className="bg-black text-white text-sm md:text-base rounded-t-[30px] md:rounded-t-[60px] relative">
         {/* Spinning stars on mobile */}
         <img src={redStar.src} className="absolute top-[150px] right-[70px] w-[100px] h-[100px] z-0 red-star-spin md:hidden" alt=""/ >
