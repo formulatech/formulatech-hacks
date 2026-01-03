@@ -15,7 +15,7 @@ import mairaKhawaja from "../assets/headshots/maira_khawaja.png";
 import marwaZaryab from "../assets/headshots/marwa_zaryab.jpg";
 import rayyanHuda from "../assets/headshots/rayyan_huda.png";
 import sharveshV from "../assets/headshots/sharvesh_v.jpeg";
-import victoriaGee from "../assets/headshots/victoria_gee_temp.jpg";
+import victoriaGee from "../assets/headshots/victoria_gee.jpg";
 
 import anaManiram from "../assets/headshots/ana_maniram.jpeg";
 import deepikaAnbalagan from "../assets/headshots/deepika_anbalagan.png";
