@@ -96,7 +96,3 @@ html, body {
 .car-scroll {
   animation: car-scroll 40s linear infinite;
 }
-
-.car-scroll:hover {
-  animation-play-state: paused;
-}
