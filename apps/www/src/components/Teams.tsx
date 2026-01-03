@@ -12,7 +12,7 @@ import workshopsCar from "../assets/workshopsCar.svg";
 import adrianMathew from "../assets/headshots/adrian_mathew.jpeg";
 import francesZhao from "../assets/headshots/frances_zhao.jpeg";
 import mairaKhawaja from "../assets/headshots/maira_khawaja.png";
-import marwaZaryab from "../assets/headshots/marwa_zaryab_temp.jpg";
+import marwaZaryab from "../assets/headshots/marwa_zaryab.jpg";
 import rayyanHuda from "../assets/headshots/rayyan_huda.png";
 import sharveshV from "../assets/headshots/sharvesh_v.jpeg";
 import victoriaGee from "../assets/headshots/victoria_gee.jpg";
