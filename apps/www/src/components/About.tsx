@@ -75,7 +75,7 @@ export default function About() {
                 />
             </div>
             {/* Images from event */}
-            <div className="flex flex-col lg:flex-row mt-12 gap-10 items-start mx-20">
+            {/* <div className="flex flex-col lg:flex-row mt-12 gap-10 items-start mx-20">
                 {images.map((img, index) => (
                     <div                        
                         key={img.src}
@@ -87,7 +87,7 @@ export default function About() {
                         />
                   </div>
                 ))}
-            </div>
+            </div> */}
         </div>
     );
 }
