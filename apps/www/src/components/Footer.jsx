@@ -7,8 +7,8 @@ const currentYear = new Date().getFullYear();
 const sectionLinks = [
   { name: "About", href: "#about" },
   { name: "Sponsors", href: "#sponsors" },
-  { name: "FAQ", href: "#faq" },
-  { name: "Meet the Team", href: "#team" },
+  { name: "FAQ", href: "#faqs" },
+  { name: "Meet the Team", href: "#teams" },
 ];
 
 const iconSize = "text-lg";
