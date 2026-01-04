@@ -46,6 +46,8 @@ import advaitGore from "../assets/headshots/blank_headshot.png";
 import dequanKong from "../assets/headshots/dequan_kong.jpg";
 
 export default function Teams() {
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
     const [selectedCar, setSelectedCar] = useState<string | null>(null);
 
     const [hoveredMember, setHoveredMember] = useState<string | null>(null);
@@ -180,13 +182,21 @@ export default function Teams() {
 
                     {/* Team member circles on stands */}
                     {membersByLevel.map(({ level, members }) => {
-                        const levelConfigs = {
-                            1: { top: "3%", width: "66%" },
+                        const levelConfigs = isMobile
+                        ? {
+                            1: { top: "6%",  width: "60%" },
+                            2: { top: "24%", width: "68%" },
+                            3: { top: "42%", width: "74%" },
+                            4: { top: "60%", width: "83%" },
+                            5: { top: "79%", width: "90%" },
+                        }
+                        : {
+                            1: { top: "3%",  width: "66%" },
                             2: { top: "23%", width: "75%" },
                             3: { top: "43%", width: "82%" },
                             4: { top: "63%", width: "92%" },
-                            5: { top: "83%",  width: "100%" },
-                        };
+                            5: { top: "83%", width: "100%" },
+                        };                    
 
                         return (
                             <div
@@ -210,15 +220,14 @@ export default function Teams() {
                                     >
                                         {/* Circle */}
                                         <div
-                                        className={`w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-18 lg:h-18 xl:w-20 xl:h-20
-                                            rounded-full border-2 border-white shadow-2xl overflow-hidden
-                                            transition-transform duration-200 ease-out
-                                            hover:scale-125 hover:z-20 cursor-pointer
+                                        className="w-[clamp(1.5rem,5vw,6rem)] h-[clamp(1.5rem,5vw,6rem)]
+                                            rounded-full border-2 border-white shadow-2xl overflow-hidden transition-transform duration-200 ease-out hover:scale-125 hover:z-20 cursor-pointer
                                             ${
                                             selectedCar === null || member.teams.includes(selectedCar)
-                                                ? "opacity-100 scale-100"
-                                                : "opacity-30 scale-90"
-                                            }`}
+                                                ? 'opacity-100 scale-100'
+                                                : 'opacity-30 scale-90'
+                                            }
+                                        "
                                         title={member.name}
                                         >
                                         <img
