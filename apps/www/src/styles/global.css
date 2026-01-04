@@ -83,3 +83,16 @@ html, body {
 	animation: spin-slow 20s linear infinite;
 	animation-direction: reverse;
 }
+
+@keyframes car-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.car-scroll {
+  animation: car-scroll 40s linear infinite;
+}
