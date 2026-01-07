@@ -3,6 +3,7 @@ import designCar from "../assets/designCar.png";
 import developersCar from "../assets/developersCar.png";
 import financeCar from "../assets/financeCar.png";
 import marketingCar from "../assets/marketingCar.png";
+import sponsorshipCar from "../assets/sponsorshipCar.svg";
 import stands from "../assets/stands.svg";
 import blueStar from "../assets/teal-star.svg";
 import track from "../assets/track.svg";
@@ -45,6 +46,8 @@ import muhammadAhmad from "../assets/headshots/muhammad_ahmad.jpg";
 import advaitGore from "../assets/headshots/blank_headshot.png";
 import dequanKong from "../assets/headshots/dequan_kong.jpg";
 
+import finnGuo from "../assets/headshots/finn_guo.png";
+
 export default function Teams() {
     const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
@@ -77,24 +80,28 @@ export default function Teams() {
         { name: "Finance", src: financeCar.src, alt: "Finance Car" },
         { name: "Design", src: designCar.src, alt: "Design Car" },
         { name: "Workshops", src: workshopsCar.src, alt: "Workshops Car" },
+        { name: "Sponsorship", src: sponsorshipCar.src, alt: "Sponsorship Car" },
     ];
 
     const [offsetPx, setOffsetPx] = useState(0);
-    const CAR_WIDTH = 320;
+    const CAR_WIDTH_WITH_GAP = 320;
     const loopCars = [...cars, ...cars];
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            setOffsetPx(prev => {
-                const next = prev + 2;
-                const totalWidth = cars.length * CAR_WIDTH;
-                return next >= totalWidth ? 0 : next;
-            });
-        }, 16);
-    
-        return () => clearInterval(interval);
+        let offset = 0;
+        const totalWidth = cars.length * CAR_WIDTH_WITH_GAP;
+
+        const step = () => {
+            offset += 2;
+            if (offset >= totalWidth) offset = 0;
+            setOffsetPx(offset);
+            requestAnimationFrame(step);
+        };
+
+        const frame = requestAnimationFrame(step);
+        return () => cancelAnimationFrame(frame);
     }, [cars.length]);
-    
+
     /**
      * TODO:
      * Once sponsorship is an official team, the team members with a comment beside their entry should have "Sponsorship" added to the teams array
@@ -139,6 +146,8 @@ export default function Teams() {
         { name: "Annie Song", teams: ["Design"], role: ["Designer"], image: annieSong, level: 2 },
         { name: "Iris Zhu", teams: ["Design"], role: ["Designer"], image: irisZhu, level: 2 },
         { name: "Aidan Chien", teams: ["Design"], role: ["Designer"], image: aidanChien, level: 2 },
+
+        { name: "Finn (Zheng han) Guo", teams: ["Developer"], role: ["CAD Developer"], image: finnGuo, level: 2 },
 
         // Sponsorship Team
         { name: "Frank Ding", teams: ["Finance"], role: ["Sponsorship General Member"], image: frankDing, level: 1 },
@@ -220,14 +229,14 @@ export default function Teams() {
                                     >
                                         {/* Circle */}
                                         <div
-                                        className="w-[clamp(1.5rem,5vw,6rem)] h-[clamp(1.5rem,5vw,6rem)]
+                                        className={`w-[clamp(1.5rem,5vw,6rem)] h-[clamp(1.5rem,5vw,6rem)]
                                             rounded-full border-2 border-white shadow-2xl overflow-hidden transition-transform duration-200 ease-out hover:scale-125 hover:z-20 cursor-pointer
                                             ${
-                                            selectedCar === null || member.teams.includes(selectedCar)
+                                              selectedCar === null || member.teams.includes(selectedCar)
                                                 ? 'opacity-100 scale-100'
                                                 : 'opacity-30 scale-90'
                                             }
-                                        "
+                                        `}
                                         title={member.name}
                                         >
                                         <img
@@ -273,28 +282,30 @@ export default function Teams() {
 
             {/* cars at the bottom */}
             <div className="w-full overflow-hidden relative">
-            {/* Moving cars */}
                 <div
-                    className="flex mt-[5dvh] items-end gap-8 md:gap-12 lg:gap-16 car-scroll"
-                    style={{ transform: `translateX(-${offsetPx}px)` }}
+                    className="inline-flex items-end gap-8 md:gap-12 lg:gap-16 car-scroll"
+                    style={{
+                        transform: `translateX(-${offsetPx}px)`,
+                        marginTop: "clamp(4rem, 8vw, 10rem)",
+                    }}
                 >
                     {loopCars.map((car, index) => (
-                    <button
-                        key={`${car.name}-${index}`}
-                        type="button"
-                        onMouseEnter={() => handleCarHover(car.name)}
-                        onMouseLeave={() => handleCarHover(null)}
-                        className={`flex-shrink-0 transition-transform duration-200 hover:scale-110 cursor-pointer z-10 ${
-                        selectedCar === car.name ? "scale-110" : ""
-                        }`}
-                        aria-label={`${car.name} Team`}
-                    >
-                        <img
-                        src={car.src}
-                        alt={car.alt}
-                        className="w-48 md:w-64 lg:w-80 xl:w-96 h-auto object-contain"
-                        />
-                    </button>
+                        <button
+                            key={`${car.name}-${index}`}
+                            type="button"
+                            onMouseEnter={() => handleCarHover(car.name)}
+                            onMouseLeave={() => handleCarHover(null)}
+                            className={`flex-shrink-0 w-[clamp(12rem,25vw,50rem)] transition-transform duration-200 hover:scale-110 cursor-pointer z-10  ${
+                                selectedCar === car.name ? "scale-110" : ""
+                            }`}                            
+                            aria-label={`${car.name} Team`}
+                        >
+                            <img
+                                src={car.src}
+                                alt={car.alt}
+                                className="w-full h-auto object-contain"
+                            />
+                        </button>
                     ))}
                 </div>
 
