@@ -102,14 +102,6 @@ export default function Teams() {
         return () => cancelAnimationFrame(frame);
     }, [cars.length]);
 
-    /**
-     * TODO:
-     * Once sponsorship is an official team, the team members with a comment beside their entry should have "Sponsorship" added to the teams array
-     * For now, sponsorship and finance have been merged.
-     * It will be specified whether or not the Sponsorship team member should keep the "Finance" role or not
-     * ("also sponsorship" means don't remove finance but just add sponsorship, "replace with sponsorship" means replace finance with sponsorship)
-    */
-
     const teamMembers = [
         // Chair and Team Leads
         { name: "Adrian Mathew", teams: ["Finance"], role: ["Treasurer", "Finance Team Lead"], image: adrianMathew, level: 5 },
@@ -142,12 +134,12 @@ export default function Teams() {
         { name: "Hy Lac Nguyen", teams: ["Development"], role: ["Front-End Developer"], image: hyLacNguyen, level: 3 },
         { name: "Akki Sengupta", teams: ["Development"], role: ["Back-End Developer"], image: akkiSengupta, level: 3 },
 
+        { name: "Finn (Zheng han) Guo", teams: ["Developer"], role: ["CAD Developer"], image: finnGuo, level: 2 },
+
         // Design Team
         { name: "Annie Song", teams: ["Design"], role: ["Designer"], image: annieSong, level: 2 },
         { name: "Iris Zhu", teams: ["Design"], role: ["Designer"], image: irisZhu, level: 2 },
         { name: "Aidan Chien", teams: ["Design"], role: ["Designer"], image: aidanChien, level: 2 },
-
-        { name: "Finn (Zheng han) Guo", teams: ["Developer"], role: ["CAD Developer"], image: finnGuo, level: 2 },
 
         // Sponsorship Team
         { name: "Frank Ding", teams: ["Finance"], role: ["Sponsorship General Member"], image: frankDing, level: 1 },
@@ -180,7 +172,7 @@ export default function Teams() {
                 </h1>
             </div>
 
-            {/* stands container */}
+            {/* Stands container */}
             <div className="relative w-full flex flex-col items-center justify-center mt-20">
                 <div className="relative w-full max-w-7xl flex justify-center">
                     <img
@@ -280,7 +272,7 @@ export default function Teams() {
                 </div>
             </div>
 
-            {/* cars at the bottom */}
+            {/* Cars at the bottom */}
             <div className="w-full overflow-hidden relative">
                 <div
                     className="inline-flex items-end gap-8 md:gap-12 lg:gap-16 car-scroll"
