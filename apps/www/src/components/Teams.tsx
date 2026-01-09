@@ -5,7 +5,6 @@ import financeCar from "../assets/financeCar.png";
 import marketingCar from "../assets/marketingCar.png";
 import sponsorshipCar from "../assets/sponsorshipCar.svg";
 import stands from "../assets/stands.svg";
-import blueStar from "../assets/teal-star.svg";
 import track from "../assets/track.svg";
 import workshopsCar from "../assets/workshopsCar.svg";
 
@@ -160,7 +159,6 @@ export default function Teams() {
     return (
         <>
             <div className="mt-[5dvh] pt-5 w-[80%] mx-auto flex flex-col gap-[30px] bg-[#fafbee]" id="teams">
-                <img src={blueStar.src} alt="Blue Star" className="absolute top-0 left-0 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-56 xl:h-56 -mt-10 -ml-10 z-0" />
                 <h1
                     className="mx-auto flex justify-center items-center font-black font-title capitalize text-center leading-tight"
                     style={{ fontSize: "clamp(1.4rem, 4vw, 2.75rem)" }}>
