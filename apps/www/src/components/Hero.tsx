@@ -436,7 +436,7 @@ export default function Hero() {
         <div className="flex flex-col gap-[15px] items-center sm:flex-row sm:gap-[20px] md:gap-[25px] lg:gap-[30px]">
           {/* Primary Button */}
           <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLScru3wvO6uZcbIDaXxxaUfB5GVFhpmB5LtLRFH8gHBSazsdFg/viewform"
+            href="https://forms.gle/oLzGwE5MKuPRKab89"
             target="_blank"
             rel="noopener noreferrer"
             className="flex flex-row justify-center items-center gap-[10px] px-[15px] py-[10px] bg-[#D2273D] rounded-[300px] hover:bg-[#D2273D]/90 transition-all duration-200 drop-shadow-md sm:px-[16px] sm:py-[16px] md:px-[18px] md:py-[18px] lg:px-[20px] lg:py-[20px]"
@@ -448,7 +448,7 @@ export default function Hero() {
                 lineHeight: '1.253999982561384em'
               }}
             >
-              SAVE MY SPOT
+              APPLY NOW
             </span>
           </a>
 

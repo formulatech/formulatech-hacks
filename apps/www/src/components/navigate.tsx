@@ -100,7 +100,7 @@ return (
 								className="h-6 w-auto object-cover"
 							/>
 						</button>
-						<a href="https://docs.google.com/forms/d/e/1FAIpQLScru3wvO6uZcbIDaXxxaUfB5GVFhpmB5LtLRFH8gHBSazsdFg/viewform" className="flex items-center bg-primary text-white font-bold px-3 py-2 rounded-4xl hover:opacity-90 transition text-center font-title">
+						<a href="https://forms.gle/oLzGwE5MKuPRKab89" className="flex items-center bg-primary text-white font-bold px-3 py-2 rounded-4xl hover:opacity-90 transition text-center font-title">
 							SIGN UP NOW
 						</a>
 					</div>

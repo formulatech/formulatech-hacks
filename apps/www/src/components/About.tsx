@@ -53,7 +53,7 @@ export default function About() {
                     </p>
                     <h2 className="font-primary font-bold text-lg md:text-xl">Interested in participating?</h2>
                     <a
-                        href="https://docs.google.com/forms/d/e/1FAIpQLScru3wvO6uZcbIDaXxxaUfB5GVFhpmB5LtLRFH8gHBSazsdFg/viewform"
+                        href="https://forms.gle/oLzGwE5MKuPRKab89"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="w-fit bg-primary hover:bg-primary/90 text-white font-title font-bold text-base md:text-lg px-6 py-4 rounded-full uppercase tracking-wide transition-all duration-200 hover:scale-105"

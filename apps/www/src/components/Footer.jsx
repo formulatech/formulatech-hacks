@@ -51,7 +51,7 @@ export default function Footer() {
               </h1>
               {/* Link to interest form */}
               <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLScru3wvO6uZcbIDaXxxaUfB5GVFhpmB5LtLRFH8gHBSazsdFg/viewform"
+                href="https://forms.gle/oLzGwE5MKuPRKab89"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block w-fit font-title text-sm lg:text-lg font-bold rounded-full px-4 py-3 md:px-5 md:py-4 mt-2 md:mt-3 bg-primary hover:bg-primary/90 tracking-wide transition-all duration-200 hover:scale-105"
