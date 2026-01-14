@@ -25,6 +25,7 @@ const questions = {
     Logistics: [
         { q: "Where is the event held?", a: "The hackathon will take place in Engineering 7 (E7) Design Bay at the University of Waterloo" },
         { q: "When is the hackathon?", a: "FormulaTech Hacks’ first hackathon will be held on January 17-18, 2026" },
+        { q: "Are there any overnight accomodations?", a: "At this time, FormulaTech Hacks is not able to provide overnight accommodations" },
     ],
     "Code of Conduct": [
         { q: "What are the rules?", a: "All participants must follow the FormulaTech Hacks Code of Conduct, which promotes respect, inclusion, and integrity. Harassment or discrimination of any kind will not be tolerated." },
