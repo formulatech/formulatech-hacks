@@ -101,7 +101,7 @@ return (
 							/>
 						</button>
 						<a href="https://forms.gle/oLzGwE5MKuPRKab89" className="flex items-center bg-primary text-white font-bold px-3 py-2 rounded-4xl hover:opacity-90 transition text-center font-title">
-							SIGN UP NOW
+							APPLY NOW
 						</a>
 					</div>
 
@@ -165,8 +165,8 @@ return (
 					>
 						Team
 					</button>
-					<a href="https://forms.gle/MQNpzN5k63cHYiPn6" className="flex flex-col items-center space-y-4 bg-primary text-white font-bold px-6 py-3 w-40 rounded-2xl hover:opacity-90 transition text-center">
-						SIGN UP NOW
+					<a href="https://forms.gle/oLzGwE5MKuPRKab89" className="flex flex-col items-center space-y-4 bg-primary text-white font-bold px-6 py-3 w-40 rounded-2xl hover:opacity-90 transition text-center">
+						APPLY NOW
 					</a>
 					<div className="flex space-x-6 items-center">
 						<a href="https://www.instagram.com/formulatech.hacks/" target="_blank" rel="noopener noreferrer" className="hover:text-primary">

@@ -56,7 +56,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="block w-fit font-title text-sm lg:text-lg font-bold rounded-full px-4 py-3 md:px-5 md:py-4 mt-2 md:mt-3 bg-primary hover:bg-primary/90 tracking-wide transition-all duration-200 hover:scale-105"
               >
-                SAVE MY SPOT
+                APPLY NOW
               </a>
             </div>
             {/* Second column - Learn More */}
