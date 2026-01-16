@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import designCar from "../assets/designCar.png";
 import developersCar from "../assets/developersCar.png";
 import financeCar from "../assets/financeCar.png";
@@ -70,9 +70,16 @@ export default function Teams() {
     };
 
     const handleCarHover = (carName: string | null) => {
-        setSelectedCar(carName);
+        if (!isMobile) setSelectedCar(carName);
     };
+    
+    const handleCarClick = (carName: string) => {
+        if (isMobile) {
+            setSelectedCar(prev => (prev === carName ? null : carName));
+        }
+    };    
 
+    const carsRef = useRef<HTMLDivElement | null>(null);
     const cars = [
         { name: "Development", src: developersCar.src, alt: "Developer Car" },
         { name: "Marketing", src: marketingCar.src, alt: "Marketing Car" },
@@ -100,6 +107,22 @@ export default function Teams() {
         const frame = requestAnimationFrame(step);
         return () => cancelAnimationFrame(frame);
     }, [cars.length]);
+
+    useEffect(() => {
+        if (!isMobile) return;
+    
+        const handleClickOutside = (e: MouseEvent) => {
+            if (
+                carsRef.current &&
+                !carsRef.current.contains(e.target as Node)
+            ) {
+                setSelectedCar(null);
+            }
+        };
+    
+        document.addEventListener("click", handleClickOutside);
+        return () => document.removeEventListener("click", handleClickOutside);
+    }, [isMobile]);    
 
     const teamMembers = [
         // Chair and Team Leads
@@ -271,7 +294,10 @@ export default function Teams() {
             </div>
 
             {/* Cars at the bottom */}
-            <div className="w-full overflow-hidden relative">
+            <div
+                ref={carsRef}
+                className="w-full overflow-hidden relative"
+            >
                 <div
                     className="inline-flex items-end gap-8 md:gap-12 lg:gap-16 car-scroll"
                     style={{
@@ -285,6 +311,7 @@ export default function Teams() {
                             type="button"
                             onMouseEnter={() => handleCarHover(car.name)}
                             onMouseLeave={() => handleCarHover(null)}
+                            onClick={() => handleCarClick(car.name)}
                             className={`flex-shrink-0 w-[clamp(12rem,25vw,50rem)] transition-transform duration-200 hover:scale-110 cursor-pointer z-10  ${
                                 selectedCar === car.name ? "scale-110" : ""
                             }`}                            
