@@ -30,7 +30,8 @@ const initial = timeLeft();
 	<div
 		id="countdown-desktop"
 		class="hidden h-[250px] lg:h-[370px] w-8/10 p-3 bg-[#1C1B20] md:flex md:flex-row rounded-4xl border-black border-5 gap-0 justify-center"
-		aria-hidden="true"
+		role="group"
+		aria-label="Time remaining until hackathon"
 	>
 		<div class="countdown-col w-1/3 md:w-24/100" data-label="Days"></div>
 		<div class="countdown-col w-1/3 md:w-24/100" data-label="Hours"></div>
@@ -38,7 +39,12 @@ const initial = timeLeft();
 		<div class="countdown-col w-1/3 md:w-24/100" data-label="Seconds"></div>
 	</div>
 
-	<div id="countdown-mobile" class="md:hidden h-[300px] flex flex-wrap w-8/10 bg-black rounded-2xl" aria-hidden="true">
+	<div
+		id="countdown-mobile"
+		class="md:hidden h-[300px] flex flex-wrap w-8/10 bg-black rounded-2xl"
+		role="group"
+		aria-label="Time remaining until hackathon"
+	>
 		<div class="h-1/2 w-full flex justify-evenly items-center">
 			<div class="countdown-col w-1/3" data-label="Days"></div>
 			<div class="countdown-col w-1/3" data-label="Hours"></div>
@@ -62,8 +68,9 @@ const initial = timeLeft();
 		display: flex;
 		width: 100%;
 		background: #fefdf3;
+		color: #1a1a1a;
 		border-radius: 0.5rem;
-		border: 2px solid #d1283e;
+		border: 2px solid #8b1a2a;
 		justify-content: center;
 		align-items: center;
 		font-weight: 700;
@@ -75,8 +82,9 @@ const initial = timeLeft();
 		height: 70%;
 		width: 100%;
 		background: #fefdf3;
+		color: #1a1a1a;
 		border-radius: 0.5rem;
-		border: 2px solid #d1283e;
+		border: 2px solid #8b1a2a;
 		font-size: clamp(1.5rem, 8vw, 6rem);
 		font-family: var(--font-title);
 		align-items: center;
