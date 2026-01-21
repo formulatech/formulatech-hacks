@@ -1,10 +1,3 @@
-from flask import Flask, Response, jsonify
+from backend.factory import create_app
 
-app = Flask(__name__)
-name = "FormulaTech-Hacks"
-mode: str = "Debug" if app.debug else "Production"
-
-
-@app.route("/")
-def root() -> Response:
-    return jsonify({"mode": mode, "name": name})
+app = create_app()
