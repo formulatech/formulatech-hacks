@@ -107,9 +107,9 @@ export default function Teams() {
         { name: "Frances Zhao", teams: ["Design"], role: ["Design Team Lead"], image: francesZhao, level: 5 },
         { name: "Marwa Zaryab", teams: ["Development", "Design", "Marketing", "Finance", "Workshops", "Logistics", "Sponsorship"], role: ["Deputy Chair", "Secretary", "Developer Team Lead"], image: marwaZaryab, level: 5 },
         { name: "Maira Khawaja", teams: ["Development", "Design", "Marketing", "Finance", "Workshops", "Logistics", "Sponsorship"], role: ["President"], image: mairaKhawaja, level: 5 },
-        { name: "Rayyan Huda", teams: ["Marketing"], role: ["Marketing Team Lead"], image: rayyanHuda, level: 5 },
         { name: "Sharvesh Vivekanandhan", teams: ["Finance", "Sponsorship Team Lead"], role: ["Sponsorship Team Lead"], image: sharveshV, level: 5 },
         { name: "Victoria Gee", teams: ["Logistics"], role: ["Logistics Team Lead"], image: victoriaGee, level: 5 },
+        { name: "Rayyan Huda", teams: ["Marketing"], role: ["Marketing Team Lead"], image: rayyanHuda, level: 5 },
 
         // Marketing Team
         { name: "Ana Maniram Rodriguez", teams: ["Marketing"], role: ["Media Manager"], image: anaManiram, level: 4 },
