@@ -1,0 +1,26 @@
+{
+  "users": [],
+  "registrations": [
+    {
+      "id": "reg_demo001",
+      "email": "demo@formulatech.dev",
+      "track": "hardware",
+      "dietary": null
+    }
+  ],
+  "teams": [
+    {
+      "id": "team_demo001",
+      "name": "Pit Crew",
+      "member_count": 3
+    }
+  ],
+  "sponsors": [
+    {
+      "id": "spn_demo001",
+      "name": "Example Motors",
+      "tier": 1,
+      "logo_url": null
+    }
+  ]
+}
