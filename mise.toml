@@ -6,6 +6,8 @@ node = "23.11.0"
 
 [env]
 _.python.venv = { path = ".venv", create = true, uv_create_args = ["--seed"] }
+PYTHONPATH = "{{config_root}}"
+FLASK_APP = "backend.app:app"
 
 [tasks.setup]
 description = "Install dependencies and setup environment"
@@ -38,9 +40,8 @@ depends = ["dev:be", "dev:fe --name=www"]
 
 [tasks."dev:be"]
 description = "Start backend development services"
-dir = "{{config_root}}/backend"
 run = [
-  "flask --debug run"
+  "flask --debug run --port 5000"
 ]
 
 [tasks."dev:fe"]
