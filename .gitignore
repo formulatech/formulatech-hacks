@@ -27,3 +27,7 @@ tmp
 *.ipr
 *.iws
 .idea/
+.ruff_cache
+.pytest_cache
+.coverage
+htmlcov
