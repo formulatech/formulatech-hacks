@@ -98,6 +98,10 @@ function SponsorCard({ sponsor, size }: SponsorCardProps) {
           <img
             src={sponsor.logoPath}
             alt={sponsor.name}
+            width={280}
+            height={140}
+            loading="lazy"
+            decoding="async"
             className="max-h-[100px] md:max-h-[140px] w-auto object-contain"
           />
         </div>
@@ -306,6 +310,10 @@ export default function Sponsors() {
               <img
                 src="/sponsors/group_6.svg"
                 alt="Decorative flag"
+                width={198}
+                height={211}
+                loading="lazy"
+                decoding="async"
                 className="w-[197.58px] h-[211px] object-contain"
               />
 
@@ -375,6 +383,10 @@ export default function Sponsors() {
               <img
                 src="/sponsors/flag.svg"
                 alt="Decorative flag"
+                width={198}
+                height={211}
+                loading="lazy"
+                decoding="async"
                 className="w-[197.58px] h-[211px] object-contain"
               />
             </div>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import designCar from "../assets/designCar.png";
 import developersCar from "../assets/developersCar.png";
 import financeCar from "../assets/financeCar.png";
@@ -74,32 +74,15 @@ export default function Teams() {
     };
 
     const cars = [
-        { name: "Development", src: developersCar.src, alt: "Developer Car" },
-        { name: "Marketing", src: marketingCar.src, alt: "Marketing Car" },
-        { name: "Finance", src: financeCar.src, alt: "Finance Car" },
-        { name: "Design", src: designCar.src, alt: "Design Car" },
-        { name: "Workshops", src: workshopsCar.src, alt: "Workshops Car" },
-        { name: "Sponsorship", src: sponsorshipCar.src, alt: "Sponsorship Car" },
+        { name: "Development", src: developersCar.src, alt: "Developer Car", width: developersCar.width, height: developersCar.height },
+        { name: "Marketing", src: marketingCar.src, alt: "Marketing Car", width: marketingCar.width, height: marketingCar.height },
+        { name: "Finance", src: financeCar.src, alt: "Finance Car", width: financeCar.width, height: financeCar.height },
+        { name: "Design", src: designCar.src, alt: "Design Car", width: designCar.width, height: designCar.height },
+        { name: "Workshops", src: workshopsCar.src, alt: "Workshops Car", width: workshopsCar.width, height: workshopsCar.height },
+        { name: "Sponsorship", src: sponsorshipCar.src, alt: "Sponsorship Car", width: sponsorshipCar.width, height: sponsorshipCar.height },
     ];
 
-    const [offsetPx, setOffsetPx] = useState(0);
-    const CAR_WIDTH_WITH_GAP = 320;
     const loopCars = [...cars, ...cars];
-
-    useEffect(() => {
-        let offset = 0;
-        const totalWidth = cars.length * CAR_WIDTH_WITH_GAP;
-
-        const step = () => {
-            offset += 2;
-            if (offset >= totalWidth) offset = 0;
-            setOffsetPx(offset);
-            requestAnimationFrame(step);
-        };
-
-        const frame = requestAnimationFrame(step);
-        return () => cancelAnimationFrame(frame);
-    }, [cars.length]);
 
     const teamMembers = [
         // Chair and Team Leads
@@ -175,7 +158,11 @@ export default function Teams() {
                 <div className="relative w-full max-w-7xl flex justify-center">
                     <img
                         src={stands.src}
-                    alt="Team Stands"
+                        alt="Team Stands"
+                        width={stands.width}
+                        height={stands.height}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-auto object-contain scale-90 md:scale-100 mx-auto"
                     />
 
@@ -232,6 +219,10 @@ export default function Teams() {
                                         <img
                                             src={member.image.src}
                                             alt={member.name}
+                                            width={member.image.width}
+                                            height={member.image.height}
+                                            loading="lazy"
+                                            decoding="async"
                                             className="w-full h-full object-cover"
                                         />
                                         </div>
@@ -274,10 +265,7 @@ export default function Teams() {
             <div className="w-full overflow-hidden relative">
                 <div
                     className="inline-flex items-end gap-8 md:gap-12 lg:gap-16 car-scroll"
-                    style={{
-                        transform: `translateX(-${offsetPx}px)`,
-                        marginTop: "clamp(4rem, 8vw, 10rem)",
-                    }}
+                    style={{ marginTop: "clamp(4rem, 8vw, 10rem)" }}
                 >
                     {loopCars.map((car, index) => (
                         <button
@@ -293,6 +281,10 @@ export default function Teams() {
                             <img
                                 src={car.src}
                                 alt={car.alt}
+                                width={car.width}
+                                height={car.height}
+                                loading="lazy"
+                                decoding="async"
                                 className="w-full h-auto object-contain"
                             />
                         </button>
@@ -303,6 +295,10 @@ export default function Teams() {
                 <img
                     src={track.src}
                     alt="Road"
+                    width={track.width}
+                    height={track.height}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-auto object-cover z-0"
                 />
             </div>

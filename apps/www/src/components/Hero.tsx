@@ -474,6 +474,10 @@ export default function Hero() {
           className="mt-5 w-[281px] h-[160px] drop-shadow-md sm:w-[420px] sm:h-[241px] md:w-[530px] md:h-[304px] lg:w-[642px] lg:h-[368px]"
           src={carSide.src}
           alt="Side Car"
+          width={642}
+          height={368}
+          decoding="async"
+          fetchPriority="high"
         />
       </div>
     </div>

@@ -28,7 +28,7 @@ return (
   					onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
   					className="focus:outline-none"
 				>
-  				<img src={logo.src} alt="Logo" className="h-8 w-auto cursor-pointer" />
+  				<img src={logo.src} alt="Logo" width={logo.width} height={logo.height} className="h-8 w-auto cursor-pointer" />
 				</button>
 
 					{/* Center: Desktop Nav Links */}

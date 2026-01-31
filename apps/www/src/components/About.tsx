@@ -27,7 +27,7 @@ export default function About() {
             id="about"
         >
             {/* Checkered pattern background decoration */}
-            <img src={blueGrid.src} className="absolute bottom-[600px] right-[-400px] md:bottom-[700px] md:right-[-400px] lg:bottom-[570px] lg:right-[-500px] object-fit scale-300 md:scale-200 lg:scale-125" alt="" />
+            <img src={blueGrid.src} width={blueGrid.width} height={blueGrid.height} loading="lazy" decoding="async" className="absolute bottom-[600px] right-[-400px] md:bottom-[700px] md:right-[-400px] lg:bottom-[570px] lg:right-[-500px] object-fit scale-300 md:scale-200 lg:scale-125" alt="" />
             <div className="container relative w-[80%] mx-auto flex flex-col lg:flex-row md:items-center lg:items-start justify-between gap-10 lg:gap-28">
                 {/* Text Section */}
                 <div className="flex flex-col md:items-center lg:items-start gap-3 md:gap-5">
@@ -65,12 +65,20 @@ export default function About() {
                 <img
                     src={carHorizontal.src}
                     alt="Birds eye view of car"
+                    width={carHorizontal.width}
+                    height={carHorizontal.height}
+                    loading="lazy"
+                    decoding="async"
                     className="max-w-[400px] md:max-w-[500px] w-full object-contain self-center lg:self-start block lg:hidden"
                 />
                 {/* Desktop view of car */}
                 <img
                     src={carVertical.src}
                     alt="Birds eye view of car"
+                    width={carVertical.width}
+                    height={carVertical.height}
+                    loading="lazy"
+                    decoding="async"
                     className="w-[180px] object-contain self-center lg:self-start md:mr-30 hidden lg:block"
                 />
             </div>
