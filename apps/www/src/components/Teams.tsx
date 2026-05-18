@@ -158,7 +158,8 @@ export default function Teams() {
                 <div className="relative w-full max-w-7xl flex justify-center">
                     <img
                         src={stands.src}
-                        alt="Team Stands"
+                        alt=""
+                        aria-hidden="true"
                         width={stands.width}
                         height={stands.height}
                         loading="lazy"
@@ -214,11 +215,12 @@ export default function Teams() {
                                                 : 'opacity-30 scale-90'
                                             }
                                         `}
-                                        title={member.name}
+                                        aria-label={member.name}
                                         >
                                         <img
                                             src={member.image.src}
-                                            alt={member.name}
+                                            alt=""
+                                            aria-hidden="true"
                                             width={member.image.width}
                                             height={member.image.height}
                                             loading="lazy"
@@ -280,7 +282,8 @@ export default function Teams() {
                         >
                             <img
                                 src={car.src}
-                                alt={car.alt}
+                                alt=""
+                                aria-hidden="true"
                                 width={car.width}
                                 height={car.height}
                                 loading="lazy"
@@ -294,7 +297,8 @@ export default function Teams() {
                 {/* Static road */}
                 <img
                     src={track.src}
-                    alt="Road"
+                    alt=""
+                    aria-hidden="true"
                     width={track.width}
                     height={track.height}
                     loading="lazy"

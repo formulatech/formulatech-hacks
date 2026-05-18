@@ -34,6 +34,7 @@ export default defineConfig({
 			},
 		},
 	},
+	prefetch: false,
 	integrations: [
 		react(),
 		sitemap({

@@ -56,6 +56,7 @@ export default function About() {
                         href="https://forms.gle/oLzGwE5MKuPRKab89"
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label="Save your spot — apply to FormulaTech Hacks"
                         className="w-fit bg-primary hover:bg-primary/90 text-white font-title font-bold text-base md:text-lg px-6 py-4 rounded-full uppercase tracking-wide transition-all duration-200 hover:scale-105"
                     >
                         SAVE MY SPOT
@@ -64,7 +65,8 @@ export default function About() {
                 {/* Mobile view of car (rotating with CSS introduces extra whitespace) */}
                 <img
                     src={carHorizontal.src}
-                    alt="Birds eye view of car"
+                    alt=""
+                    aria-hidden="true"
                     width={carHorizontal.width}
                     height={carHorizontal.height}
                     loading="lazy"
@@ -74,7 +76,8 @@ export default function About() {
                 {/* Desktop view of car */}
                 <img
                     src={carVertical.src}
-                    alt="Birds eye view of car"
+                    alt=""
+                    aria-hidden="true"
                     width={carVertical.width}
                     height={carVertical.height}
                     loading="lazy"

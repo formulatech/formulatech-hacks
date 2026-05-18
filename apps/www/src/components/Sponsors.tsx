@@ -266,6 +266,7 @@ export default function Sponsors() {
                   href={sponsor_package_dir}
                   rel="noreferrer"
                   target="_blank"
+                  aria-label="Become a sponsor (opens sponsorship package PDF)"
                   className="rounded-full hover:opacity-90 transition-opacity px-[15px] py-[10px]"
                   style={{
                     backgroundColor: "#00AEB9",
@@ -287,6 +288,7 @@ export default function Sponsors() {
                   href={sponsor_package_dir}
                   rel="noreferrer"
                   target="_blank"
+                  aria-label="View sponsorship package (PDF)"
                   className="rounded-full hover:opacity-90 transition-opacity px-[15px] py-[10px]"
                   style={{
                     border: "3px solid #00AEB9",
@@ -295,7 +297,7 @@ export default function Sponsors() {
                   <span
                     className="font-title font-black text-sm whitespace-nowrap"
                     style={{
-                      color: "#00AEB9",
+                      color: "#7ee8f0",
                       lineHeight: "1.254em",
                     }}
                   >
@@ -310,7 +312,8 @@ export default function Sponsors() {
               {/* Left Flag */}
               <img
                 src="/sponsors/group_6.svg"
-                alt="Decorative flag"
+                alt=""
+                aria-hidden="true"
                 width={198}
                 height={211}
                 loading="lazy"
@@ -341,6 +344,7 @@ export default function Sponsors() {
                     href={sponsor_package_dir}
                     rel="noreferrer"
                     target="_blank"
+                    aria-label="Become a sponsor (opens sponsorship package PDF)"
                     className="rounded-full hover:opacity-90 transition-opacity px-5 py-5"
                     style={{
                       backgroundColor: "#00AEB9",
@@ -362,6 +366,7 @@ export default function Sponsors() {
                     href={sponsor_package_dir}
                     rel="noreferrer"
                     target="_blank"
+                    aria-label="View sponsorship package (PDF)"
                     className="rounded-full hover:opacity-90 transition-opacity px-5 py-5"
                     style={{
                       border: "3px solid #00AEB9",
@@ -370,7 +375,7 @@ export default function Sponsors() {
                     <span
                       className="font-title font-black text-xl whitespace-nowrap"
                       style={{
-                        color: "#00AEB9",
+                        color: "#7ee8f0",
                         lineHeight: "1.254em",
                       }}
                     >
@@ -383,7 +388,8 @@ export default function Sponsors() {
               {/* Right Flag */}
               <img
                 src="/sponsors/flag.svg"
-                alt="Decorative flag"
+                alt=""
+                aria-hidden="true"
                 width={198}
                 height={211}
                 loading="lazy"

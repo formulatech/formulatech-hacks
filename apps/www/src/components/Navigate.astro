@@ -1,0 +1,193 @@
+---
+import email from "../assets/email.svg";
+import instagram from "../assets/instagram.svg";
+import linkedin from "../assets/linkedin.svg";
+import logo from "../assets/logo.svg";
+
+const applyUrl = "https://forms.gle/oLzGwE5MKuPRKab89";
+const mailUrl =
+	"https://mail.google.com/mail/?view=cm&fs=1&to=formulatech.hacks@gmail.com";
+---
+
+<nav
+	class="bg-background text-black w-[80%] mx-auto py-1 px-8 mt-10 rounded-full flex items-center justify-between fixed top-0 left-1/2 -translate-x-1/2 z-[100] backdrop-blur shadow-md"
+	aria-label="Main"
+>
+	<div class="flex items-center gap-8 min-w-0 flex-nowrap overflow-hidden">
+		<button
+			type="button"
+			data-nav-top
+			class="focus:outline-none"
+			aria-label="Scroll to top"
+		>
+			<img
+				src={logo.src}
+				alt=""
+				width={logo.width}
+				height={logo.height}
+				class="h-8 w-auto cursor-pointer"
+				aria-hidden="true"
+			/>
+		</button>
+
+		<ul
+			class="hidden md:flex gap-[clamp(1rem,3vw,4rem)] items-center flex-nowrap min-w-0 overflow-hidden text-nowrap font-title font-bold"
+		>
+			<li>
+				<button type="button" data-nav-scroll="about" class="hover:text-primary transition cursor-pointer">
+					ABOUT
+				</button>
+			</li>
+			<li>
+				<button type="button" data-nav-scroll="sponsors" class="hover:text-primary transition cursor-pointer">
+					SPONSORS
+				</button>
+			</li>
+			<li>
+				<button type="button" data-nav-scroll="faqs" class="hover:text-primary transition cursor-pointer">
+					FAQs
+				</button>
+			</li>
+			<li>
+				<button type="button" data-nav-scroll="teams" class="hover:text-primary transition cursor-pointer">
+					TEAM
+				</button>
+			</li>
+		</ul>
+	</div>
+
+	<div class="flex items-center gap-[clamp(0.5rem,1vw,1.5rem)] flex-nowrap min-w-0 overflow-hidden">
+		<div class="hidden md:flex items-center gap-[clamp(1rem,1.5vw,2rem)] min-w-0">
+			<a
+				href="https://www.instagram.com/formulatech.hacks/"
+				target="_blank"
+				rel="noopener noreferrer"
+				aria-label="Instagram"
+			>
+				<img src={instagram.src} alt="" class="h-7 w-7 object-cover" aria-hidden="true" />
+			</a>
+			<a
+				href="https://www.linkedin.com/company/formulatech-hacks"
+				target="_blank"
+				rel="noopener noreferrer"
+				aria-label="LinkedIn"
+			>
+				<img src={linkedin.src} alt="" class="h-7 w-7 object-cover" aria-hidden="true" />
+			</a>
+			<a href={mailUrl} target="_blank" rel="noopener noreferrer" aria-label="Email us">
+				<img src={email.src} alt="" class="h-6 w-auto object-cover" aria-hidden="true" />
+			</a>
+			<a
+				href={applyUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+				aria-label="Apply to FormulaTech Hacks"
+				class="flex items-center bg-primary text-white font-bold px-3 py-2 rounded-4xl hover:opacity-90 transition text-center font-title"
+			>
+				APPLY NOW
+			</a>
+		</div>
+
+		<details class="nav-mobile md:hidden relative">
+			<summary class="list-none cursor-pointer text-2xl z-[1000] relative pointer-events-auto [&::-webkit-details-marker]:hidden">
+				<span class="nav-open" aria-hidden="true">☰</span>
+				<span class="nav-close hidden" aria-hidden="true">×</span>
+			</summary>
+			<div
+				class="fixed inset-0 z-40 bg-foreground text-white flex flex-col items-center justify-center space-y-6 pt-30 gap-10"
+			>
+				<button type="button" data-nav-scroll="about" class="hover:text-red-500 text-xl">About</button>
+				<button type="button" data-nav-scroll="sponsors" class="hover:text-red-500 text-xl">
+					Sponsors
+				</button>
+				<button type="button" data-nav-scroll="faqs" class="hover:text-red-500 text-xl">FAQs</button>
+				<button type="button" data-nav-scroll="teams" class="hover:text-red-500 text-xl">Team</button>
+				<a
+					href={applyUrl}
+					target="_blank"
+					rel="noopener noreferrer"
+					aria-label="Apply to FormulaTech Hacks"
+					class="flex flex-col items-center space-y-4 bg-primary text-white font-bold px-6 py-3 w-40 rounded-2xl hover:opacity-90 transition text-center"
+				>
+					APPLY NOW
+				</a>
+				<div class="flex space-x-6 items-center">
+					<a
+						href="https://www.instagram.com/formulatech.hacks/"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="hover:text-primary"
+						aria-label="Instagram"
+					>
+						<img
+							src={instagram.src}
+							alt=""
+							class="h-12 w-12 object-contain filter brightness-0 invert"
+							aria-hidden="true"
+						/>
+					</a>
+					<a
+						href="https://www.linkedin.com/company/formulatech-hacks"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="hover:text-primary"
+						aria-label="LinkedIn"
+					>
+						<img
+							src={linkedin.src}
+							alt=""
+							class="h-12 w-12 object-contain filter brightness-0 invert"
+							aria-hidden="true"
+						/>
+					</a>
+					<a href={mailUrl} target="_blank" rel="noopener noreferrer" class="hover:text-primary" aria-label="Email us">
+						<img
+							src={email.src}
+							alt=""
+							class="h-10 w-auto object-contain filter brightness-0 invert"
+							aria-hidden="true"
+						/>
+					</a>
+				</div>
+			</div>
+		</details>
+	</div>
+</nav>
+
+<style>
+	.nav-mobile[open] .nav-open {
+		display: none;
+	}
+	.nav-mobile[open] .nav-close {
+		display: inline;
+	}
+	.nav-mobile summary {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+</style>
+
+<script>
+	function scrollToWithOffset(id) {
+		const headerHeight = document.querySelector("nav")?.getBoundingClientRect().height ?? 0;
+		const el = document.getElementById(id);
+		if (!el) return;
+		const y = el.getBoundingClientRect().top + window.scrollY - headerHeight - 50;
+		history.pushState(null, "", `#${id}`);
+		window.scrollTo({ top: y, behavior: "smooth" });
+	}
+
+	document.querySelector("[data-nav-top]")?.addEventListener("click", () => {
+		window.scrollTo({ top: 0, behavior: "smooth" });
+	});
+
+	for (const btn of document.querySelectorAll("[data-nav-scroll]")) {
+		btn.addEventListener("click", () => {
+			const id = btn.getAttribute("data-nav-scroll");
+			if (!id) return;
+			scrollToWithOffset(id);
+			btn.closest("details")?.removeAttribute("open");
+		});
+	}
+</script>

@@ -1,0 +1,124 @@
+---
+const hackathonDay = new Date(2026, 2, 21, 0, 0, 0);
+
+function timeLeft(now = new Date()) {
+	const difference = hackathonDay.getTime() - now.getTime();
+	if (difference <= 0) {
+		return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+	}
+	return {
+		days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+		hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+		minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+		seconds: Math.floor((difference % (1000 * 60)) / 1000),
+	};
+}
+
+const initial = timeLeft();
+---
+
+<section class="w-full flex flex-col items-center" aria-labelledby="countdown-heading">
+	<h2 id="countdown-heading" class="sr-only">Countdown to hackathon</h2>
+	<div class="flex" aria-hidden="true">
+		<div class="hidden md:block font-title font-bold text-4xl mb-8 bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">/</div>
+		<p class="font-title font-bold text-center text-2xl md:text-3xl lg:text-4xl mb-8 mx-8 bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">
+			COUNTDOWN TO HACKATHON
+		</p>
+		<div class="hidden md:block font-title font-bold text-4xl mb-8 bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">/</div>
+	</div>
+
+	<div
+		id="countdown-desktop"
+		class="hidden h-[250px] lg:h-[370px] w-8/10 p-3 bg-[#1C1B20] md:flex md:flex-row rounded-4xl border-black border-5 gap-0 justify-center"
+		aria-hidden="true"
+	>
+		<div class="countdown-col w-1/3 md:w-24/100" data-label="Days"></div>
+		<div class="countdown-col w-1/3 md:w-24/100" data-label="Hours"></div>
+		<div class="countdown-col w-1/3 md:w-24/100" data-label="Minutes"></div>
+		<div class="countdown-col w-1/3 md:w-24/100" data-label="Seconds"></div>
+	</div>
+
+	<div id="countdown-mobile" class="md:hidden h-[300px] flex flex-wrap w-8/10 bg-black rounded-2xl" aria-hidden="true">
+		<div class="h-1/2 w-full flex justify-evenly items-center">
+			<div class="countdown-col w-1/3" data-label="Days"></div>
+			<div class="countdown-col w-1/3" data-label="Hours"></div>
+		</div>
+		<div class="h-1/2 w-full flex justify-evenly items-center">
+			<div class="countdown-col w-1/3" data-label="Minutes"></div>
+			<div class="countdown-col w-1/3" data-label="Seconds"></div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.countdown-col {
+		height: 80%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-evenly;
+	}
+	.countdown-label {
+		height: 20%;
+		display: flex;
+		width: 100%;
+		background: #fefdf3;
+		border-radius: 0.5rem;
+		border: 2px solid #d1283e;
+		justify-content: center;
+		align-items: center;
+		font-weight: 700;
+		font-family: var(--font-title);
+		font-size: clamp(0.75rem, 2vw, 1.5rem);
+	}
+	.countdown-digits {
+		display: flex;
+		height: 70%;
+		width: 100%;
+		background: #fefdf3;
+		border-radius: 0.5rem;
+		border: 2px solid #d1283e;
+		font-size: clamp(1.5rem, 8vw, 6rem);
+		font-family: var(--font-title);
+		align-items: center;
+		justify-content: center;
+	}
+</style>
+
+<script>
+	const target = new Date(2026, 2, 21, 0, 0, 0).getTime();
+
+	function renderCol(el, value, label) {
+		const hundreds = Math.floor(value / 100);
+		const tens = Math.floor((value % 100) / 10);
+		const ones = value % 10;
+		const digits =
+			value >= 100 ? `${hundreds}${tens}${ones}` : value >= 10 ? `${tens}${ones}` : `${ones}`;
+		el.innerHTML = `<div class="countdown-label">${label}</div><div class="countdown-digits">${digits}</div>`;
+	}
+
+	function tick() {
+		const diff = target - Date.now();
+		const left =
+			diff <= 0
+				? { days: 0, hours: 0, minutes: 0, seconds: 0 }
+				: {
+						days: Math.floor(diff / 86400000),
+						hours: Math.floor((diff % 86400000) / 3600000),
+						minutes: Math.floor((diff % 3600000) / 60000),
+						seconds: Math.floor((diff % 60000) / 1000),
+					};
+
+		for (const el of document.querySelectorAll(".countdown-col")) {
+			const label = el.getAttribute("data-label") ?? "";
+			let value = 0;
+			if (label === "Days") value = left.days;
+			if (label === "Hours") value = left.hours;
+			if (label === "Minutes") value = left.minutes;
+			if (label === "Seconds") value = left.seconds;
+			renderCol(el, value, label);
+		}
+	}
+
+	tick();
+	setInterval(tick, 1000);
+</script>

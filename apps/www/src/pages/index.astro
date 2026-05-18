@@ -1,20 +1,20 @@
 ---
 import About from "../components/About.tsx";
-import Countdown from "../components/Countdown.tsx";
+import Countdown from "../components/Countdown.astro";
 import FAQ from "../components/FAQ.tsx";
 import Footer from "../components/Footer.jsx";
 import Hero from "../components/Hero.tsx";
 import Sponsors from "../components/Sponsors.jsx";
 import Teams from "../components/Teams.tsx";
-import Navigate from "../components/navigate.tsx";
+import Navigate from "../components/Navigate.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-	<Navigate client:idle/>
+	<Navigate />
 	<Hero />
 	<About/>
-	<Countdown client:visible />
+	<Countdown />
 	<Sponsors client:visible />
 	<FAQ client:visible />
 	<Teams client:visible />

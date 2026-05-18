@@ -440,6 +440,7 @@ export default function Hero() {
             href="https://forms.gle/oLzGwE5MKuPRKab89"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Apply to FormulaTech Hacks"
             className="flex flex-row justify-center items-center gap-[10px] px-[15px] py-[10px] bg-[#D2273D] rounded-[300px] hover:bg-[#D2273D]/90 transition-all duration-200 drop-shadow-md sm:px-[16px] sm:py-[16px] md:px-[18px] md:py-[18px] lg:px-[20px] lg:py-[20px]"
           >
             <span
@@ -456,6 +457,7 @@ export default function Hero() {
           {/* Secondary Button */}
           <a
             href="#sponsors"
+            aria-label="Become a sponsor — jump to sponsors section"
             className="flex flex-row justify-center items-center gap-[10px] px-[15px] py-[10px] border-[3px] border-[#FBFCEE] rounded-[300px] hover:bg-white/10 transition-all duration-200 drop-shadow-md sm:px-[16px] sm:py-[16px] md:px-[18px] md:py-[18px] lg:px-[20px] lg:py-[20px]"
           >
             <span
