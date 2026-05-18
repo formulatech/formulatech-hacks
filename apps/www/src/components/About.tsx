@@ -27,18 +27,18 @@ export default function About() {
             id="about"
         >
             {/* Checkered pattern background decoration */}
-            <img src={blueGrid.src} width={blueGrid.width} height={blueGrid.height} loading="lazy" decoding="async" className="absolute bottom-[600px] right-[-400px] md:bottom-[700px] md:right-[-400px] lg:bottom-[570px] lg:right-[-500px] object-fit scale-300 md:scale-200 lg:scale-125" alt="" />
+            <img src={blueGrid.src} width={blueGrid.width} height={blueGrid.height} loading="lazy" decoding="async" className="absolute bottom-[600px] right-[-400px] md:bottom-[700px] md:right-[-400px] lg:bottom-[570px] lg:right-[-500px] object-fit scale-300 md:scale-200 lg:scale-125" alt="" aria-hidden="true" />
             <div className="container relative w-[80%] mx-auto flex flex-col lg:flex-row md:items-center lg:items-start justify-between gap-10 lg:gap-28">
                 {/* Text Section */}
                 <div className="flex flex-col md:items-center lg:items-start gap-3 md:gap-5">
-                <h1
+                <h2
                     className="inline-block md:inline flex-col md:flex-row md:items-center font-black font-title capitalize md:text-center leading-tight text-[clamp(1.7rem,4vw,2.75rem)]">
                     <span className="mr-6 bg-clip-text text-transparent bg-gradient-to-t from-primary to-secondary hidden md:inline">/</span>
                     <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary ">
                         ABOUT
                     </span>
                     <span className="ml-6 bg-clip-text text-transparent bg-gradient-to-t from-primary to-secondary hidden md:inline">/</span>
-                </h1>
+                </h2>
                     <p className="font-primary text-base md:text-lg text-black md:text-center md:leading-relaxed lg:text-left">
                         FormulaTech Hacks creates an energizing space where
                         motorsport enthusiasts can thrive, fostering an

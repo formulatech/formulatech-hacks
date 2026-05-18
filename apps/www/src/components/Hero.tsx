@@ -6,6 +6,7 @@ import desktopStarTeal from "../assets/desktop-star-teal.svg";
 export default function Hero() {
   return (
     <div className="relative w-full overflow-hidden aspect-[98/216] min-[412px]:max-sm:max-h-[916px] sm:aspect-auto sm:min-h-screen sm:pb-16 lg:aspect-[1512/1444] lg:pb-0 min-[1144px]:aspect-[1512/1300]">
+      <h1 className="sr-only">FormulaTech Hacks</h1>
       {/* Mobile Background SVG - Clipped to frame bounds */}
       <svg
         className="absolute inset-0 w-full h-full sm:hidden min-[412px]:max-sm:-top-[25%] min-[412px]:max-sm:h-[125%] min-[524px]:max-sm:-top-[45%] min-[524px]:max-sm:h-[145%] min-[568px]:max-sm:-top-[50%] min-[568px]:max-sm:h-[150%]"

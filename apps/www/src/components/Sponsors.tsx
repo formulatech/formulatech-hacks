@@ -97,7 +97,8 @@ function SponsorCard({ sponsor, size }: SponsorCardProps) {
         <div className="w-full flex items-center justify-center">
           <img
             src={sponsor.logoPath}
-            alt={sponsor.name}
+            alt=""
+            aria-hidden="true"
             width={280}
             height={140}
             loading="lazy"
@@ -109,7 +110,7 @@ function SponsorCard({ sponsor, size }: SponsorCardProps) {
           {sponsor.name}
         </h3>
         {size === "large" && (
-          <p className="font-body text-white/90 text-center text-sm md:text-base">
+          <p className="font-body text-white text-center text-sm md:text-base">
             {sponsor.description}
           </p>
         )}
@@ -170,14 +171,14 @@ export default function Sponsors() {
           {/* Title - Single on mobile, repeating on desktop */}
           <div className="w-full">
             {/* Mobile: show single title */}
-            <h1
+            <h2
               className="md:hidden font-title font-black text-2xl text-center bg-clip-text text-transparent whitespace-nowrap"
               style={{
                 backgroundImage: "linear-gradient(90deg, rgba(210, 39, 61, 1) 41%, rgba(0, 174, 185, 1) 85%)"
               }}
             >
               OUR SPONSORS
-            </h1>
+            </h2>
             {/* Desktop: show repeating pattern with infinite scroll */}
             <div className="hidden md:block w-full overflow-hidden">
               <style>{`
@@ -197,9 +198,9 @@ export default function Sponsors() {
                 {/* First set */}
                 {Array.from({ length: 8 }).map((_, i) => (
                   <React.Fragment key={`set1-${i}`}>
-                    <h1 className="font-title font-black text-5xl bg-gradient-to-r from-[#D2273D] via-[#D2273D] to-[#00AEB9] bg-clip-text text-transparent whitespace-nowrap">
+                    <p aria-hidden="true" className="font-title font-black text-5xl bg-gradient-to-r from-[#D2273D] via-[#D2273D] to-[#00AEB9] bg-clip-text text-transparent whitespace-nowrap">
                       OUR SPONSORS
-                    </h1>
+                    </p>
                     <span className="font-title font-black text-5xl bg-gradient-to-r from-[#D2273D] via-[#D2273D] to-[#00AEB9] bg-clip-text text-transparent">
                       /
                     </span>
@@ -208,9 +209,9 @@ export default function Sponsors() {
                 {/* Second set (duplicate for seamless loop) */}
                 {Array.from({ length: 8 }).map((_, i) => (
                   <React.Fragment key={`set2-${i}`}>
-                    <h1 className="font-title font-black text-5xl bg-gradient-to-r from-[#D2273D] via-[#D2273D] to-[#00AEB9] bg-clip-text text-transparent whitespace-nowrap">
+                    <p aria-hidden="true" className="font-title font-black text-5xl bg-gradient-to-r from-[#D2273D] via-[#D2273D] to-[#00AEB9] bg-clip-text text-transparent whitespace-nowrap">
                       OUR SPONSORS
-                    </h1>
+                    </p>
                     <span className="font-title font-black text-5xl bg-gradient-to-r from-[#D2273D] via-[#D2273D] to-[#00AEB9] bg-clip-text text-transparent">
                       /
                     </span>
