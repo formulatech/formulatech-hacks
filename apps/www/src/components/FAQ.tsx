@@ -112,7 +112,7 @@ export default function FAQ() {
         <div className="mt-[20dvh] pt-20 w-full flex flex-col gap-[30px] relative pb-20 min-h-[50vw] bg-[#fafbee]"
             id="faqs"
         >
-            <h1
+            <h2
                 className="flex flex-col md:flex-row items-center font-black px-3 py-4 md:p-5 sm:ml-0 lg:ml-15 font-title capitalize text-center leading-tight"
                 style={{ fontSize: "clamp(1.4rem, 4vw, 2.75rem)" }}>
                 <span className="mr-6 bg-clip-text text-transparent bg-gradient-to-t from-primary to-secondary hidden md:block">/</span>
@@ -120,7 +120,7 @@ export default function FAQ() {
                     FREQUENTLY ASKED QUESTIONS
                 </span>
                 <span className="ml-6 bg-clip-text text-transparent bg-gradient-to-t from-primary to-secondary hidden md:block">/</span>
-            </h1>
+            </h2>
     
             {/* Cars + Road Grid */}
             <div className="relative w-full flex flex-col items-center">
@@ -133,39 +133,44 @@ export default function FAQ() {
                     <button
                         type="button"
                         onClick={() => openPopup("General")}
+                        aria-label="General questions"
                         className="flex flex-col items-center hover:scale-105 transition cursor-pointer"
                     >
-                        <img src={general.src} alt="General" className="w-100 h-auto" />
+                        <img src={general.src} alt="" aria-hidden="true" className="w-100 h-auto" />
                     </button>
     
                     <button
                         type="button"
                         onClick={() => openPopup("Sign-Up")}
+                        aria-label="Sign-up questions"
                         className="flex flex-col items-center hover:scale-105 transition cursor-pointer"
                     >
-                        <img src={signup.src} alt="Sign-Up" className="w-100 h-auto" />
+                        <img src={signup.src} alt="" aria-hidden="true" className="w-100 h-auto" />
                     </button>
     
                     <button
                         type="button"
                         onClick={() => openPopup("Logistics")}
+                        aria-label="Logistics questions"
                         className="flex flex-col items-center hover:scale-105 transition cursor-pointer"
                     >
-                        <img src={logistics.src} alt="Logistics" className="w-100 h-auto" />
+                        <img src={logistics.src} alt="" aria-hidden="true" className="w-100 h-auto" />
                     </button>
 
                     <button
                         type="button"
                         onClick={() => openPopup("Code of Conduct")}
+                        aria-label="Code of conduct questions"
                         className="flex flex-col items-center hover:scale-105 transition cursor-pointer"
                     >
-                        <img src={codeofconduct.src} alt="Code of Conduct" className="w-100 h-auto" />
+                        <img src={codeofconduct.src} alt="" aria-hidden="true" className="w-100 h-auto" />
                     </button>
                 </div>
 
                 <img
                     src={track.src}
-                    alt="Track"
+                    alt=""
+                    aria-hidden="true"
                     className="w-screen h-auto object-cover"
                     style={{ maxWidth: "100vw" }}
                 />                
@@ -193,7 +198,7 @@ export default function FAQ() {
                                     {questions[activeCategory as keyof typeof questions].map(({ q, a }) => (
                                         <div key={q} className="flex flex-col mb-6">
                                             <button type="button" onClick={() => toggleQuestion(q)} className="flex items-center text-left cursor-pointer group uppercase font-title">
-                                                <img src={flag.src} alt="flag"
+                                                <img src={flag.src} alt="" aria-hidden="true"
                                                     className="w-[clamp(2rem,3vw,3rem)] h-[clamp(2rem,3vw,3rem)] transform transition-transform duration-200 group-hover:scale-125"
                                                 />
                                                 <span className="mx-5 font-bold text-[clamp(0.875rem,2vw,1.25rem)]">{q}</span>
@@ -212,20 +217,22 @@ export default function FAQ() {
                                 </div>
                             </div>
                         ) : (
-                            <div className="text-center text-gray-400">No category selected</div>
+                            <div className="text-center text-gray-300">No category selected</div>
                         )}
                     </div>
                 </div>
             </div>
             <img
                 src={redstar.src}
-                alt="Decorative star"
+                alt=""
+                aria-hidden="true"
                 className="hidden md:block absolute -right-40 -bottom-[-3rem] w-80 h-80 red-star-spin z-50 pointer-events-none"
                 style={{ width: "clamp(10rem, 24vw, 30rem)", height: "clamp(10rem, 24vw, 30rem)" }}
             />
             <img
                 src={tealstar.src}
-                alt="Decorative star"
+                alt=""
+                aria-hidden="true"
                 className="hidden md:block absolute -left-50 -bottom-[14rem] w-80 h-80 teal-star-spin z-50 pointer-events-none"
                 style={{ width: "clamp(10rem, 24vw, 30rem)", height: "clamp(10rem, 24vw, 30rem)" }}
             />

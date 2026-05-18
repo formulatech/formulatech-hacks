@@ -142,7 +142,7 @@ export default function Teams() {
     return (
         <>
             <div className="mt-[5dvh] pt-5 w-[80%] mx-auto flex flex-col gap-[30px] bg-[#fafbee]" id="teams">
-                <h1
+                <h2
                     className="mx-auto flex justify-center items-center font-black font-title capitalize text-center leading-tight"
                     style={{ fontSize: "clamp(1.4rem, 4vw, 2.75rem)" }}>
                     <span className="mr-6 bg-clip-text text-transparent bg-gradient-to-t from-primary to-secondary hidden md:block">/</span>
@@ -150,7 +150,7 @@ export default function Teams() {
                         MEET THE TEAM
                     </span>
                     <span className="ml-6 bg-clip-text text-transparent bg-gradient-to-t from-primary to-secondary hidden md:block">/</span>
-                </h1>
+                </h2>
             </div>
 
             {/* Stands container */}
@@ -248,7 +248,7 @@ export default function Teams() {
                                                 <p className="font-bold text-sm text-gray-900 text-center">
                                                 {member.name}
                                                 </p>
-                                                <p className="text-xs text-gray-600 text-center mt-0.5">
+                                                <p className="text-xs text-gray-800 text-center mt-0.5">
                                                 {member.role ? member.role.join(", ") : member.teams.join(", ")}
                                                 </p>
                                             </div>
