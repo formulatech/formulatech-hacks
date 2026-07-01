@@ -33,7 +33,6 @@ import akkiSengupta from "../assets/headshots/blank_headshot.png";
 import elinZhang from "../assets/headshots/elin_zhang.jpg";
 import hyLacNguyen from "../assets/headshots/hy_lac_nguyen.jpg";
 import lindaChen from "../assets/headshots/linda_chen.png";
-import richardLi from "../assets/headshots/richard_li.png";
 
 import annieSong from "../assets/headshots/blank_headshot.png";
 import irisZhu from "../assets/headshots/blank_headshot.png";
@@ -127,7 +126,6 @@ export default function Teams() {
         { name: "Akriti Batra", teams: ["Finance"], role: ["Finance Coordinator"], image: akritiBatra, level: 2 },
 
         // Development Team
-        { name: "Richard Li", teams: ["Development", "Sponsorship"], role: ["Front-End Developer", "Back-End Developer"], image: richardLi, level: 3 },
         { name: "Linda Chen", teams: ["Marketing", "Development"], role: ["Front-End Devloper", "Outreach Manager"], image: lindaChen, level: 3 },
         { name: "Elin Zhang", teams: ["Marketing", "Development"], role: ["Front-End Developer", "Marketing Coordinator"], image: elinZhang, level: 3 },
         { name: "Hy Lac Nguyen", teams: ["Development"], role: ["Front-End Developer"], image: hyLacNguyen, level: 3 },
