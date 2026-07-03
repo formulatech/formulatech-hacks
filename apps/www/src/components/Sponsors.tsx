@@ -62,7 +62,7 @@ const sponsors: Sponsor[] = [
   }),
 ];
 
-const sponsor_package_dir = "/sponsors/FTH%20Sponsorship%20Package.pdf";
+const sponsor_package_dir = "/sponsors/fth-sponsorship-package-2026.pdf";
 
 // Sponsor Card Component
 interface SponsorCardProps {
