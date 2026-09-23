@@ -69,7 +69,7 @@ const sponsors: Sponsor[] = [
     name: "Ollon",
     tier: "SILVER",
     logoPath: "/sponsors/ollon/Ollon.svg",
-    website: "https://ollon.com/",
+    website: "https://www.ollon.ca/",
   }),
   createSponsor({
     name: "SLEF",
