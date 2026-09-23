@@ -7,7 +7,6 @@ interface Sponsor {
   name: string;
   logoPath: string;
   website: string;
-  description: string;
   tier: "GOLD" | "SILVER" | "BRONZE";
 }
 
@@ -26,7 +25,6 @@ function createSponsor(sponsor: {
   name?: string;
   logoPath?: string;
   website?: string;
-  description?: string;
   tier?: "GOLD" | "SILVER" | "BRONZE";
 }): Sponsor {
   const name = sponsor.name || "Default Sponsor";
@@ -37,7 +35,6 @@ function createSponsor(sponsor: {
     name,
     logoPath: sponsor.logoPath || "/sponsors/default_sponsor.svg",
     website: sponsor.website || "https://example.com",
-    description: sponsor.description || "Default sponsor description",
     tier: sponsor.tier || "BRONZE",
   };
 }
@@ -45,20 +42,40 @@ function createSponsor(sponsor: {
 // ADD AND EDIT SPONSORS HERE
 const sponsors: Sponsor[] = [
   createSponsor({
+    name: "Tangerine",
+    tier: "GOLD",
+    logoPath: "/sponsors/tangerine/TANGERINE.svg",
+    website: "https://www.tangerine.ca/",
+  }),
+  createSponsor({
+    name: "Ampere",
+    tier: "GOLD",
+    logoPath: "/sponsors/ampere/AMPERE.svg",
+    website: "https://amperecomputing.com/",
+  }),
+  createSponsor({
+    name: "Math Endowment Fund",
+    tier: "GOLD",
+    logoPath: "/sponsors/mef/MEF_Logo.png",
+    website: "https://uwaterloo.ca/math-endowment-fund/",
+  }),
+  createSponsor({
+    name: "Telus",
+    tier: "SILVER",
+    logoPath: "/sponsors/telus/TELUS.svg",
+    website: "https://www.telus.com/",
+  }),
+  createSponsor({
+    name: "Ollon",
+    tier: "SILVER",
+    logoPath: "/sponsors/ollon/Ollon.svg",
+    website: "https://ollon.com/",
+  }),
+  createSponsor({
     name: "SLEF",
     tier: "BRONZE",
     logoPath: "/sponsors/slef/SLEF_Logo_Color_Logo_Name.png",
     website: "https://wusa.ca/about/your-money/funding/",
-    description:
-      "The Student Life Endowment Fund (SLEF) is an income-generating fund that supports student-led projects and initiatives aimed at enhancing campus life and fostering a vibrant, inclusive community for undergraduate students at the University of Waterloo.",
-  }),
-  createSponsor({
-    name: "MEF",
-    tier: "SILVER",
-    logoPath: "/sponsors/mef/MEF_Logo.png",
-    website: "https://uwaterloo.ca/math-endowment-fund/",
-    description:
-      "The Mathematics Endowment Fund (MEF) is an income-generating fund that exists to finance projects that are in the best interests of undergraduate math students at the University of Waterloo.",
   }),
 ];
 
@@ -93,22 +110,12 @@ function SponsorCard({ sponsor, size }: SponsorCardProps) {
         boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
       }}
     >
-      <div className="flex flex-col gap-4 items-center justify-center h-full">
-        <div className="w-full flex items-center justify-center">
-          <img
-            src={sponsor.logoPath}
-            alt={sponsor.name}
-            className="max-h-[100px] md:max-h-[140px] w-auto object-contain"
-          />
-        </div>
-        <h3 className="font-title font-bold text-white text-center text-xs md:text-lg md:text-xl">
-          {sponsor.name}
-        </h3>
-        {size === "large" && (
-          <p className="font-body text-white/90 text-center text-sm md:text-base">
-            {sponsor.description}
-          </p>
-        )}
+      <div className="flex items-center justify-center h-full">
+        <img
+          src={sponsor.logoPath}
+          alt={sponsor.name}
+          className="max-h-[100px] md:max-h-[140px] w-auto object-contain"
+        />
       </div>
     </a>
   );
